@@ -22,7 +22,7 @@ class PrivilegeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->jobTitle()
         ];
     }
 }
