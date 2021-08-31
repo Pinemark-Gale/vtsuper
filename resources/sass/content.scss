@@ -1,6 +1,7 @@
 body {
     color: $text-color;
     background-color: $site-background;
+    font-size: 1.1rem;
     max-width: 600px;
     margin: auto;
     margin-top: 20px;
@@ -9,4 +10,11 @@ body {
 a {
     color: $link-color;
     text-decoration: none;
+}
+
+form {
+    div {
+        color: $link-color;
+        text-decoration: none;
+    }
 }
