@@ -8,16 +8,14 @@
 }
 
 body {
-  background-color: white;
+  color: #eee;
+  background-color: #444;
   max-width: 600px;
   margin: auto;
   margin-top: 20px;
 }
 
 a {
+  color: #ccf;
   text-decoration: none;
-}
-
-body {
-  background: black;
 }

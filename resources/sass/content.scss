@@ -1,0 +1,12 @@
+body {
+    color: $text-color;
+    background-color: $site-background;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+}

@@ -1,7 +1,7 @@
 <navigation>
     @if (Route::has('login'))
         <div class="header-logo">
-            <a href="{{ route('home') }}"<h1>VT Super</h1></a>
+            <a href="{{ route('home') }}"><h1>VT Super</h1></a>
         </div>
         <div class="header-style">
             @auth
