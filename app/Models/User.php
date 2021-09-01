@@ -43,4 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /* Eloquent relationship for user->school */
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    /* Eloquent relationship for user->privilege */
+    public function privilege()
+    {
+        return $this->belongsTo(Privilege::class);
+    }
 }

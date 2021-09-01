@@ -19,4 +19,10 @@ class School extends Model
         'district'
     ];
 
+    /* Eloquent relationship for school->user */
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
 }

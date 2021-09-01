@@ -18,4 +18,10 @@ class Privilege extends Model
         'title'
     ];
 
+    /* Eloquent relationship for privilege->user */
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
 }
