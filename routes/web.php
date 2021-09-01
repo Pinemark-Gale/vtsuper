@@ -1,4 +1,5 @@
 <?php
+namespace App\Models;
 
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,17 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/users', function() {
+    return view('users', [
+        'users' => User::with(['school', 'privilege'])->orderby('name')->get()
+    ]);
+})->name('users');
+
+Route::get('/users/{user:name}', function(User $user) {
+    return view('user', [
+        'user' => $user
+    ]);
+});
 
 require __DIR__.'/auth.php';

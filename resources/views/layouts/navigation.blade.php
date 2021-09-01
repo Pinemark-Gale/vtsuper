@@ -6,6 +6,7 @@
         <div class="header-style">
             @auth
                 <a href="{{ url('/dashboard') }}" class="header-item">Dashboard</a>
+                <a href="{{ route('users') }}" class="header-item">Users</a>
                 <form method="POST" action="{{ route('logout') }}" class="header-item">
                     @csrf
 
