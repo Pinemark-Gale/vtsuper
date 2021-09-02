@@ -13,6 +13,22 @@ class PrivilegeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        /* Make common privileges for app. */
+        \App\Models\Privilege::create([
+            'title' => 'Student'
+        ]);
+
+        \App\Models\Privilege::create([
+            'title' => 'Teacher'
+        ]);
+
+        \App\Models\Privilege::create([
+            'title' => 'Contributor'
+        ]);
+
+        \App\Models\Privilege::create([
+            'title' => 'Admin'
+        ]);
+
     }
 }
