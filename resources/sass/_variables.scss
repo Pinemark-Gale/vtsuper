@@ -1,4 +1,28 @@
-// Default variables for website.
-$link-color: #ccf !default;
-$site-background: #0e0e10 !default;
-$text-color: #fff !default;
+// Style sheet variables..
+$super-light-red: #FA6464;
+$super-red: #F03C3C;
+$super-dark-red: #D52121;
+$super-black: #1A1818;
+$super-white: #F5E6C4;
+$accent-dark-blue: #6D80A9;
+$accent-blue: #869AC6;
+$accent-light-blue: #A2B4DD;
+$accent-dark-yellow: #EEAA52;
+$accent-yellow: #EEAA52;
+$accent-light-yellow: #FFD9A8;
+$accent-dark-orange: #C54729;
+$accent-orange: #E55E3E;
+$accent-light-orange: #F37E62;
+$accent-dark-green: #598D7F;
+$accent-green: #66B29E;
+$accent-light-green: #7FCCB8;
+
+@font-face {
+    font-family: 'Josefin Sans';
+    src: url('/fonts/JosefinSans-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Lobster';
+    src: url('/fonts/Lobster-Regular.ttf');
+}
