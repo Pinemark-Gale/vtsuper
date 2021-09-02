@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             $school = \App\Models\School::factory()->create();
             for ($p = 0; $p < $MAX_PRIVILEGES; $p++) {
                 \App\Models\User::factory($USERS_PER_SCHOOL)->state([
-                    'privilege_id' => $p,
+                    'privilege_id' => $p + 1,
                 ])->for($school)->create();
             }    
         }

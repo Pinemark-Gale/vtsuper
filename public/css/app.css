@@ -1,29 +1,42 @@
-.header-logo {
-  font-size: 1.5rem;
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/fonts/JosefinSans-VariableFont_wght.ttf");
 }
-.header-logo svg {
-  width: 10%;
-  max-width: 200px;
+@font-face {
+  font-family: "Lobster";
+  src: url("/fonts/Lobster-Regular.ttf");
+}
+.header-logo {
+  color: #F5E6C4;
+  display: block;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+.header-logo a {
+  color: #F5E6C4;
 }
 
 .header-style {
-  background-color: #1e1e10;
-  border: 1px solid black;
+  border-top: solid 5px #F5E6C4;
+  border-bottom: solid 5px #F5E6C4;
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
 }
 
 .header-item {
-  background-color: #2e2e10;
-  border-radius: 2px;
+  color: #F5E6C4;
+  border-left: solid 5px #F5E6C4;
+  border-right: solid 5px #F5E6C4;
   margin: 5px;
   padding: 5px;
 }
 
 body {
-  color: #fff;
-  background-color: #0e0e10;
+  color: #F5E6C4;
+  background-color: #1A1818;
+  font-family: "Josefin Sans";
   font-size: 1.1rem;
   max-width: 600px;
   margin: auto;
@@ -31,11 +44,35 @@ body {
 }
 
 a {
-  color: #ccf;
   text-decoration: none;
 }
 
 form div {
-  color: #ccf;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5px;
+}
+.card-container .user-card {
+  background-color: #598D7F;
+  padding: 5px;
+  margin: 5px;
+  min-width: 200px;
+}
+.card-container .user-card .user-info {
+  background-color: #66B29E;
+  border-radius: 5px;
+  color: #1A1818;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+}
+.card-container .user-card .user-info a {
+  color: #1A1818;
 }

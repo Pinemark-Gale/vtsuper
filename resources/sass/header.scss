@@ -1,24 +1,28 @@
 // Main header navigation styling.
 .header-logo {
+    color: $super-white;
+    display: block;
     font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
 
-    svg {
-        width: 10%;
-        max-width: 200px;
+    a {
+        color: $super-white;
     }
 }
 
 .header-style {
-    background-color: #1e1e10;
-    border: 1px solid black;
+    border-top: solid 5px $super-white;
+    border-bottom: solid 5px $super-white;
     display: flex;
     flex-wrap: wrap;
     padding: 5px;
 }
 
 .header-item {
-    background-color: #2e2e10;
-    border-radius: 2px;
+    color: $super-white;
+    border-left: solid 5px $super-white;
+    border-right: solid 5px $super-white;
     margin: 5px;
     padding: 5px;
 }
