@@ -7,6 +7,8 @@
             @auth
                 <a href="{{ url('/dashboard') }}" class="header-item">Dashboard</a>
                 <a href="{{ route('users') }}" class="header-item">Users</a>
+                <a href="{{ route('privileges') }}" class="header-item">Privileges</a>
+                <a href="{{ route('schools') }}" class="header-item">Schools</a>
                 <form method="POST" action="{{ route('logout') }}" class="header-item">
                     @csrf
 

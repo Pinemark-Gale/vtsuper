@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Privilege;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PrivilegeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class PrivilegeController extends Controller
      */
     public function index()
     {
-        return view('privileges', [
-            'privileges' => Privilege::all()
-        ]);    
+        return view('users', [
+            'users' => User::with(['school', 'privilege'])->orderby('name')->get()
+        ]);
     }
 
     /**
@@ -43,21 +43,23 @@ class PrivilegeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Privilege  $privilege
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Privilege $privilege)
+    public function show(User $user)
     {
-        //
+        return view('user', [
+            'user' => $user
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Privilege  $privilege
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Privilege $privilege)
+    public function edit(User $user)
     {
         //
     }
@@ -66,10 +68,10 @@ class PrivilegeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Privilege  $privilege
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Privilege $privilege)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -77,10 +79,10 @@ class PrivilegeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Privilege  $privilege
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Privilege $privilege)
+    public function destroy(User $user)
     {
         //
     }

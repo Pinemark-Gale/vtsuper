@@ -14,8 +14,10 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
-    }
+        return view('schools', [
+            'schools' => School::all()
+        ]);       
+     }
 
     /**
      * Show the form for creating a new resource.
