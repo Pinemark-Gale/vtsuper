@@ -76,6 +76,14 @@ form div {
 .card-container .user-card .user-info a {
   color: #1A1818;
 }
+.card-container .user-card .user-action {
+  background-color: #869AC6;
+  border-radius: 5px;
+  color: #1A1818;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+}
 
 .admin-form {
   display: flex;

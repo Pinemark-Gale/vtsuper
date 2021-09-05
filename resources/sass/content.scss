@@ -44,6 +44,15 @@ form {
                 color: $super-black;
             }
         }
+
+        .user-action {
+            background-color: $accent-blue;
+            border-radius: 5px;
+            color: $super-black;
+            margin: 5px;
+            padding: 5px;
+            text-align: center;
+        }
     }
     
 }

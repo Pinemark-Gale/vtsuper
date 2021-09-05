@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Privilege;
 use App\Models\School;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -79,7 +81,33 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        /* Link to validation rules: 
+         * https://laravel.com/docs/8.x/validation#a-note-on-optional-fields */
+        $validatedData = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'password' => ['string', 'nullable'],
+            'school_id' => ['required', 'numeric', 'integer'],
+            'privilege_id' => ['required', 'numeric', 'integer']
+        ]);
+
+        if (Auth::user()->privilege->title == 'Admin') {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if ($request->password) {
+                $user->password = bcrypt($request->password);
+            }
+            $user->school_id = $request->school_id;
+            $user->privilege_id = $request->privilege_id;
+    
+            $user->save();
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to edit user profile " . $user->name . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
+
+        return redirect(route('users'));
     }
 
     /**
@@ -90,6 +118,14 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        if (Auth::user()->privilege->title == 'Admin') {
+            $user->delete();
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to delete user profile " . $user->name . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
+
+        return redirect(route('users'));
     }
 }
