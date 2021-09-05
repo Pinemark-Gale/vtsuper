@@ -48,3 +48,59 @@ form {
     
 }
 
+.admin-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 5px;
+
+    label {
+        background-color: $accent-dark-green;
+        display: block;
+        padding: 5px;
+        margin: 5px;
+        min-width: 200px;
+        text-align: center;
+        width: 30%;
+    }
+
+    input {
+        background-color: $accent-dark-blue;
+        border: none;
+        display: block;
+        padding: 5px;
+        margin: 5px;
+        min-width: 200px;
+        text-align: center;
+        width: 30%;
+    }
+
+    select {
+        background-color: $accent-dark-blue;
+        border: none;
+        display: block;
+        padding: 5px;
+        margin: 5px;
+        min-width: 200px;
+        text-align: center;
+        width: 30%;
+    }
+
+    button {
+        background-color: $accent-dark-blue;
+        border: none;
+        border-radius: 5px;
+        color: $super-white;
+        display: block;
+        font-size: 1.2rem;
+        padding: 5px;
+        margin: 10px;
+        margin-left: 25%;
+        margin-right: 25%;
+        min-width: 200px;
+        text-align: center;
+        width: 100%;
+
+    }
+}

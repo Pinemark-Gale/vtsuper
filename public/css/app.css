@@ -76,3 +76,55 @@ form div {
 .card-container .user-card .user-info a {
   color: #1A1818;
 }
+
+.admin-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5px;
+}
+.admin-form label {
+  background-color: #598D7F;
+  display: block;
+  padding: 5px;
+  margin: 5px;
+  min-width: 200px;
+  text-align: center;
+  width: 30%;
+}
+.admin-form input {
+  background-color: #6D80A9;
+  border: none;
+  display: block;
+  padding: 5px;
+  margin: 5px;
+  min-width: 200px;
+  text-align: center;
+  width: 30%;
+}
+.admin-form select {
+  background-color: #6D80A9;
+  border: none;
+  display: block;
+  padding: 5px;
+  margin: 5px;
+  min-width: 200px;
+  text-align: center;
+  width: 30%;
+}
+.admin-form button {
+  background-color: #6D80A9;
+  border: none;
+  border-radius: 5px;
+  color: #F5E6C4;
+  display: block;
+  font-size: 1.2rem;
+  padding: 5px;
+  margin: 10px;
+  margin-left: 25%;
+  margin-right: 25%;
+  min-width: 200px;
+  text-align: center;
+  width: 100%;
+}

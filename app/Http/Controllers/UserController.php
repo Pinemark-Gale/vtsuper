@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Privilege;
+use App\Models\School;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users', [
+        return view('models.users', [
             'users' => User::with(['school', 'privilege'])->orderby('name')->get()
         ]);
     }
@@ -26,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // handled by Laravel Breeze register
     }
 
     /**
@@ -37,7 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // handled by Laravel Breeze register
     }
 
     /**
@@ -48,7 +50,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user', [
+        return view('models.user', [
             'user' => $user
         ]);
     }
@@ -61,7 +63,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('models.user-edit', [
+            'user' => $user,
+            'schools' => School::all(),
+            'privileges' => Privilege::all()
+        ]);
     }
 
     /**

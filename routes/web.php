@@ -29,6 +29,8 @@ Route::get('/dashboard', function () {
 /* User routes. */
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/users/{user:name}', [UserController::class, 'show']);
+Route::get('/users/{user:name}/edit', [UserController::class, 'edit'])->name('user-edit');
+Route::post('/user/update', [UserController::class, 'update'])->name('user-update');
 
 /* Privilege routes. */
 Route::get('/privileges', [PrivilegeController::class, 'index'])->name('privileges');

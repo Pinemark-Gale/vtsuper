@@ -14,7 +14,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        return view('schools', [
+        return view('models.schools', [
             'schools' => School::all()
         ]);       
      }

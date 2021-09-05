@@ -14,7 +14,7 @@ class PrivilegeController extends Controller
      */
     public function index()
     {
-        return view('privileges', [
+        return view('models.privileges', [
             'privileges' => Privilege::all()
         ]);    
     }
