@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Privilege;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class PrivilegeController extends Controller
@@ -14,9 +16,15 @@ class PrivilegeController extends Controller
      */
     public function index()
     {
-        return view('models.privileges', [
-            'privileges' => Privilege::all()
-        ]);    
+        if (Auth::user()->privilege->title == 'Admin') {
+            return view('models.privileges', [
+                'privileges' => Privilege::all()
+            ]);    
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to view all privileges.";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
     }
 
     /**
@@ -26,7 +34,13 @@ class PrivilegeController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::user()->privilege->title == 'Admin') {
+            return view('models.privilege-create');    
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to create a privilege.";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
     }
 
     /**
@@ -37,7 +51,21 @@ class PrivilegeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required', 'string']
+        ]);
+
+        if (Auth::user()->privilege->title == 'Admin') {
+            Privilege::create([
+                'title' => $request->title
+            ]);
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to store privilege " . $request->title . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
+
+        return redirect(route('privileges'));
     }
 
     /**
@@ -48,7 +76,15 @@ class PrivilegeController extends Controller
      */
     public function show(Privilege $privilege)
     {
-        //
+        if (Auth::user()->privilege->title == 'Admin') {
+            return view('models.privilege', [
+                'privilege' => $privilege
+            ]);
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to view privilege " . $privilege->title . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
     }
 
     /**
@@ -59,7 +95,15 @@ class PrivilegeController extends Controller
      */
     public function edit(Privilege $privilege)
     {
-        //
+        if (Auth::user()->privilege->title == 'Admin') {
+            return view('models.privilege-edit', [
+                'privilege' => $privilege,
+            ]);
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to edit privilege " . $privilege->title . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
     }
 
     /**
@@ -71,7 +115,20 @@ class PrivilegeController extends Controller
      */
     public function update(Request $request, Privilege $privilege)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required', 'string'],
+        ]);
+
+        if (Auth::user()->privilege->title == 'Admin') {
+            $privilege->title = $request->title;
+            $privilege->save();
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to update privilege " . $privilege->title . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
+
+        return redirect(route('privileges'));
     }
 
     /**
@@ -82,6 +139,14 @@ class PrivilegeController extends Controller
      */
     public function destroy(Privilege $privilege)
     {
-        //
+        if (Auth::user()->privilege->title == 'Admin') {
+            $privilege->delete();
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to delete privilege " . $privilege->title . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
+
+        return redirect(route('privileges'));
     }
 }

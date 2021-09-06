@@ -18,9 +18,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('models.users', [
-            'users' => User::with(['school', 'privilege'])->orderby('name')->get()
-        ]);
+        if (Auth::user()->privilege->title == 'Admin') {
+            return view('models.users', [
+                'users' => User::with(['school', 'privilege'])->orderby('name')->get()
+            ]);
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to view all users.";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
     }
 
     /**
@@ -52,9 +58,15 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('models.user', [
-            'user' => $user
-        ]);
+        if (Auth::user()->privilege->title == 'Admin') {
+            return view('models.user', [
+                'user' => $user
+            ]);
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to view user profile " . $user->name . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
     }
 
     /**
@@ -65,11 +77,17 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('models.user-edit', [
-            'user' => $user,
-            'schools' => School::all(),
-            'privileges' => Privilege::all()
-        ]);
+        if (Auth::user()->privilege->title == 'Admin') {
+            return view('models.user-edit', [
+                'user' => $user,
+                'schools' => School::all(),
+                'privileges' => Privilege::all()
+            ]);
+        } else {
+            $message = "User " . Auth::user()->name . " attempted to edit user profile " . $user->name . ".";
+            Log::warning($message);
+            return redirect(route('unauthorized-access'));
+        }
     }
 
     /**
@@ -102,7 +120,7 @@ class UserController extends Controller
     
             $user->save();
         } else {
-            $message = "User " . Auth::user()->name . " attempted to edit user profile " . $user->name . ".";
+            $message = "User " . Auth::user()->name . " attempted to update user profile " . $user->name . ".";
             Log::warning($message);
             return redirect(route('unauthorized-access'));
         }

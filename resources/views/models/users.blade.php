@@ -4,7 +4,7 @@
 
     <div class="card-container">
         @foreach ($users as $user)
-                <a href="/users/{{ $user->name }}">
+                <a href="{{ route('user', ['user' => $user->name]) }}">
                     <div class="user-card">
                         <div class="user-info">{{ $user->privilege->title }}</div>
                         <div class="user-info">{{ $user->name }}</div>
