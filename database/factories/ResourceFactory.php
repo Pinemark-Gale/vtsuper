@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Resource;
+use App\Models\ResourceType;
+use App\Models\Source;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ResourceFactory extends Factory
@@ -22,7 +24,11 @@ class ResourceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'resource_type_id' => ResourceType::all()->random()->id,
+            'source_id' => Source::all()->random()->id,
+            'name' => $this->faker->sentence(),
+            'link' => $this->faker->url(),
+            'description' => $this->faker->paragraph()
         ];
     }
 }

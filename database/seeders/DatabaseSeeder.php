@@ -12,28 +12,39 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        /* Declare variables. */
-        $MAX_SCHOOLS = 3;
-        $MAX_PRIVILEGES = 4;
-        $USERS_PER_SCHOOL = (24 / ($MAX_SCHOOLS * $MAX_PRIVILEGES));
-     
+    {     
         /* Clear static database items before seeding users. */
         // \App\Models\User::truncate();
         // \App\Models\Privilege::truncate();
         // \App\Models\School::truncate();
 
-        /* Add expected privileges for app. */
+        /* Add expected privileges, resource types, and
+         * resource tags for app. 
+         * */
         $this->call([PrivilegeSeeder::class]);
+        $this->call([ResourceTagSeeder::class]);
+        $this->call([ResourceTypeSeeder::class]);
+        $this->call([SourceSeeder::class]);
         
-        /* Generate x users for x privileges in x schools. */
-        for ($s = 0; $s < $MAX_SCHOOLS; $s++) {
-            $school = \App\Models\School::factory()->create();
-            for ($p = 0; $p < $MAX_PRIVILEGES; $p++) {
-                \App\Models\User::factory($USERS_PER_SCHOOL)->state([
-                    'privilege_id' => $p + 1,
-                ])->for($school)->create();
-            }    
+        /* Generate schools and store for user attachment. */
+        $schools = \App\Models\School::factory(5)->create();
+
+        /* Make users for each school. */
+        foreach ($schools as $school) {
+                \App\Models\User::factory(5)->for($school)->create();
+        }
+
+        /* Generate resources. */
+        \App\Models\Resource::factory(5)->create();
+
+        /* Link resources to tags. */
+        $resources = \App\Models\Resource::all();
+        $tags = \App\Models\ResourceTag::all();
+
+        foreach ($resources as $resource) {
+            $rand_tags = $tags->random(2);
+            $resource->tags()->attach($rand_tags[0]);
+            $resource->tags()->attach($rand_tags[1]);
         }
 
     }

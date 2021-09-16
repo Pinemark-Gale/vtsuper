@@ -13,6 +13,17 @@ class ResourceTypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        /* Make common resource types for app. */
+        \App\Models\ResourceType::create([
+            'type' => 'Article'
+        ]);
+
+        \App\Models\ResourceType::create([
+            'type' => 'Video'
+        ]);
+
+        \App\Models\ResourceType::create([
+            'type' => 'Game'
+        ]);
     }
 }

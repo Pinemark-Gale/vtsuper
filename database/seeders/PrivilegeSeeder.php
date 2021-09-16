@@ -23,12 +23,11 @@ class PrivilegeSeeder extends Seeder
         ]);
 
         \App\Models\Privilege::create([
-            'title' => 'Contributor'
+            'title' => 'Contributor',
         ]);
 
         \App\Models\Privilege::create([
             'title' => 'Admin'
         ]);
-
     }
 }
