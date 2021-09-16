@@ -19,8 +19,9 @@ class DatabaseSeeder extends Seeder
         $USERS_PER_SCHOOL = (24 / ($MAX_SCHOOLS * $MAX_PRIVILEGES));
      
         /* Clear static database items before seeding users. */
-        \App\Models\Privilege::truncate();
-        \App\Models\School::truncate();
+        // \App\Models\User::truncate();
+        // \App\Models\Privilege::truncate();
+        // \App\Models\School::truncate();
 
         /* Add expected privileges for app. */
         $this->call([PrivilegeSeeder::class]);

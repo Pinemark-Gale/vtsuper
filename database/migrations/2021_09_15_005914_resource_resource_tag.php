@@ -13,10 +13,10 @@ class ResourceResourceTag extends Migration
      */
     public function up()
     {
-        Schema::create('resource_resource_tags', function (Blueprint $table) {
+        Schema::create('resource_resource_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('resource')->constrained();
-            $table->foreignId('resource_tag')->constrained();
+            $table->foreignId('resource_id')->constrained();
+            $table->foreignId('resource_tag_id')->constrained();
             $table->timestamps();
         });    }
 
@@ -27,6 +27,6 @@ class ResourceResourceTag extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resource_resource_tags');
+        Schema::dropIfExists('resource_resource_tag');
     }
 }
