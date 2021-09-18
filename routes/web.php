@@ -31,28 +31,28 @@ Route::get('/unauthorized-access', function() {
 })->name('unauthorized-access');
 
 /* User routes. */
-Route::get('/users', [UserController::class, 'index'])->middleware('auth')->name('users');
-Route::get('/users/{user:name}', [UserController::class, 'show'])->middleware('auth')->name('user');
-Route::get('/users/{user:name}/edit', [UserController::class, 'edit'])->middleware('auth')->name('user-edit');
-Route::post('/user/{user:name}/update', [UserController::class, 'update'])->middleware('auth')->name('user-update');
-Route::delete('/user/{user:name}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user-destroy');
+Route::get('admin/users', [UserController::class, 'index'])->middleware('admin')->name('users');
+Route::get('admin/users/{user:name}', [UserController::class, 'show'])->middleware('admin')->name('user');
+Route::get('admin/users/{user:name}/edit', [UserController::class, 'edit'])->middleware('admin')->name('user-edit');
+Route::post('admin/user/{user:name}/update', [UserController::class, 'update'])->middleware('admin')->name('user-update');
+Route::delete('admin/user/{user:name}/destroy', [UserController::class, 'destroy'])->middleware('admin')->name('user-destroy');
 
 /* Privilege routes. */
-Route::get('/privileges', [PrivilegeController::class, 'index'])->middleware('auth')->name('privileges');
-Route::get('/privileges/{privilege:title}', [PrivilegeController::class, 'show'])->middleware('auth')->name('privilege');
-Route::get('/privilege/create', [PrivilegeController::class, 'create'])->middleware('auth')->name('privilege-create');
-Route::get('/privilege/{privilege:title}/edit', [PrivilegeController::class, 'edit'])->middleware('auth')->name('privilege-edit');
-Route::post('/privilege/store', [PrivilegeController::class, 'store'])->middleware('auth')->name('privilege-store');
-Route::post('/privilege/{privilege:title}/update', [PrivilegeController::class, 'update'])->middleware('auth')->name('privilege-update');
-Route::delete('privilege/{privilege:title}/destroy', [PrivilegeController::class, 'destroy'])->middleware('auth')->name('privilege-destroy');
+Route::get('admin/privileges', [PrivilegeController::class, 'index'])->middleware('admin')->name('privileges');
+Route::get('admin/privileges/{privilege:title}', [PrivilegeController::class, 'show'])->middleware('admin')->name('privilege');
+Route::get('admin/privilege/create', [PrivilegeController::class, 'create'])->middleware('admin')->name('privilege-create');
+Route::get('admin/privilege/{privilege:title}/edit', [PrivilegeController::class, 'edit'])->middleware('admin')->name('privilege-edit');
+Route::post('admin/privilege/store', [PrivilegeController::class, 'store'])->middleware('admin')->name('privilege-store');
+Route::post('admin//privilege/{privilege:title}/update', [PrivilegeController::class, 'update'])->middleware('admin')->name('privilege-update');
+Route::delete('admin/privilege/{privilege:title}/destroy', [PrivilegeController::class, 'destroy'])->middleware('admin')->name('privilege-destroy');
 
 /* School routes. */
 Route::get('/schools', [SchoolController::class, 'index'])->middleware('auth')->name('schools');
 Route::get('/schools/{school:name}', [SchoolController::class, 'show'])->middleware('auth')->name('school');
-Route::get('/school/create', [SchoolController::class, 'create'])->middleware('auth')->name('school-create');
-Route::get('/school/{school:name}/edit', [SchoolController::class, 'edit'])->middleware('auth')->name('school-edit');
-Route::post('/school/store', [SchoolController::class, 'store'])->middleware('auth')->name('school-store');
-Route::post('/school/{school:name}/update', [SchoolController::class, 'update'])->middleware('auth')->name('school-update');
-Route::delete('/school/{school:name}/destroy', [SchoolController::class, 'destroy'])->middleware('auth')->name('school-destroy');
+Route::get('admin/school/create', [SchoolController::class, 'create'])->middleware('admin')->name('school-create');
+Route::get('admin/school/{school:name}/edit', [SchoolController::class, 'edit'])->middleware('admin')->name('school-edit');
+Route::post('admin/school/store', [SchoolController::class, 'store'])->middleware('admin')->name('school-store');
+Route::post('admin/school/{school:name}/update', [SchoolController::class, 'update'])->middleware('admin')->name('school-update');
+Route::delete('admin/school/{school:name}/destroy', [SchoolController::class, 'destroy'])->middleware('admin')->name('school-destroy');
 
 require __DIR__.'/auth.php';

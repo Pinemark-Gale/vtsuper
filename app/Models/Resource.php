@@ -21,7 +21,7 @@ class Resource extends Model
         'link',
         'description'
     ];
-
+ 
     /* Eloquent relationship for resource->type */
     public function type()
     {
@@ -37,5 +37,12 @@ class Resource extends Model
     {
         return $this->belongsToMany(ResourceTag::class);
     }
+
+    /* Eloquent relationship for resource->source */
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
+    }
+    
 
 }

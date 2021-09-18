@@ -16,15 +16,9 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->privilege->title == 'Admin') {
-            return view('models.schools', [
-                'schools' => School::all()
-            ]);       
-        } else {
-            $message = "User " . Auth::user()->name . " attempted to view all schools.";
-            Log::warning($message);
-            return redirect(route('unauthorized-access'));
-        }
+        return view('models.schools', [
+            'schools' => School::all()
+        ]);       
      }
 
     /**
@@ -34,13 +28,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->privilege->title == 'Admin') {
-            return view('models.school-create');    
-        } else {
-            $message = "User " . Auth::user()->name . " attempted to create a school.";
-            Log::warning($message);
-            return redirect(route('unauthorized-access'));
-        }
+        return view('models.school-create');    
     }
 
     /**
@@ -56,16 +44,10 @@ class SchoolController extends Controller
             'district' => ['required', 'string']
         ]);
 
-        if (Auth::user()->privilege->title == 'Admin') {
-            School::create([
-                'name' => $request->name,
-                'district' => $request->district
-            ]);
-        } else {
-            $message = "User " . Auth::user()->name . " attempted to store school " . $request->name . ".";
-            Log::warning($message);
-            return redirect(route('unauthorized-access'));
-        }
+        School::create([
+            'name' => $request->name,
+            'district' => $request->district
+        ]);
 
         return redirect(route('schools'));
     }
@@ -78,15 +60,9 @@ class SchoolController extends Controller
      */
     public function show(School $school)
     {
-        if (Auth::user()->privilege->title == 'Admin') {
-            return view('models.school', [
-                'school' => $school
-            ]);
-        } else {
-            $message = "User " . Auth::user()->name . " attempted to view school " . $school->name . ".";
-            Log::warning($message);
-            return redirect(route('unauthorized-access'));
-        }
+        return view('models.school', [
+            'school' => $school
+        ]);
     }
 
     /**
@@ -97,15 +73,9 @@ class SchoolController extends Controller
      */
     public function edit(School $school)
     {
-        if (Auth::user()->privilege->title == 'Admin') {
-            return view('models.school-edit', [
-                'school' => $school,
-            ]);
-        } else {
-            $message = "User " . Auth::user()->name . " attempted to edit school " . $school->name . ".";
-            Log::warning($message);
-            return redirect(route('unauthorized-access'));
-        }
+        return view('models.school-edit', [
+            'school' => $school,
+        ]);
     }
 
     /**
@@ -122,15 +92,9 @@ class SchoolController extends Controller
             'district' => ['required', 'string']
         ]);
 
-        if (Auth::user()->privilege->title == 'Admin') {
-            $school->name = $request->name;
-            $school->district = $request->district;
-            $school->save();
-        } else {
-            $message = "User " . Auth::user()->name . " attempted to update school " . $school->name . ".";
-            Log::warning($message);
-            return redirect(route('unauthorized-access'));
-        }
+        $school->name = $request->name;
+        $school->district = $request->district;
+        $school->save();
 
         return redirect(route('schools'));
     }
@@ -143,13 +107,7 @@ class SchoolController extends Controller
      */
     public function destroy(School $school)
     {
-        if (Auth::user()->privilege->title == 'Admin') {
-            $school->delete();
-        } else {
-            $message = "User " . Auth::user()->name . " attempted to delete school " . $school->name . ".";
-            Log::warning($message);
-            return redirect(route('unauthorized-access'));
-        }
+        $school->delete();
 
         return redirect(route('schools'));
     }
