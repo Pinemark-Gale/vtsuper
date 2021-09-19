@@ -9,6 +9,7 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ResourceTypeController;
 use App\Http\Controllers\ResourceTagController;
 use App\Http\Controllers\SourceController;
+use App\Http\Controllers\ResourceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,15 @@ Route::get('/dashboard', function () {
 Route::get('/unauthorized-access', function() {
     return view('unauthorized-access');
 })->name('unauthorized-access');
+
+/* Resource routes. */
+Route::get('resources', [ResourceController::class, 'index'])->name('resources');
+Route::get('resources/{resource:name}', [ResourceController::class, 'show'])->name('resource');
+Route::get('admin/resource/create', [ResourceController::class, 'create'])->middleware('admin')->name('resource-create');
+Route::get('admin/resource/{resource:name}/edit', [ResourceController::class, 'edit'])->middleware('admin')->name('resource-edit');
+Route::post('admin/resource/store', [ResourceController::class, 'store'])->middleware('admin')->name('resource-store');
+Route::post('admin//resource/{resource:name}/update', [ResourceController::class, 'update'])->middleware('admin')->name('resource-update');
+Route::delete('admin/resource/{resource:name}/destroy', [ResourceController::class, 'destroy'])->middleware('admin')->name('resource-destroy');
 
 /* Resource tag routes. */
 Route::get('admin/sources', [SourceController::class, 'index'])->middleware('admin')->name('sources');

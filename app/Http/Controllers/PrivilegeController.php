@@ -40,7 +40,7 @@ class PrivilegeController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => ['required', 'string']
+            'title' => ['required', 'string',  'unique:App\Models\Privilege,title']
         ]);
 
         Privilege::create([
@@ -86,7 +86,7 @@ class PrivilegeController extends Controller
     public function update(Request $request, Privilege $privilege)
     {
         $validatedData = $request->validate([
-            'title' => ['required', 'string'],
+            'title' => ['required', 'string',  'unique:App\Models\Privilege,title'],
         ]);
 
         $privilege->title = $request->title;

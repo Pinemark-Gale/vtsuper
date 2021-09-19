@@ -38,7 +38,7 @@ class SourceController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'source' => ['required', 'string']
+            'source' => ['required', 'string',  'unique:App\Models\Source,source']
         ]);
 
         Source::create([
@@ -84,7 +84,7 @@ class SourceController extends Controller
     public function update(Request $request, Source $source)
     {
         $validatedData = $request->validate([
-            'source' => ['required', 'string'],
+            'source' => ['required', 'string',  'unique:App\Models\Source,name'],
         ]);
 
         $source->source = $request->source;

@@ -87,8 +87,8 @@ class UserController extends Controller
             'name' => ['required', 'string'],
             'email' => ['required', 'email'],
             'password' => ['string', 'nullable'],
-            'school_id' => ['required', 'numeric', 'integer'],
-            'privilege_id' => ['required', 'numeric', 'integer']
+            'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
+            'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
         ]);
 
         $user->name = $request->name;

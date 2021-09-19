@@ -38,7 +38,7 @@ class ResourceTagController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'tag' => ['required', 'string']
+            'tag' => ['required', 'string', 'unique:App\Models\ResourceTag, tag']
         ]);
 
         ResourceTag::create([
@@ -84,7 +84,7 @@ class ResourceTagController extends Controller
     public function update(Request $request, ResourceTag $resourceTag)
     {
         $validatedData = $request->validate([
-            'tag' => ['required', 'string'],
+            'tag' => ['required', 'string', 'unique:App\Models\ResourceTag, tag']
         ]);
 
         $resourceTag->tag = $request->tag;
