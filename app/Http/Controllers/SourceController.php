@@ -14,7 +14,9 @@ class SourceController extends Controller
      */
     public function index()
     {
-        //
+        return view('models.source.sources', [
+            'sources' => Source::all()
+        ]);        
     }
 
     /**
@@ -24,7 +26,7 @@ class SourceController extends Controller
      */
     public function create()
     {
-        //
+        return view('models.source.source-create');    
     }
 
     /**
@@ -35,7 +37,15 @@ class SourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'source' => ['required', 'string']
+        ]);
+
+        Source::create([
+            'source' => $request->source
+        ]);
+
+        return redirect(route('sources'));
     }
 
     /**
@@ -46,7 +56,9 @@ class SourceController extends Controller
      */
     public function show(Source $source)
     {
-        //
+        return view('models.source.source', [
+            'source' => $source
+        ]);
     }
 
     /**
@@ -57,7 +69,9 @@ class SourceController extends Controller
      */
     public function edit(Source $source)
     {
-        //
+        return view('models.source.source-edit', [
+            'source' => $source,
+        ]);
     }
 
     /**
@@ -69,7 +83,14 @@ class SourceController extends Controller
      */
     public function update(Request $request, Source $source)
     {
-        //
+        $validatedData = $request->validate([
+            'source' => ['required', 'string'],
+        ]);
+
+        $source->source = $request->source;
+        $source->save();
+
+        return redirect(route('sources'));
     }
 
     /**
@@ -80,6 +101,8 @@ class SourceController extends Controller
      */
     public function destroy(Source $source)
     {
-        //
+        $source->delete();
+
+        return redirect(route('sources'));
     }
 }

@@ -14,7 +14,9 @@ class ResourceTypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('models.resource_type.resource-types', [
+            'resourceTypes' => ResourceType::all()
+        ]);        
     }
 
     /**
@@ -24,7 +26,7 @@ class ResourceTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('models.resource_type.resource-type-create');    
     }
 
     /**
@@ -35,7 +37,15 @@ class ResourceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'type' => ['required', 'string']
+        ]);
+
+        ResourceType::create([
+            'type' => $request->type
+        ]);
+
+        return redirect(route('resource-types'));
     }
 
     /**
@@ -46,7 +56,9 @@ class ResourceTypeController extends Controller
      */
     public function show(ResourceType $resourceType)
     {
-        //
+        return view('models.resource_type.resource-type', [
+            'resourceType' => $resourceType
+        ]);
     }
 
     /**
@@ -57,7 +69,9 @@ class ResourceTypeController extends Controller
      */
     public function edit(ResourceType $resourceType)
     {
-        //
+        return view('models.resource_type.resource-type-edit', [
+            'resourceType' => $resourceType,
+        ]);
     }
 
     /**
@@ -69,7 +83,14 @@ class ResourceTypeController extends Controller
      */
     public function update(Request $request, ResourceType $resourceType)
     {
-        //
+        $validatedData = $request->validate([
+            'type' => ['required', 'string'],
+        ]);
+
+        $resourceType->type = $request->type;
+        $resourceType->save();
+
+        return redirect(route('resource-types'));
     }
 
     /**
@@ -80,6 +101,8 @@ class ResourceTypeController extends Controller
      */
     public function destroy(ResourceType $resourceType)
     {
-        //
+        $resourceType->delete();
+
+        return redirect(route('resource-types'));
     }
 }

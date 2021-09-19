@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('models.users', [
+        return view('models.user.users', [
             'users' => User::with(['school', 'privilege'])
                 ->orderby('name')->get()
         ]);
@@ -52,7 +52,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('models.user', [
+        return view('models.user.user', [
             'user' => $user
         ]);
     }
@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('models.user-edit', [
+        return view('models.user.user-edit', [
             'user' => $user,
             'schools' => School::all(),
             'privileges' => Privilege::all()

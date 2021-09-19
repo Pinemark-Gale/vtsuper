@@ -14,7 +14,9 @@ class ResourceTagController extends Controller
      */
     public function index()
     {
-        //
+        return view('models.resource_tag.resource-tags', [
+            'resourceTags' => ResourceTag::all()
+        ]);        
     }
 
     /**
@@ -24,7 +26,7 @@ class ResourceTagController extends Controller
      */
     public function create()
     {
-        //
+        return view('models.resource_tag.resource-tag-create');    
     }
 
     /**
@@ -35,7 +37,15 @@ class ResourceTagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'tag' => ['required', 'string']
+        ]);
+
+        ResourceTag::create([
+            'tag' => $request->tag
+        ]);
+
+        return redirect(route('resource-tags'));
     }
 
     /**
@@ -46,7 +56,9 @@ class ResourceTagController extends Controller
      */
     public function show(ResourceTag $resourceTag)
     {
-        //
+        return view('models.resource_tag.resource-tag', [
+            'resourceTag' => $resourceTag
+        ]);
     }
 
     /**
@@ -57,7 +69,9 @@ class ResourceTagController extends Controller
      */
     public function edit(ResourceTag $resourceTag)
     {
-        //
+        return view('models.resource_tag.resource-tag-edit', [
+            'resourceTag' => $resourceTag,
+        ]);
     }
 
     /**
@@ -69,7 +83,14 @@ class ResourceTagController extends Controller
      */
     public function update(Request $request, ResourceTag $resourceTag)
     {
-        //
+        $validatedData = $request->validate([
+            'tag' => ['required', 'string'],
+        ]);
+
+        $resourceTag->tag = $request->tag;
+        $resourceTag->save();
+
+        return redirect(route('resource-tags'));
     }
 
     /**
@@ -80,6 +101,8 @@ class ResourceTagController extends Controller
      */
     public function destroy(ResourceTag $resourceTag)
     {
-        //
+        $resourceTag->delete();
+
+        return redirect(route('resource-tags'));
     }
 }

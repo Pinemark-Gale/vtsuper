@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\ResourceTypeController;
+use App\Http\Controllers\ResourceTagController;
+use App\Http\Controllers\SourceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +32,33 @@ Route::get('/dashboard', function () {
 Route::get('/unauthorized-access', function() {
     return view('unauthorized-access');
 })->name('unauthorized-access');
+
+/* Resource tag routes. */
+Route::get('admin/sources', [SourceController::class, 'index'])->middleware('admin')->name('sources');
+Route::get('admin/sources/{source:source}', [SourceController::class, 'show'])->middleware('admin')->name('source');
+Route::get('admin/source/create', [SourceController::class, 'create'])->middleware('admin')->name('source-create');
+Route::get('admin/source/{source:source}/edit', [SourceController::class, 'edit'])->middleware('admin')->name('source-edit');
+Route::post('admin/source/store', [SourceController::class, 'store'])->middleware('admin')->name('source-store');
+Route::post('admin//source/{source:source}/update', [SourceController::class, 'update'])->middleware('admin')->name('source-update');
+Route::delete('admin/source/{source:source}/destroy', [SourceController::class, 'destroy'])->middleware('admin')->name('source-destroy');
+
+/* Resource tag routes. */
+Route::get('admin/resource-tags', [ResourceTagController::class, 'index'])->middleware('admin')->name('resource-tags');
+Route::get('admin/resource-tags/{resourceTag:tag}', [ResourceTagController::class, 'show'])->middleware('admin')->name('resource-tag');
+Route::get('admin/resource-tag/create', [ResourceTagController::class, 'create'])->middleware('admin')->name('resource-tag-create');
+Route::get('admin/resource-tag/{resourceTag:tag}/edit', [ResourceTagController::class, 'edit'])->middleware('admin')->name('resource-tag-edit');
+Route::post('admin/resource-tag/store', [ResourceTagController::class, 'store'])->middleware('admin')->name('resource-tag-store');
+Route::post('admin//resource-tag/{resourceTag:tag}/update', [ResourceTagController::class, 'update'])->middleware('admin')->name('resource-tag-update');
+Route::delete('admin/resource-tag/{resourceTag:tag}/destroy', [ResourceTagController::class, 'destroy'])->middleware('admin')->name('resource-tag-destroy');
+
+/* Resource type routes. */
+Route::get('admin/resource-types', [ResourceTypeController::class, 'index'])->middleware('admin')->name('resource-types');
+Route::get('admin/resource-types/{resourceType:type}', [ResourceTypeController::class, 'show'])->middleware('admin')->name('resource-type');
+Route::get('admin/resource-type/create', [ResourceTypeController::class, 'create'])->middleware('admin')->name('resource-type-create');
+Route::get('admin/resource-type/{resourceType:type}/edit', [ResourceTypeController::class, 'edit'])->middleware('admin')->name('resource-type-edit');
+Route::post('admin/resource-type/store', [ResourceTypeController::class, 'store'])->middleware('admin')->name('resource-type-store');
+Route::post('admin//resource-type/{resourceType:type}/update', [ResourceTypeController::class, 'update'])->middleware('admin')->name('resource-type-update');
+Route::delete('admin/resource-type/{resourceType:type}/destroy', [ResourceTypeController::class, 'destroy'])->middleware('admin')->name('resource-type-destroy');
 
 /* User routes. */
 Route::get('admin/users', [UserController::class, 'index'])->middleware('admin')->name('users');

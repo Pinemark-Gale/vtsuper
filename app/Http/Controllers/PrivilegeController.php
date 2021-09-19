@@ -16,7 +16,7 @@ class PrivilegeController extends Controller
      */
     public function index()
     {
-        return view('models.privileges', [
+        return view('models.privilege.privileges', [
             'privileges' => Privilege::all()
         ]);    
     }
@@ -28,7 +28,7 @@ class PrivilegeController extends Controller
      */
     public function create()
     {
-        return view('models.privilege-create');    
+        return view('models.privilege.privilege-create');    
     }
 
     /**
@@ -58,7 +58,7 @@ class PrivilegeController extends Controller
      */
     public function show(Privilege $privilege)
     {
-        return view('models.privilege', [
+        return view('models.privilege.privilege', [
             'privilege' => $privilege
         ]);
     }
@@ -71,7 +71,7 @@ class PrivilegeController extends Controller
      */
     public function edit(Privilege $privilege)
     {
-        return view('models.privilege-edit', [
+        return view('models.privilege.privilege-edit', [
             'privilege' => $privilege,
         ]);
     }

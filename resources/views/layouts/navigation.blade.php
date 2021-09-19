@@ -9,6 +9,9 @@
                 <a href="{{ route('users') }}" class="header-item">Users</a>
                 <a href="{{ route('privileges') }}" class="header-item">Privileges</a>
                 <a href="{{ route('schools') }}" class="header-item">Schools</a>
+                <a href="{{ route('resource-types') }}" class="header-item">Resource Types</a>
+                <a href="{{ route('resource-tags') }}" class="header-item">Resource Tags</a>
+                <a href="{{ route('sources') }}" class="header-item">Sources</a>
                 <form method="POST" action="{{ route('logout') }}" class="header-item">
                     @csrf
 
