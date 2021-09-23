@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <div class="card">
         <h1>{{ $resourceTag->tag }}</h1>
         <h2>Created At: {{ $resourceTag->created_at }}</h2>
@@ -15,4 +13,4 @@
         </form>
 
     </div>
-@endsection
+</x-layouts.app>

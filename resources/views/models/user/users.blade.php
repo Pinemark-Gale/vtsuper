@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-
+<x-layouts.app>
     <div class="card-container">
         @foreach ($users as $user)
                 <a href="{{ route('user', ['user' => $user->name]) }}">
@@ -21,4 +18,4 @@
                 </a>
         @endforeach
     </div>
-    @endsection
+</x-layouts.app>

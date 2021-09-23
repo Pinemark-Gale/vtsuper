@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Edit Resource Type {{ $resourceType->type }}</h1>
     <form method="POST" action="{{ route('resource-type-update', ['resourceType' => $resourceType->type]) }}" class="admin-form">
         @csrf
@@ -10,4 +8,4 @@
             Update Resource Type
         </button>
     </form>
-@endsection
+</x-layouts.app>

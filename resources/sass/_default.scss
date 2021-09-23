@@ -1,0 +1,18 @@
+body {
+    color: $super-white;
+    background-color: $super-black;
+    font-family: 'Josefin Sans';
+    font-size: 1.1rem;
+}
+
+a {
+    color: $super-white;
+    text-decoration: none;
+    transition: $transition-time;
+}
+
+a:hover {
+    color: $super-light-red;
+    text-decoration: none;
+    transition: $transition-time;
+}

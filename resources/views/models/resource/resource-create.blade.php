@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Create Resource</h1>
     @if ($errors->any())
         <h1>ERRORS: Plez Fix</h1>
@@ -48,4 +46,4 @@
             Create Resource
         </button>
     </form>
-@endsection
+</x-layouts.app>

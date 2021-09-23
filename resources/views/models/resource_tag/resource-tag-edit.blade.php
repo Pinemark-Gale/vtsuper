@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Edit Resource Tag {{ $resourceTag->tag }}</h1>
     <form method="POST" action="{{ route('resource-tag-update', ['resourceTag' => $resourceTag->tag]) }}" class="admin-form">
         @csrf
@@ -10,4 +8,4 @@
             Update Resource Tag
         </button>
     </form>
-@endsection
+</x-layouts.app>

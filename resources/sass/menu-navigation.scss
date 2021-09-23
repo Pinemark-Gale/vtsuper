@@ -1,0 +1,108 @@
+.menu-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    font-weight: 200;
+    vertical-align: top;
+    transition: $transition-time;
+    z-index: 2;
+
+    div {
+        background-color: $super-white;
+        display: block;
+        height: 4px;
+        margin: 3px;
+        width: 30px;
+    }
+}
+
+.active-menu-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    font-weight: 200;
+    vertical-align: top;
+    transition: $transition-time;
+    z-index: 2;
+
+    .top-bar {
+        transform: rotate(-45deg) translate(-5px, 5px);
+        transition: $transition-time;
+    }
+
+    .middle-bar {
+        opacity: 0;
+        transition: $transition-time;
+    }
+
+    .bottom-bar {
+        transform: rotate(45deg) translate(-12px, -12px);
+        transition: $transition-time;
+    }
+
+    div {
+        background-color: $super-black;
+        display: block;
+        height: 6px;
+        margin: 3px;
+        width: 30px;
+        transition: $transition-time;
+    }
+}
+
+.menu-nav-container {
+    background: $super-white;
+    display: flex;
+    left: 0;
+    padding-top: 200px;
+    position: absolute;
+    top: 0;
+    transition: $transition-time;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+
+    .link-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+        
+            a {
+                color: $super-black;
+                font-size: 1.7rem;
+                margin: 10px;
+                margin-bottom: 15px;
+                margin-top: 15px;
+                line-height: 0.4;
+            }
+
+            form {
+                color: $super-black;
+                font-size: 1.7rem;
+                margin: 10px;
+                margin-bottom: 15px;
+                margin-top: 15px;
+                line-height: 0.4;
+            }
+
+            .red-link {
+                border-bottom: 5px solid $super-red;
+            }
+
+            .blue-link {
+                border-bottom: 5px solid $accent-dark-blue;
+            }
+    }
+}
+
+.menu-nav-hide {
+    display: none;
+}

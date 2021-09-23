@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <div class="card">
         <h1>{{ $privilege->title }}</h1>
         <h2>Created At: {{ $privilege->created_at }}</h2>
@@ -15,4 +13,4 @@
         </form>
 
     </div>
-@endsection
+</x-layouts.app>

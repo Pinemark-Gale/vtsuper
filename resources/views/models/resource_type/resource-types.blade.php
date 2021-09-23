@@ -1,7 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="card-container">
+<x-layouts.app>
+    <div class="card-container">
         <a href="{{ route('resource-type-create') }}" style="display: block; width: 100%;">Create Resource Type</a>
         @foreach ($resourceTypes as $resourceType)
             <a href="{{ route('resource-type', ['resourceType' => $resourceType->type]) }}">
@@ -12,5 +10,4 @@
             </a>
         @endforeach
     </div>
-
-@endsection
+</x-layouts.app>

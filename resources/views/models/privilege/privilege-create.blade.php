@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Create Privilege</h1>
     <form method="POST" action="{{ route('privilege-store') }}" class="admin-form">
         @csrf
@@ -10,4 +8,4 @@
             Create Privilege Title
         </button>
     </form>
-@endsection
+</x-layouts.app>

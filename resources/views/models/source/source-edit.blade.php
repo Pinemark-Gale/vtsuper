@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Edit Source {{ $source->source }}</h1>
     <form method="POST" action="{{ route('source-update', ['source' => $source->source]) }}" class="admin-form">
         @csrf
@@ -10,4 +8,4 @@
             Update Source
         </button>
     </form>
-@endsection
+</x-layouts.app>

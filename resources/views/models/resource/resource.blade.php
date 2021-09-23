@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <div class="card">
         <h1>{{ $resource->name }}</h1>
         <h2>Type: {{ $resource->type->type }}</h2>
@@ -18,4 +16,4 @@
             <button type="submit" class="form-submit">Destroy</button>
         </form>
     </div>
-@endsection
+</x-layouts.app>

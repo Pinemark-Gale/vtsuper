@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Create Resource Type</h1>
     <form method="POST" action="{{ route('resource-type-store') }}" class="admin-form">
         @csrf
@@ -10,4 +8,4 @@
             Create Resource Type
         </button>
     </form>
-@endsection
+</x-layouts.app>

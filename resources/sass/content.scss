@@ -1,15 +1,7 @@
-body {
-    color: $super-white;
-    background-color: $super-black;
-    font-family: 'Josefin Sans';
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: auto;
-    margin-top: 20px;
-}
-
-a {
-    text-decoration: none;
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
 
 form {

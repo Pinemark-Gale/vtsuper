@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Create Resource Tag</h1>
     <form method="POST" action="{{ route('resource-tag-store') }}" class="admin-form">
         @csrf
@@ -10,4 +8,4 @@
             Create Resource Tag
         </button>
     </form>
-@endsection
+</x-layouts.app>

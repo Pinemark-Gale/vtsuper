@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Edit User {{ $user->name }}</h1>
     <form method="POST" action="{{ route('user-update', ['user' => $user->name]) }}" class="admin-form">
         @csrf
@@ -36,4 +34,4 @@
             Update User
         </button>
     </form>
-@endsection
+</x-layouts.app>

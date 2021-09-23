@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <div class="card">
         <h1>{{ $school->name }}</h1>
         <h2>{{ $school->district }}</h2>
@@ -16,4 +14,4 @@
         </form>
 
     </div>
-@endsection
+</x-layouts.app>

@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <h1>Edit Privilege {{ $privilege->title }}</h1>
     <form method="POST" action="{{ route('privilege-update', ['privilege' => $privilege->title]) }}" class="admin-form">
         @csrf
@@ -10,4 +8,4 @@
             Update Privilege Title
         </button>
     </form>
-@endsection
+</x-layouts.app>

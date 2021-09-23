@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
     <div class="card-container">
         <a href="{{ route('privilege-create') }}" style="display: block; width: 100%;">Create Privilege</a>
         @foreach ($privileges as $privilege)
@@ -12,4 +10,4 @@
             </a>
         @endforeach
     </div>
-@endsection
+</x-layouts.app>
