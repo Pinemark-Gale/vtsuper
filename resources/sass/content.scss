@@ -4,6 +4,83 @@
     width: 80%;
 }
 
+.highlight {
+    background-color: $accent-light-yellow;
+}
+
+.item-table {
+    display: grid;
+    grid-template-columns: 70% 25% 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+
+    .col-title {
+        color: $super-dark-red;
+        font-style: italic;
+        font-family: Lobster;
+        padding: 5px;
+    }
+
+    .main-col {
+        font-weight:  bold;
+        padding: 15px;
+        padding-left: 0px;
+        margin-left: 5px;
+
+    }
+    
+    .main-sub-col {
+        font-weight: normal;
+        padding: 15px;
+        padding-left: 0px;
+        margin-left: 5px;
+    }
+
+    .side-col {
+        display: flex;
+        flex-wrap: wrap;
+        font-weight: bold;
+        font-style: italic;
+        padding: 15px;
+        padding-left: 5px;
+
+        span {
+            background-color: $super-red;
+            color: $super-white;
+            display: block;
+            font-weight: normal;
+            font-style: normal;
+            margin: 2px;
+            padding: 2px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+
+    .expand-col {
+        cursor: pointer;
+        font-size: 2em;
+        font-weight: bold;
+        padding-top: 5px;
+        text-align: right;
+        user-select: none;
+    }
+
+    .active-expand-col {
+        transform: rotate(-45deg);
+    }
+
+    .row-bottom {
+        border-bottom: 1px solid $accent-dark-green;
+    }
+
+    .hide-row {
+        display: none;
+    }
+
+}
+
 form {
     div {
         text-decoration: none;
@@ -11,6 +88,7 @@ form {
     }
 }
 
+// OLD CSS - TO DELETE
 .card-container {
     display: flex;
     flex-direction: row;

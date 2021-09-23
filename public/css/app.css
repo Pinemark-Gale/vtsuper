@@ -54,7 +54,7 @@ a:hover {
   margin-top: 15px;
   margin-bottom: 5px;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
   width: 100%;
 }
 .top-nav-container .logo a h1 {
@@ -196,6 +196,75 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+}
+
+.highlight {
+  background-color: #FFD9A8;
+}
+
+.item-table {
+  display: grid;
+  grid-template-columns: 70% 25% 5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+.item-table .col-title {
+  color: #D52121;
+  font-style: italic;
+  font-family: Lobster;
+  padding: 5px;
+}
+.item-table .main-col {
+  font-weight: bold;
+  padding: 15px;
+  padding-left: 0px;
+  margin-left: 5px;
+}
+.item-table .main-sub-col {
+  font-weight: normal;
+  padding: 15px;
+  padding-left: 0px;
+  margin-left: 5px;
+}
+.item-table .side-col {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+  font-style: italic;
+  padding: 15px;
+  padding-left: 5px;
+}
+.item-table .side-col span {
+  background-color: #F03C3C;
+  color: #F5E6C4;
+  display: block;
+  font-weight: normal;
+  font-style: normal;
+  margin: 2px;
+  padding: 2px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.item-table .expand-col {
+  cursor: pointer;
+  font-size: 2em;
+  font-weight: bold;
+  padding-top: 5px;
+  text-align: right;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.item-table .active-expand-col {
+  transform: rotate(-45deg);
+}
+.item-table .row-bottom {
+  border-bottom: 1px solid #598D7F;
+}
+.item-table .hide-row {
+  display: none;
 }
 
 form div {
