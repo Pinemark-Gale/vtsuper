@@ -14,6 +14,8 @@
 
 [Custom Middleware](#custom-middleware)
 
+[Database Seeding & Factories](#database-seeding--factories)
+
 [Database Structure](#database-structure)
 
 [Dependencies](#dependencies)
@@ -80,7 +82,7 @@ In order to support admin-only views the Admin Privilege Middleware was needed. 
 
 Make sure to not make privilege checks inside controllers. It is a much better practice to use this Middleware and avoid duplicate code.
 
-[<< Previous Section](#table-of-contents) | [Content Table](#table-of-contents) | [Next Section >>](#database-seeding-&-factories)
+[<< Previous Section](#table-of-contents) | [Content Table](#table-of-contents) | [Next Section >>](#database-seeding--factories)
 
 ---
 
@@ -180,7 +182,7 @@ Essentially, factories simplify the process of writing multiple rows of data and
 |          |      |     |                                    |
 |          |      |     |                                    |
 
-[<< Previous Section](#database-seeding-&-factories) | [Content Table](#table-of-contents) | [Next Section >>](#dependencies)
+[<< Previous Section](#database-seeding--factories) | [Content Table](#table-of-contents) | [Next Section >>](#dependencies)
 
 ---
 
