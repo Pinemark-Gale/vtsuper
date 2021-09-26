@@ -1,5 +1,6 @@
 <x-layouts.app>
     <h1>Create School</h1>
+    <x-form-errors />
     <form method="POST" action="{{ route('school-store') }}" class="admin-form">
         @csrf
         <label for="name">Name</label>

@@ -1,13 +1,6 @@
 <x-layouts.app>
     <h1>Create Resource</h1>
-    @if ($errors->any())
-        <h1>ERRORS: Plez Fix</h1>
-        <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-        </ul>
-    @endif
+    <x-form-errors />
     <form method="POST" action="{{ route('resource-store') }}" class="admin-form">
         @csrf
         <label for="name">Name</label>

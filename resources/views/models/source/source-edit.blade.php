@@ -1,4 +1,5 @@
 <x-layouts.app>
+    <x-form-errors />
     <h1>Edit Source {{ $source->source }}</h1>
     <form method="POST" action="{{ route('source-update', ['source' => $source->source]) }}" class="admin-form">
         @csrf

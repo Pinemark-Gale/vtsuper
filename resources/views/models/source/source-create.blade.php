@@ -1,5 +1,6 @@
 <x-layouts.app>
     <h1>Create Source</h1>
+    <x-form-errors />
     <form method="POST" action="{{ route('source-store') }}" class="admin-form">
         @csrf
         <label for="source">Source</label>

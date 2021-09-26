@@ -1,5 +1,6 @@
 <x-layouts.app>
     <h1>Edit Resource Tag {{ $resourceTag->tag }}</h1>
+    <x-form-errors />
     <form method="POST" action="{{ route('resource-tag-update', ['resourceTag' => $resourceTag->tag]) }}" class="admin-form">
         @csrf
         <label for="tag">tag</label>

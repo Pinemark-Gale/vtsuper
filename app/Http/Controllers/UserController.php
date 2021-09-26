@@ -111,7 +111,7 @@ class UserController extends Controller
          * https://laravel.com/docs/8.x/validation#a-note-on-optional-fields */
         $validatedData = $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'string', 'max:255', 'unique:\App\Models\User'],
+            'email' => ['required', 'email', 'string', 'max:255', 'exists:\App\Models\User'],
             'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
             'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
