@@ -100,7 +100,7 @@ While seeders are nice, they still require you to make each row of data. Laravel
 
 Essentially, factories simplify the process of writing multiple rows of data and inserting it into the database with just one line of code. Now all data is dynamically created making it look like your web application is already being used. This makes it much easier to develop and test.
 
-[<< Previous Section](#appliation-structure) | [Content Table](#table-of-contents) | [Next Section >>](#database-structure)
+[<< Previous Section](#application-structure) | [Content Table](#table-of-contents) | [Next Section >>](#database-structure)
 
 ---
 
