@@ -10,4 +10,4 @@
             Create School
         </button>
     </form>
-<x-layouts.app>
+</x-layouts.app>

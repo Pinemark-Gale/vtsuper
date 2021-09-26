@@ -38,7 +38,7 @@ class ResourceTypeController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'type' => ['required', 'string', 'unique:App\Models\ResourceType, type']
+            'type' => ['required', 'string', 'unique:App\Models\ResourceType,type']
         ]);
 
         ResourceType::create([
@@ -84,7 +84,7 @@ class ResourceTypeController extends Controller
     public function update(Request $request, ResourceType $resourceType)
     {
         $validatedData = $request->validate([
-            'type' => ['required', 'string', 'unique:App\Models\ResourceType, type']
+            'type' => ['required', 'string', 'unique:App\Models\ResourceType,type']
         ]);
 
         $resourceType->type = $request->type;

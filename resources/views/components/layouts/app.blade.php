@@ -15,6 +15,8 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <!-- Import other scripts if needed. -->
+        {{ $sJavaImport ?? "" }}
     </head>
     <body>
         <div class="app-container">

@@ -1,13 +1,19 @@
+/* website left and right margins */
 .content {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
 }
 
+/* used purely for troubleshooting purposes */
 .highlight {
     background-color: $accent-light-yellow;
 }
 
+/* styling for tables with dropdowns
+ * NOTE: class names tied to tables.js, do not
+ * change.
+ * ***/
 .item-table {
     display: grid;
     grid-template-columns: 70% 25% 5%;
@@ -53,6 +59,24 @@
             font-style: normal;
             margin: 2px;
             padding: 2px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .action-button {
+            background-color: $accent-blue;
+            border: none;
+            border-radius: 3px;
+            color: $super-white;
+            cursor: pointer;
+            display: block;
+            font-size: 1.0rem;
+            font-style: normal;
+            font-weight: bold;
+            margin: 2px;
+            padding: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
             text-align: center;
             text-transform: uppercase;
         }

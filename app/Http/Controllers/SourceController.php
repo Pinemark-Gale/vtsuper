@@ -84,7 +84,7 @@ class SourceController extends Controller
     public function update(Request $request, Source $source)
     {
         $validatedData = $request->validate([
-            'source' => ['required', 'string',  'unique:App\Models\Source,name'],
+            'source' => ['required', 'string',  'unique:App\Models\Source,source'],
         ]);
 
         $source->source = $request->source;

@@ -33,7 +33,7 @@ a:hover {
   margin-bottom: 40px;
 }
 .top-nav-container .logo {
-  border-radius: 40% 40% 50% 50%;
+  border-radius: 50%;
   font-size: 1.5rem;
   margin-top: -70px;
   max-height: 160px;
@@ -63,7 +63,7 @@ a:hover {
 .top-nav-container .logo .sub-title {
   font-weight: 260;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .top-nav-container .light-logo {
   background: #F5E6C4;
@@ -192,16 +192,22 @@ a:hover {
   display: none;
 }
 
+/* website left and right margins */
 .content {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
 }
 
+/* used purely for troubleshooting purposes */
 .highlight {
   background-color: #FFD9A8;
 }
 
+/* styling for tables with dropdowns
+ * NOTE: class names tied to tables.js, do not
+ * change.
+ * ***/
 .item-table {
   display: grid;
   grid-template-columns: 70% 25% 5%;
@@ -243,6 +249,23 @@ a:hover {
   font-style: normal;
   margin: 2px;
   padding: 2px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.item-table .side-col .action-button {
+  background-color: #869AC6;
+  border: none;
+  border-radius: 3px;
+  color: #F5E6C4;
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: bold;
+  margin: 2px;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
   text-align: center;
   text-transform: uppercase;
 }
