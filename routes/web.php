@@ -73,7 +73,9 @@ Route::delete('admin/resource-type/{resourceType:type}/destroy', [ResourceTypeCo
 /* User routes. */
 Route::get('admin/users', [UserController::class, 'index'])->middleware('admin')->name('users');
 Route::get('admin/users/{user:name}', [UserController::class, 'show'])->middleware('admin')->name('user');
+Route::get('register', [UserController::class, 'create'])->middleware('guest')->name('user-create');
 Route::get('admin/users/{user:name}/edit', [UserController::class, 'edit'])->middleware('admin')->name('user-edit');
+Route::post('register', [UserController::class, 'store'])->middleware('guest')->name('user-store');
 Route::post('admin/user/{user:name}/update', [UserController::class, 'update'])->middleware('admin')->name('user-update');
 Route::delete('admin/user/{user:name}/destroy', [UserController::class, 'destroy'])->middleware('admin')->name('user-destroy');
 

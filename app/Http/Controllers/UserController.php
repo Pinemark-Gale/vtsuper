@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Privilege;
 use App\Models\School;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -30,7 +33,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        // handled by Laravel Breeze register
+        return view('models.user.user-create', [
+            'schools' => School::all(),
+            'privileges' => Privilege::all()
+        ]);
     }
 
     /**
@@ -41,7 +47,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // handled by Laravel Breeze register
+        $validatedData = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email', 'string', 'max:255', 'unique:\App\Models\User'],
+            'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
+            'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
+            'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'school_id' => $request->school_id,
+            'privilege_id' => $request->privilege_id
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect(route('dashboard'));
     }
 
     /**
@@ -85,8 +111,8 @@ class UserController extends Controller
          * https://laravel.com/docs/8.x/validation#a-note-on-optional-fields */
         $validatedData = $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'email'],
-            'password' => ['string', 'nullable'],
+            'email' => ['required', 'email', 'string', 'max:255', 'unique:\App\Models\User'],
+            'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
             'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
         ]);
@@ -94,7 +120,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         if ($request->password) {
-            $user->password = bcrypt($request->password);
+            $user->password = Hash::make($request->password);
         }
         $user->school_id = $request->school_id;
         $user->privilege_id = $request->privilege_id;

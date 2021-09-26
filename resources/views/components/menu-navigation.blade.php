@@ -16,8 +16,8 @@
                     <a href="{{ route('sources') }}" class="red-link">Sources</a>
                     @else
                     <a href="{{ route('login') }}" class="red-link">Log in</a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="red-link">Register</a>
+                    @if (Route::has('user-create'))
+                        <a href="{{ route('user-create') }}" class="red-link">Register</a>
                     @endif
                 @endauth
             </div>
