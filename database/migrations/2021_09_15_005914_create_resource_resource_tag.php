@@ -17,8 +17,8 @@ class ResourceResourceTag extends Migration
             $table->id();
             $table->foreignId('resource_id')->constrained();
             $table->foreignId('resource_tag_id')->constrained();
-            $table->timestamps();
-        });    }
+        });    
+    }
 
     /**
      * Reverse the migrations.
