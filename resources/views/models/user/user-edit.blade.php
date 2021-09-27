@@ -9,14 +9,14 @@
         <label for="school_id"'>School</label>
         <select  name="school_id">
             @foreach ($schools as $school)
-                <option value="{{ $school->id }}">{{ $school->name }}</option>
+                <option value="{{ $school->id }}" {{ old('school_id') == $school->id ? 'selected' : '' }}>{{ $school->name }}</option>
             @endforeach
         </select>
         
         <label for="privilege_id">Privilege</label>
         <select  name="privilege_id">
             @foreach ($privileges as $privilege)
-                <option value="{{ $privilege->id }}">{{ $privilege->title }}</option>
+                <option value="{{ $privilege->id }}" {{ old('privilege_id') == $privilege->id ? 'selected' : '' }}>{{ $privilege->title }}</option>
             @endforeach
         </select>
 

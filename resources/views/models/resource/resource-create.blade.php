@@ -9,14 +9,14 @@
         <label for="resource_type_id"'>Resource Type</label>
         <select  name="resource_type_id">
             @foreach ($types as $type)
-                <option value="{{ $type->id }}">{{ $type->type }}</option>
+                <option value="{{ $type->id }}" {{ old('resource_type_id') == $type->id ? 'selected' : '' }}>{{ $type->type }}</option>
             @endforeach
         </select>
         
         <label for="source_id">Source</label>
         <select  name="source_id">
             @foreach ($sources as $source)
-                <option value="{{ $source->id }}">{{ $source->source }}</option>
+                <option value="{{ $source->id }}" {{ old('source_id') == $source->id ? 'selected' : '' }}>{{ $source->source }}</option>
             @endforeach
         </select>
 
