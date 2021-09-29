@@ -1,0 +1,19 @@
+/*search component */
+.search-bar {
+    display: flex;
+    width: 100%;
+
+    input {
+        background: $super-white;
+        border: none;
+        border-radius: 20px;
+        padding-left: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    svg {
+        margin-right: 10px;
+        width: 20px;
+    }
+}

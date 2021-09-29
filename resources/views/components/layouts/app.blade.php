@@ -20,7 +20,7 @@
     </head>
     <body>
         <div class="app-container">
-            <x-top-navigation />
+            <x-layouts.top-navigation />
 
             <main class="content">
                 {{ $slot }}

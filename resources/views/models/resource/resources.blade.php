@@ -5,6 +5,8 @@
 
     <a href="{{ route('resource-create') }}" style="display: block; width: 100%;">Create Resource</a>
     <br>
+    <x-search />
+    <br>
     <div class="item-table">
         <!-- Define column headers. -->
         <div class="col-title">Resource Name</div>

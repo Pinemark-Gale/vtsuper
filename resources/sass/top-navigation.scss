@@ -68,18 +68,17 @@
     .arrow-option {
         border: none;
         cursor: pointer;
-        height: 30px;
-        width: 30px;
+        padding: 6px;
+        height: 32px;
+        width: 32px;
         z-index: 2;
     }
 
     .light-arrow {
-        background: $super-white;
+        filter: invert(0%);
     }
 
     .dark-arrow {
-        background: 
-            linear-gradient(135deg, $super-white 0% 25%, $super-black 25% 75%, $super-white 75% 100%);
-        }
-
+        filter: invert(100%);
+    }
 }

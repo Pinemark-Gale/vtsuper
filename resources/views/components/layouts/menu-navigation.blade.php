@@ -21,6 +21,9 @@
                     @endif
                 @endauth
             </div>
+            <div class="svg-container">
+                <x-svg.menu-seperator />
+            </div>
             <div class="link-container">
                 <a href="{{ url('/dashboard') }}" class="blue-link">Dashboard</a>
                 <a href="{{ route('resources') }}" class=blue-link>Resources</a>
@@ -44,6 +47,8 @@
         document.getElementById("menu-nav").classList.toggle('menu-nav-hide');
         document.getElementById("menu-icon").classList.toggle('menu-icon');
         document.getElementById("menu-icon").classList.toggle('active-menu-icon');
+        document.getElementById("arrow-icon").classList.toggle('light-arrow');
+        document.getElementById("arrow-icon").classList.toggle('dark-arrow');
         document.getElementById("logo").classList.toggle('light-logo');
         document.getElementById("logo").classList.toggle('dark-logo');
     }
