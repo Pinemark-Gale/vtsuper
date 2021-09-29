@@ -1,0 +1,76 @@
+.home-page-hero {
+    position: absolute;
+    left: 0;
+    max-height: 650px;
+    min-height: 400px;
+    top: 0;
+    width: 100%;
+
+}
+
+.stars {
+    max-height: 580px;
+}
+
+.home-page-hero-options {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-height: 300px;
+    min-height: 250px;
+    padding-bottom: 20vw;
+
+    h1 {
+        font-size: 3vw;
+        font-weight: lighter;
+        text-transform: uppercase;
+    }
+}
+
+.canvas {
+    position: relative;
+    height: 90vh;
+    min-height: 250px;
+
+    .home-page-rocket {
+        width: 100%;
+        position: absolute;
+        min-height: 250px;
+        height: 100%;
+        top: 0;
+        left: 0;
+    
+    }
+    
+    .section-left {
+        display: inline;
+        padding-top: 50px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-right: 20%;
+
+    
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 5px;
+        }
+        
+        .sub-title {
+            font-size: 1.5rem;
+            font-weight: lighter;
+            margin: 5px;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.section-right {
+    padding-top: 50px;
+    top: 0;
+    left: 0;
+    padding-left: 20%;
+    text-align: right;
+}

@@ -1,0 +1,1 @@
+<img src={{ asset('svg/home-icon.svg') }} onclick="themeSwitch()" id="arrow-icon" class="arrow-option dark-arrow"></button>

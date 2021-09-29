@@ -1,1 +1,0 @@
-<button onclick="themeSwitch()" id="arrow-icon" class="arrow-option dark-arrow"></button>

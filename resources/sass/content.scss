@@ -112,45 +112,8 @@ form {
     }
 }
 
+
 // OLD CSS - TO DELETE
-.card-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 5px;
-
-    .user-card{
-        background-color: $accent-dark-green;
-        padding: 5px;
-        margin: 5px;
-        min-width: 200px;
-    
-        .user-info {
-            background-color: $accent-green;
-            border-radius: 5px;
-            color: $super-black;
-            margin: 5px;
-            padding: 5px;
-            text-align: center;
-
-            a {
-                color: $super-black;
-            }
-        }
-
-        .user-action {
-            background-color: $accent-blue;
-            border-radius: 5px;
-            color: $super-black;
-            margin: 5px;
-            padding: 5px;
-            text-align: center;
-        }
-    }
-    
-}
-
 .admin-form {
     display: flex;
     flex-direction: row;
