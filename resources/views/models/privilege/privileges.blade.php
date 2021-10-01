@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('privilege-create') }}" style="display: block; width: 100%;">Create Resource Tag</a>
+    <a href="{{ route('privilege-create') }}" style="display: block; width: 100%;">Create Privilege</a>
     <br>
     <div class="item-table">
         <!-- Define column headers. -->

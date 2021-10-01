@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('resource-type-create') }}" style="display: block; width: 100%;">Create Resource Tag</a>
+    <a href="{{ route('resource-type-create') }}" style="display: block; width: 100%;">Create Resource Type</a>
     <br>
     <div class="item-table">
         <!-- Define column headers. -->
