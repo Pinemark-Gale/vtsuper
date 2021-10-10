@@ -198,6 +198,12 @@ The authentication of Laravel was initialized through Laravel Breeze which means
 
 Do note that Auth routes are still defined in the ```routes``` directory, so there's no need to go into the vendor folder for changing routes.
 
+## SSL Certificate - Let's Encrypt
+
+While this web application is not necessarily tied to any particular SSL certificate, it is important to state what is currently being used in production. To make sure the website is secure, the VT Super website uses Let's Encrypt. They have a [wonderful tutorial](https://letsencrypt.org/getting-started/) to get anyone started on securing their website.
+
+Even better, they do have certbot which is easily used on Linux systems to automatically setup and configure and generate an SSL cert. The process should be relatively painless.
+
 [<< Previous Section](#database-structure) | [Content Table](#table-of-contents) | [Next Section >>](#recommended-developer-environment)
 
 ---
