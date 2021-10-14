@@ -1,4 +1,8 @@
 <x-layouts.app>
+    <x-slot name="sJavaImport">
+        <script src="{{ asset('js/tags.js') }}" defer></script>
+    </x-slot>
+
     <h1>Create Resource</h1>
     <x-form-errors />
     <form method="POST" action="{{ route('resource-store') }}" class="admin-form">
@@ -27,13 +31,22 @@
         <input type="text" name="description" value="{{ old('description') }}">
 
         <label for="tags">Tags</label>
-        <ul>
+
+        <!-- tag container collection for user to select tags -->
+        <div id="tag-container">
+            <span>Available Tags</span>
             @foreach ($tags as $tag)
-                <li>{{ $tag->id }} - {{ $tag->tag }}</li>
+                <div data-tid="{{ $tag->id }}" class="tag-container-tag">{{ $tag->tag }}</div>
             @endforeach
-        </ul>
-        <input type="text" name="tags[0][id]" value="1">
-        <input type="text" name="tags[1][id]" value="2">
+        </div>
+
+        <!-- resource tags collection for user to remove and view current tags -->
+        <div id='resource-tags'>
+        </div>
+
+        <!-- resource tag ids for submitting tags to the database -->
+        <div id='resource-tag-ids'>
+        </div>
 
         <button type="submit" class="form-submit">
             Create Resource
