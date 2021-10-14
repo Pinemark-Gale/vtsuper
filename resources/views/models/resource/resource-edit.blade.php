@@ -1,4 +1,8 @@
 <x-layouts.app>
+    <x-slot name="sJavaImport">
+        <script src="{{ asset('js/tags.js') }}" defer></script>
+    </x-slot>
+
     <h1>Edit Resource {{ $resource->name }}</h1>
     <x-form-errors />
     <form method="POST" action="{{ route('resource-update', ['resource' => $resource->name]) }}" class="admin-form">
@@ -27,16 +31,30 @@
         <input type="text" name="description" value="{{ $resource->description }}">
 
         <label for="tags">Tags</label>
-        <ul>
+
+        <!-- tag container collection for user to select tags -->
+        <div id="tag-container">
+            <span>Available Tags</span>
             @foreach ($tags as $tag)
-                <li>{{ $tag->id }} - {{ $tag->tag }}</li>
+                @if (!$resource->tags->contains('id', $tag->id))
+                    <div data-tid="{{ $tag->id }}" class="tag-container-tag">{{ $tag->tag }}</div>
+                @endif
             @endforeach
-        </ul>
-        <ul>
+        </div>
+
+        <!-- resource tags collection for user to remove and view current tags -->
+        <div id='resource-tags'>
             @foreach ($resource->tags as $tag)
-                <input type="text" name="tags[{{ $loop->index }}][id]" value="{{ $tag->id }}">
+                <div data-tid="{{ $tag->id }}" class="resource-tag">{{ $tag->tag }}</div>
             @endforeach
-        </ul>
+        </div>
+
+        <!-- resource tag ids for submitting tags to the database -->
+        <div id='resource-tag-ids'>
+            @foreach ($resource->tags as $tag)
+                <input type="hidden" class="resource-tag-id" name="tags[{{ $loop->index }}][id]" value="{{ $tag->id }}">
+            @endforeach
+        </div>
 
         <button type="submit" class="form-submit">
             Update Resource

@@ -45,8 +45,6 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->tags);
-
         $validatedData = $request->validate([
             'resource_type_id' => ['required', 'integer', 'exists:App\Models\ResourceType,id'],
             'source_id' => ['required', 'integer', 'exists:App\Models\Source,id'],
@@ -114,11 +112,11 @@ class ResourceController extends Controller
          * https://laravel.com/docs/5.1/validation#rule-unique
          * Original Rule for tags.*.id: 'unique:resource_resource_tag,resource_tag_id,NULL,id,resource_id,'.$resource->id
          * */
-
+        // dd($request);
         $validatedData = $request->validate([
             'resource_type_id' => ['required', 'integer', 'exists:App\Models\ResourceType,id'],
             'source_id' => ['required', 'integer', 'exists:App\Models\Source,id'],
-            'name' => ['required', 'unique:App\Models\Resource', 'string'],
+            'name' => ['required', 'exists:App\Models\Resource', 'string'],
             'link' => ['required', 'string'],
             'description' => ['required', 'string'],
             'tags.*' => ['array:id'],

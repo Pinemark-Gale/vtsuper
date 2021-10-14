@@ -204,7 +204,19 @@ While this web application is not necessarily tied to any particular SSL certifi
 
 Even better, they do have certbot which is easily used on Linux systems to automatically setup and configure and generate an SSL cert. The process should be relatively painless.
 
-[<< Previous Section](#database-structure) | [Content Table](#table-of-contents) | [Next Section >>](#recommended-developer-environment)
+[<< Previous Section](#database-structure) | [Content Table](#table-of-contents) | [Next Section >>](#naming-conventions)
+
+---
+
+# Naming Conventions
+
+**Slot Add-ons**
+
+To avoid confusion of naming different Javascript elements, slots specifically will always start with a "s" at the beginning. This makes it easier to identify any given element that may be associated with a slot.
+
+One of the most common slots that will be referenced is the "sJavaImport" slot that helps any given page import a Javascript file at the top of the page rather than in the view where it is referenced.
+
+[<< Previous Section](#dependencies) | [Content Table](#table-of-contents) | [Next Section >>](#recommended-developer-environment)
 
 ---
 
