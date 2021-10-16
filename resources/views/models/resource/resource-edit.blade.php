@@ -3,34 +3,28 @@
         <script src="{{ asset('js/tags.js') }}" defer></script>
     </x-slot>
 
-    <h1>Edit Resource {{ $resource->name }}</h1>
-    <x-form-errors />
-    <form method="POST" action="{{ route('resource-update', ['resource' => $resource->name]) }}" class="admin-form">
-        @csrf
-        <label for="name">Name</label>
-        <input type="text" name="name" value="{{ $resource->name }}" required autofocus>
+    <x-form.form action="{{ route('resource-update', ['resource' => $resource->name]) }}">
+        <x-form.title>Edit Resource {{ $resource->name }}</x-form.title>
+        <x-form.input name="name" value="{{ old('name') ? old('name') : $resource->name }}" autofocus />
 
-        <label for="resource_type_id"'>Resource Type</label>
+        <x-form.label for="resource_type_id" label="resource type" />
         <select  name="resource_type_id">
             @foreach ($types as $type)
                 <option value="{{ $type->id }}" {{ old('resource_type_id') == $type->id ? 'selected' : ($resource->type->id == $type->id ? 'selected' : '' ) }}>{{ $type->type }}</option>
             @endforeach
         </select>
         
-        <label for="source_id">Source</label>
+        <x-form.label for="source_id" label="source" />
         <select  name="source_id">
             @foreach ($sources as $source)
                 <option value="{{ $source->id }}" {{ old('source_id') == $source->id ? 'selected' : ($resource->source->id == $source->id ? 'selected' : '') }}>{{ $source->source }}</option>
             @endforeach
         </select>
 
-        <label for="link">Link</label>
-        <input type="text" name="link" value="{{ $resource->link }}">
+        <x-form.input name="link" value="{{ old('link') ? old('link') : $resource->link }}" />
+        <x-form.input name="description" value="{{ old('description') ? old('description') : $resource->description }}" />
 
-        <label for="description">Description</label>
-        <input type="text" name="description" value="{{ $resource->description }}">
-
-        <label for="tags">Tags</label>
+        <x-form.label for="tags" label="tags" />
 
         <!-- tag container collection for user to select tags -->
         <div id="tag-container">
@@ -56,8 +50,6 @@
             @endforeach
         </div>
 
-        <button type="submit" class="form-submit">
-            Update Resource
-        </button>
-    </form>
+        <x-form.button>Update Resource</x-form.button>
+    </x-form.form>
 </x-layouts.app>

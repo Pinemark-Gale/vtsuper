@@ -1,12 +1,7 @@
 <x-layouts.app>
-    <h1>Create Source</h1>
-    <x-form-errors />
-    <form method="POST" action="{{ route('source-store') }}" class="admin-form">
-        @csrf
-        <label for="source">Source</label>
-        <input source="text" name="source" value="{{ old('source') }}" required autofocus>
-        <button source="submit" class="form-submit">
-            Create Source
-        </button>
-    </form>
+    <x-form.form action="{{ route('source-store') }}">
+        <x-form.title>Create Source</x-form.title>
+        <x-form.input name="source" autofocus />
+        <x-form.button>Create Source</x-form.button>
+    </x-form.form>
 </x-layouts.app>

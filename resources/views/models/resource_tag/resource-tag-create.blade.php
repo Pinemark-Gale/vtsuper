@@ -1,12 +1,7 @@
 <x-layouts.app>
-    <h1>Create Resource Tag</h1>
-    <x-form-errors />
-    <form method="POST" action="{{ route('resource-tag-store') }}" class="admin-form">
-        @csrf
-        <label for="tag">Tag</label>
-        <input tag="text" name="tag" value="{{ old('tag') }}" required autofocus>
-        <button tag="submit" class="form-submit">
-            Create Resource Tag
-        </button>
-    </form>
+    <x-form.form action="{{ route('resource-tag-store') }}">
+        <x-form.title>Create Resource Tag</x-form.title>
+        <x-form.input name="tag" autofocus />
+        <x-form.button>Create Resource Tag</x-form.button>
+    </x-form.form>
 </x-layouts.app>

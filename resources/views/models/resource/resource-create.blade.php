@@ -3,32 +3,26 @@
         <script src="{{ asset('js/tags.js') }}" defer></script>
     </x-slot>
 
-    <h1>Create Resource</h1>
-    <x-form-errors />
-    <form method="POST" action="{{ route('resource-store') }}" class="admin-form">
-        @csrf
-        <label for="name">Name</label>
-        <input type="text" name="name" value="{{ old('name') }}" required autofocus>
+    <x-form.form action="{{ route('resource-store') }}">
+        <x-form.title>Create Resource</x-form.title>
+        <x-form.input name="name" autofocus />
 
-        <label for="resource_type_id"'>Resource Type</label>
+        <x-form.label for="resource_type_id" label="resource type" />
         <select  name="resource_type_id">
             @foreach ($types as $type)
                 <option value="{{ $type->id }}" {{ old('resource_type_id') == $type->id ? 'selected' : '' }}>{{ $type->type }}</option>
             @endforeach
         </select>
         
-        <label for="source_id">Source</label>
+        <x-form.label for="source_id" label="source" />
         <select  name="source_id">
             @foreach ($sources as $source)
                 <option value="{{ $source->id }}" {{ old('source_id') == $source->id ? 'selected' : '' }}>{{ $source->source }}</option>
             @endforeach
         </select>
 
-        <label for="link">Link</label>
-        <input type="text" name="link" value="{{ old('link') }}">
-
-        <label for="description">Description</label>
-        <input type="text" name="description" value="{{ old('description') }}">
+        <x-form.input name="link" />
+        <x-form.input name="description" />
 
         <label for="tags">Tags</label>
 
@@ -48,8 +42,6 @@
         <div id='resource-tag-ids'>
         </div>
 
-        <button type="submit" class="form-submit">
-            Create Resource
-        </button>
-    </form>
+        <x-form.button>Create Resource</x-form.button>
+    </x-form.form>
 </x-layouts.app>

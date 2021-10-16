@@ -1,14 +1,8 @@
 <x-layouts.app>
-    <h1>Create School</h1>
-    <x-form-errors />
-    <form method="POST" action="{{ route('school-store') }}" class="admin-form">
-        @csrf
-        <label for="name">Name</label>
-        <input type="text" name="name" value="{{ old('name') }}" required autofocus>
-        <label for="district">District</label>
-        <input type="text" name="district" value="{{ old('district') }}" required autofocus>
-        <button type="submit" class="form-submit">
-            Create School
-        </button>
-    </form>
+    <x-form.form action="{{ route('school-store') }}">
+        <x-form.title>Create School</x-form.title>
+        <x-form.input name="name" autofocus />
+        <x-form.input name="district" />
+        <x-form.button>Create School</x-form.button>
+    </x-form.form>
 </x-layouts.app>

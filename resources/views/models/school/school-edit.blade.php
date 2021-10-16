@@ -1,14 +1,8 @@
 <x-layouts.app>
-    <h1>Edit School</h1>
-    <x-form-errors />
-    <form method="POST" action="{{ route('school-update', ['school' => $school->name]) }}" class="admin-form">
-        @csrf
-        <label for="name">Name</label>
-        <input type="text" name="name" value="{{ $school->name }}" required autofocus>
-        <label for="district">District</label>
-        <input type="text" name="district" value="{{ $school->district }}" required autofocus>
-        <button type="submit" class="form-submit">
-            Edit School
-        </button>
-    </form>
+    <x-form.form action="{{ route('school-update', ['school' => $school->name]) }}">
+        <x-form.title>Edit School</x-form.title>
+        <x-form.input name="name" value="{{ old('name') ? old('name') : $school->name }}" autofocus />
+        <x-form.input name="district" value="{{ old('district') ? old('district') : $school->district }}" />
+        <x-form.button>Update School</x-form.button>
+    </x-form.form>
 </x-layouts.app>
