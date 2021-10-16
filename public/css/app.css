@@ -347,7 +347,14 @@ form div {
   margin: 5px;
   min-width: 200px;
   text-align: center;
-  width: 30%;
+  width: 80%;
+}
+.admin-form .errors {
+  color: #F03C3C;
+  cursor: text;
+  display: block;
+  text-align: center;
+  width: 80%;
 }
 .admin-form select {
   background-color: #6D80A9;
@@ -357,7 +364,7 @@ form div {
   margin: 5px;
   min-width: 200px;
   text-align: center;
-  width: 30%;
+  width: 80%;
 }
 .admin-form button {
   background-color: #6D80A9;

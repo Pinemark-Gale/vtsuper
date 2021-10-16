@@ -1,11 +1,7 @@
 <x-layouts.app>
-    <h1>Edit Privilege {{ $privilege->title }}</h1>
-    <form method="POST" action="{{ route('privilege-update', ['privilege' => $privilege->title]) }}" class="admin-form">
-        @csrf
-        <label for="title">Title</label>
-        <input type="text" name="title" value="{{ $privilege->title }}" required autofocus>
-        <button type="submit" class="form-submit">
-            Update Privilege Title
-        </button>
-    </form>
+    <x-form.form action="{{ route('privilege-update', ['privilege' => $privilege->title]) }}">
+        <x-form.title>Edit Privilege {{ $privilege->title }}</x-form.title>
+        <x-form.input name="title" value="{{ old('title') ? old('title') : $privilege->title }}" autofocus />
+        <x-form.button>Update Privilege</x-form.button> 
+    </x-form.form>
 </x-layouts.app>

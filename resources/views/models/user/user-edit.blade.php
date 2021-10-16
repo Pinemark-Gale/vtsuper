@@ -1,12 +1,9 @@
 <x-layouts.app>
-    <h1>Edit User {{ $user->name }}</h1>
-    <x-form-errors />
-    <form method="POST" action="{{ route('user-update', ['user' => $user->name]) }}" class="admin-form">
-        @csrf
-        <label for="name">Name</label>
-        <input type="text" name="name" value="{{ $user->name }}" required autofocus>
+    <x-form.form action="{{ route('user-update', ['user' => $user->name]) }}">
+        <x-form.title>Edit User {{ $user->name }}</x-form.title>
+        <x-form.input name="name" value="{{ old('name') ? old('name') : $user->name }}" autofocus />
 
-        <label for="school_id"'>School</label>
+        <x-form.label for="school_id" label="school" />
         <select  name="school_id">
             @foreach ($schools as $school)
                 <option value="{{ $school->id }}" {{ old('school_id') == $school->id ? 'selected' : ($user->school->id == $school->id ? 'selected' : '') }}>
@@ -15,7 +12,7 @@
             @endforeach
         </select>
         
-        <label for="privilege_id">Privilege</label>
+        <x-form.label for="privilege_id" label="privilege" />
         <select  name="privilege_id">
             @foreach ($privileges as $privilege)
                 <option value="{{ $privilege->id }}" {{ old('privilege_id') == $privilege->id ? 'selected' : ($user->privilege->id == $privilege->id ? 'selected' : '') }}>
@@ -24,17 +21,9 @@
             @endforeach
         </select>
 
-        <label for="email">Email</label>
-        <input type="text" name="email" value="{{ $user->email }}">
-
-        <label for="password">Password</label>
-        <input type="password" name="password" value="{{ old('password') }}">
-
-        <label for="password_confirmation">Confirm Password</label>
-        <input type="password" name="password_confirmation" value="">
-
-        <button type="submit" class="form-submit">
-            Update User
-        </button>
-    </form>
+        <x-form.input name="email" value="{{ old('email') ? old('email') : $user->email }}" />
+        <x-form.input name="password" type="password" />
+        <x-form.input name="password_confirmation" type="password" label="confirm password" />
+        <x-form.button>Update User</x-form.button>
+    </x-form.form>
 </x-layouts.app>
