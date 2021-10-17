@@ -1,5 +1,6 @@
 <x-layouts.app>
     <x-form.form action="{{ route('user-update', ['user' => $user->name]) }}">
+        @method('patch')
         <x-form.title>Edit User {{ $user->name }}</x-form.title>
         <x-form.input name="name" value="{{ old('name') ? old('name') : $user->name }}" autofocus />
 

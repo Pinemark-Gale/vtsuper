@@ -40,16 +40,16 @@ Route::get('resources/{resource:name}', [ResourceController::class, 'show'])->na
 Route::get('admin/resource/create', [ResourceController::class, 'create'])->middleware('admin')->name('resource-create');
 Route::get('admin/resource/{resource:name}/edit', [ResourceController::class, 'edit'])->middleware('admin')->name('resource-edit');
 Route::post('admin/resource/store', [ResourceController::class, 'store'])->middleware('admin')->name('resource-store');
-Route::post('admin//resource/{resource:name}/update', [ResourceController::class, 'update'])->middleware('admin')->name('resource-update');
+Route::patch('admin//resource/{resource:name}/update', [ResourceController::class, 'update'])->middleware('admin')->name('resource-update');
 Route::delete('admin/resource/{resource:name}/destroy', [ResourceController::class, 'destroy'])->middleware('admin')->name('resource-destroy');
 
-/* Resource tag routes. */
+/* Resource source routes. */
 Route::get('admin/sources', [SourceController::class, 'index'])->middleware('admin')->name('sources');
 Route::get('admin/sources/{source:source}', [SourceController::class, 'show'])->middleware('admin')->name('source');
 Route::get('admin/source/create', [SourceController::class, 'create'])->middleware('admin')->name('source-create');
 Route::get('admin/source/{source:source}/edit', [SourceController::class, 'edit'])->middleware('admin')->name('source-edit');
 Route::post('admin/source/store', [SourceController::class, 'store'])->middleware('admin')->name('source-store');
-Route::post('admin//source/{source:source}/update', [SourceController::class, 'update'])->middleware('admin')->name('source-update');
+Route::patch('admin//source/{source:source}/update', [SourceController::class, 'update'])->middleware('admin')->name('source-update');
 Route::delete('admin/source/{source:source}/destroy', [SourceController::class, 'destroy'])->middleware('admin')->name('source-destroy');
 
 /* Resource tag routes. */
@@ -58,7 +58,7 @@ Route::get('admin/resource-tags/{resourceTag:tag}', [ResourceTagController::clas
 Route::get('admin/resource-tag/create', [ResourceTagController::class, 'create'])->middleware('admin')->name('resource-tag-create');
 Route::get('admin/resource-tag/{resourceTag:tag}/edit', [ResourceTagController::class, 'edit'])->middleware('admin')->name('resource-tag-edit');
 Route::post('admin/resource-tag/store', [ResourceTagController::class, 'store'])->middleware('admin')->name('resource-tag-store');
-Route::post('admin//resource-tag/{resourceTag:tag}/update', [ResourceTagController::class, 'update'])->middleware('admin')->name('resource-tag-update');
+Route::patch('admin//resource-tag/{resourceTag:tag}/update', [ResourceTagController::class, 'update'])->middleware('admin')->name('resource-tag-update');
 Route::delete('admin/resource-tag/{resourceTag:tag}/destroy', [ResourceTagController::class, 'destroy'])->middleware('admin')->name('resource-tag-destroy');
 
 /* Resource type routes. */
@@ -67,7 +67,7 @@ Route::get('admin/resource-types/{resourceType:type}', [ResourceTypeController::
 Route::get('admin/resource-type/create', [ResourceTypeController::class, 'create'])->middleware('admin')->name('resource-type-create');
 Route::get('admin/resource-type/{resourceType:type}/edit', [ResourceTypeController::class, 'edit'])->middleware('admin')->name('resource-type-edit');
 Route::post('admin/resource-type/store', [ResourceTypeController::class, 'store'])->middleware('admin')->name('resource-type-store');
-Route::post('admin//resource-type/{resourceType:type}/update', [ResourceTypeController::class, 'update'])->middleware('admin')->name('resource-type-update');
+Route::patch('admin//resource-type/{resourceType:type}/update', [ResourceTypeController::class, 'update'])->middleware('admin')->name('resource-type-update');
 Route::delete('admin/resource-type/{resourceType:type}/destroy', [ResourceTypeController::class, 'destroy'])->middleware('admin')->name('resource-type-destroy');
 
 /* User routes. */
@@ -76,7 +76,7 @@ Route::get('admin/users/{user:name}', [UserController::class, 'show'])->middlewa
 Route::get('register', [UserController::class, 'create'])->middleware('guest')->name('user-create');
 Route::get('admin/users/{user:name}/edit', [UserController::class, 'edit'])->middleware('admin')->name('user-edit');
 Route::post('register', [UserController::class, 'store'])->middleware('guest')->name('user-store');
-Route::post('admin/user/{user:name}/update', [UserController::class, 'update'])->middleware('admin')->name('user-update');
+Route::patch('admin/user/{user:name}/update', [UserController::class, 'update'])->middleware('admin')->name('user-update');
 Route::delete('admin/user/{user:name}/destroy', [UserController::class, 'destroy'])->middleware('admin')->name('user-destroy');
 
 /* Privilege routes. */
@@ -85,7 +85,7 @@ Route::get('admin/privileges/{privilege:title}', [PrivilegeController::class, 's
 Route::get('admin/privilege/create', [PrivilegeController::class, 'create'])->middleware('admin')->name('privilege-create');
 Route::get('admin/privilege/{privilege:title}/edit', [PrivilegeController::class, 'edit'])->middleware('admin')->name('privilege-edit');
 Route::post('admin/privilege/store', [PrivilegeController::class, 'store'])->middleware('admin')->name('privilege-store');
-Route::post('admin//privilege/{privilege:title}/update', [PrivilegeController::class, 'update'])->middleware('admin')->name('privilege-update');
+Route::patch('admin//privilege/{privilege:title}/update', [PrivilegeController::class, 'update'])->middleware('admin')->name('privilege-update');
 Route::delete('admin/privilege/{privilege:title}/destroy', [PrivilegeController::class, 'destroy'])->middleware('admin')->name('privilege-destroy');
 
 /* School routes. */
@@ -94,7 +94,7 @@ Route::get('/schools/{school:name}', [SchoolController::class, 'show'])->middlew
 Route::get('admin/school/create', [SchoolController::class, 'create'])->middleware('admin')->name('school-create');
 Route::get('admin/school/{school:name}/edit', [SchoolController::class, 'edit'])->middleware('admin')->name('school-edit');
 Route::post('admin/school/store', [SchoolController::class, 'store'])->middleware('admin')->name('school-store');
-Route::post('admin/school/{school:name}/update', [SchoolController::class, 'update'])->middleware('admin')->name('school-update');
+Route::patch('admin/school/{school:name}/update', [SchoolController::class, 'update'])->middleware('admin')->name('school-update');
 Route::delete('admin/school/{school:name}/destroy', [SchoolController::class, 'destroy'])->middleware('admin')->name('school-destroy');
 
 require __DIR__.'/auth.php';
