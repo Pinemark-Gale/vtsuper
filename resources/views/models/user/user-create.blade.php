@@ -18,7 +18,7 @@
         </select>
 
         <x-form.input name="email" />
-        <x-form.input name="password" type="password" />
+        <x-form.input name="password" type="password" autocomplete="new-password" />
         <x-form.input name="password_confirmation" type="password" label="confirm password" />
         <x-form.button>Create Account</x-form.button>
     </x-form.form>
