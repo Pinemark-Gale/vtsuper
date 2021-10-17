@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tags.js') }}" defer></script>
     </x-slot>
 
-    <x-form.form action="{{ route('resource-store') }}">
+    <x-form.form :action="route('resource-store')">
         <x-form.title>Create Resource</x-form.title>
         <x-form.input name="name" autofocus />
 

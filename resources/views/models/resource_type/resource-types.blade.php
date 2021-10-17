@@ -1,5 +1,5 @@
 <x-layouts.app>
-<x-slot name="sJavaImport">
+    <x-slot name="sJavaImport">
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 

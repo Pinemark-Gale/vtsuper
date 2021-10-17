@@ -3,10 +3,10 @@
         <script src="{{ asset('js/tags.js') }}" defer></script>
     </x-slot>
 
-    <x-form.form action="{{ route('resource-update', ['resource' => $resource->name]) }}">
+    <x-form.form :action="route('resource-update', ['resource' => $resource->name])">
         @method('patch')
         <x-form.title>Edit Resource {{ $resource->name }}</x-form.title>
-        <x-form.input name="name" value="{{ old('name') ? old('name') : $resource->name }}" autofocus />
+        <x-form.input name="name" :value="old('name') ? old('name') : $resource->name" autofocus />
 
         <x-form.label for="resource_type_id" label="resource type" />
         <select  name="resource_type_id">
@@ -22,8 +22,8 @@
             @endforeach
         </select>
 
-        <x-form.input name="link" value="{{ old('link') ? old('link') : $resource->link }}" />
-        <x-form.input name="description" value="{{ old('description') ? old('description') : $resource->description }}" />
+        <x-form.input name="link" :value="old('link') ? old('link') : $resource->link" />
+        <x-form.input name="description" :value="old('description') ? old('description') : $resource->description" />
 
         <x-form.label for="tags" label="tags" />
 
