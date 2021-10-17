@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -111,7 +112,7 @@ class UserController extends Controller
          * https://laravel.com/docs/8.x/validation#a-note-on-optional-fields */
         $validatedData = $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'string', 'max:255', 'exists:\App\Models\User'],
+            'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
             'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
