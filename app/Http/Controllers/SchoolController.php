@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -107,6 +108,29 @@ class SchoolController extends Controller
      */
     public function destroy(School $school)
     {
+        // Check if user is trying to delete default school.
+        if ($school->name == 'None') {
+            return redirect()
+                ->back()
+                ->with(
+                    config('session.system-message'), 
+                    'None school option cannot be deleted!'
+                );
+        }
+
+        // Find or create None school.
+        $uncatigorized = School::where('name', '=', 'None')->first();
+        if (is_null($uncatigorized)) {
+            $uncatigorized = School::create([
+                'name' => 'None'
+            ]);
+            
+        }
+        
+        // Gather foreign keys and detach.
+        $toDetach = User::where('school_id', '=', $school->id)
+            ->update(['school_id' => $uncatigorized->id]);
+        
         $school->delete();
 
         return redirect(route('schools'));

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call([ResourceTagSeeder::class]);
         $this->call([ResourceTypeSeeder::class]);
         $this->call([SourceSeeder::class]);
+        $this->call([SchoolSeeder::class]);
         
         /* Generate schools and store for user attachment. */
         $schools = \App\Models\School::factory(5)->create();

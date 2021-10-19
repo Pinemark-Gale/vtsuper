@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ResourceType;
+use App\Models\Resource;
 use Illuminate\Http\Request;
 
 class ResourceTypeController extends Controller
@@ -101,6 +102,29 @@ class ResourceTypeController extends Controller
      */
     public function destroy(ResourceType $resourceType)
     {
+        // Check if user is trying to delete default resource type.
+        if ($resourceType->type == 'Uncatigorized') {
+            return redirect()
+                ->back()
+                ->with(
+                    config('session.system-message'), 
+                    'Uncatigorized resource type cannot be deleted!'
+                );
+        }
+
+        // Find or create an uncatigorized resource type.
+        $uncatigorized = ResourceType::where('type', '=', 'Uncatigorized')->first();
+        if (is_null($uncatigorized)) {
+            $uncatigorized = ResourceType::create([
+                'type' => 'Uncatigorized'
+            ]);
+            
+        }
+        
+        // Gather foreign keys and detach.
+        $toDetach = Resource::where('resource_type_id', '=', $resourceType->id)
+            ->update(['resource_type_id' => $uncatigorized->id]);
+        
         $resourceType->delete();
 
         return redirect(route('resource-types'));

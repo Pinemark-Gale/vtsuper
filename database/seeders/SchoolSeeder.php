@@ -13,6 +13,10 @@ class SchoolSeeder extends Seeder
      */
     public function run()
     {
-        //
+        /* Make common sources for app. */
+        \App\Models\School::create([
+            'name' => 'None',
+            'district' => 'None'
+        ]);
     }
 }

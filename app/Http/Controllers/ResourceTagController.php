@@ -101,6 +101,8 @@ class ResourceTagController extends Controller
      */
     public function destroy(ResourceTag $resourceTag)
     {
+        $resourceTag->resources()->detach();
+
         $resourceTag->delete();
 
         return redirect(route('resource-tags'));

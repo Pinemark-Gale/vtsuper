@@ -15,6 +15,10 @@ class ResourceTypeSeeder extends Seeder
     {
         /* Make common resource types for app. */
         \App\Models\ResourceType::create([
+            'type' => 'Uncatigorized'
+        ]);
+
+        \App\Models\ResourceType::create([
             'type' => 'Article'
         ]);
 

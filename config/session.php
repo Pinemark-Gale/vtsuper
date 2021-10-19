@@ -198,4 +198,17 @@ return [
 
     'same_site' => 'lax',
 
+    /*
+    |--------------------------------------------------------------------------
+    | System Message
+    |--------------------------------------------------------------------------
+    |
+    | Here you can choose the name of the message given to a session 
+    | should an error or| warning be thrown to a user.
+    |
+    */
+
+    'system-message' => 'info',
+
+
 ];

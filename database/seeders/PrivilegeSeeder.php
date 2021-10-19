@@ -15,6 +15,10 @@ class PrivilegeSeeder extends Seeder
     {
         /* Make common privileges for app. */
         \App\Models\Privilege::create([
+            'title' => 'Uncatigorized'
+        ]);
+
+        \App\Models\Privilege::create([
             'title' => 'Student'
         ]);
 

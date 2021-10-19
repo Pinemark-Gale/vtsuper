@@ -25,7 +25,7 @@ a:hover {
   transition: 0.6s;
 }
 
-/*search component */
+/* search component */
 .search-bar {
   display: flex;
   width: 100%;
@@ -41,6 +41,17 @@ a:hover {
 .search-bar svg {
   margin-right: 10px;
   width: 20px;
+}
+
+/* system message component */
+.system-message {
+  background-color: #F03C3C;
+  color: #F5E6C4;
+  display: block;
+  font-size: 1.5em;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
 .top-nav-container {

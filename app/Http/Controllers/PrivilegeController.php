@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Privilege;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -103,6 +104,30 @@ class PrivilegeController extends Controller
      */
     public function destroy(Privilege $privilege)
     {
+        // Check if user is trying to delete default privilege.
+        if ($privilege->title == 'Uncatigorized') {
+            return redirect()
+                ->back()
+                ->with(
+                    config('session.system-message'), 
+                    'Uncatigorized privilege cannot be deleted!'
+                );
+        }
+
+        // Find or create an uncatigorized privilege title.
+        $uncatigorized = Privilege::where('title', '=', 'Uncatigorized')->first();
+        if (is_null($uncatigorized)) {
+            $uncatigorized = Privilege::create([
+                'title' => 'Uncatigorized'
+            ]);
+            
+        }
+        
+        // Gather foreign keys and detach.
+        $toDetach = User::where('privilege_id', '=', $privilege->id)
+            ->update(['privilege_id' => $uncatigorized->id]);
+
+        // Delete specified privilege.
         $privilege->delete();
 
         return redirect(route('privileges'));

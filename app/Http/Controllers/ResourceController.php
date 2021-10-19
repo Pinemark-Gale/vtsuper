@@ -146,6 +146,8 @@ class ResourceController extends Controller
      */
     public function destroy(Resource $resource)
     {
+        $resource->tags()->detach();
+
         $resource->delete();
 
         return redirect(route('resources'));

@@ -22,6 +22,8 @@
         <div class="app-container">
             <x-layouts.top-navigation />
 
+            <x-system-message />
+
             <main class="content">
                 {{ $slot }}
             </main>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Source;
+use App\Models\Resource;
 use Illuminate\Http\Request;
 
 class SourceController extends Controller
@@ -101,6 +102,29 @@ class SourceController extends Controller
      */
     public function destroy(Source $source)
     {
+        // Check if user is trying to delete default source.
+        if ($source->source == 'Unknown') {
+            return redirect()
+                ->back()
+                ->with(
+                    config('session.system-message'), 
+                    'Unknown source option cannot be deleted!'
+                );
+        }
+
+        // Find or create Unknown source.
+        $uncatigorized = Source::where('source', '=', 'Unknown')->first();
+        if (is_null($uncatigorized)) {
+            $uncatigorized = Source::create([
+                'source' => 'Unknown'
+            ]);
+            
+        }
+        
+        // Gather foreign keys and detach.
+        $toDetach = Resource::where('source_id', '=', $source->id)
+            ->update(['source_id' => $uncatigorized->id]);
+
         $source->delete();
 
         return redirect(route('sources'));

@@ -15,6 +15,10 @@ class SourceSeeder extends Seeder
     {
         /* Make common sources for app. */
         \App\Models\Source::create([
+            'source' => 'Unknown'
+        ]);
+
+        \App\Models\Source::create([
             'source' => 'Substance Abuse and Mental Health Services Administration'
         ]);
 
