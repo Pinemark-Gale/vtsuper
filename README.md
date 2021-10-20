@@ -20,6 +20,10 @@
 
 [Dependencies](#dependencies)
 
+[Naming Conventions](#naming-conventions)
+
+[Privileges](#privileges)
+
 [Recommended Developer Environment](#recommended-developer-environment)
 
 [Useful Commands](#useful-commands)
@@ -216,7 +220,32 @@ To avoid confusion of naming different Javascript elements, slots specifically w
 
 One of the most common slots that will be referenced is the "sJavaImport" slot that helps any given page import a Javascript file at the top of the page rather than in the view where it is referenced.
 
-[<< Previous Section](#dependencies) | [Content Table](#table-of-contents) | [Next Section >>](#recommended-developer-environment)
+[<< Previous Section](#dependencies) | [Content Table](#table-of-contents) | [Next Section >>](#privileges)
+
+---
+
+# Privileges
+
+The VT Super application has four different privilege levels: student, teacher, contributor, admin. Each higher level privilege has all the access of lower levels of permissions.
+
+The following permissions and who can access them are shown below:
+
+| Permission            | Admin | Teacher | Contributor | Student |
+| --------------------- |:-----:|:-------:|:-----------:|:-------:|
+| Read resources        | x     | x       | x           | x       |
+| Manage resources      | x     | x       | x           |         |
+| Manage sources        | x     | x       | x           |         |
+| Manage schools        | x     | x       |             |         |
+| Manage resource tags  | x     | x       |             |         |
+| Manage resource types | x     | x       |             |         |
+| Manage classes        | x     | x       |             |         |
+| Manage pages          | x     |         |             |         |
+| Manage privileges     | x     |         |             |         |
+| Manage users          | x     |         |             |         |
+
+
+
+[<< Previous Section](#naming-conventions) | [Content Table](#table-of-contents) | [Next Section >>](#recommended-developer-environment)
 
 ---
 
@@ -240,7 +269,7 @@ I love using a simple program such a Mark Text for editing markdown documents su
 
 We are using MySQL, so the open source program MySQL Workbench gets the job done. There are absolutely nicer looking programs out there, but this one is free and in reality it will hardly be used.
 
-[<< Previous Section](#dependencies) | [Content Table](#table-of-contents) | [Next Section >>](#useful-commands)
+[<< Previous Section](#privileges) | [Content Table](#table-of-contents) | [Next Section >>](#useful-commands)
 
 ---
 
