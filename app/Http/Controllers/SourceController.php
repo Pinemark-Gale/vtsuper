@@ -107,7 +107,7 @@ class SourceController extends Controller
             return redirect()
                 ->back()
                 ->with(
-                    config('session.system-message'), 
+                    config('session.system_message'), 
                     'Unknown source option cannot be deleted!'
                 );
         }

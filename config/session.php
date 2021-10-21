@@ -208,7 +208,7 @@ return [
     |
     */
 
-    'system-message' => 'info',
+    'system_message' => 'info',
 
 
 ];

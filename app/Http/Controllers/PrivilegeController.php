@@ -109,7 +109,7 @@ class PrivilegeController extends Controller
             return redirect()
                 ->back()
                 ->with(
-                    config('session.system-message'), 
+                    config('session.system_message'), 
                     'Uncatigorized privilege cannot be deleted!'
                 );
         }

@@ -113,7 +113,7 @@ class SchoolController extends Controller
             return redirect()
                 ->back()
                 ->with(
-                    config('session.system-message'), 
+                    config('session.system_message'), 
                     'None school option cannot be deleted!'
                 );
         }

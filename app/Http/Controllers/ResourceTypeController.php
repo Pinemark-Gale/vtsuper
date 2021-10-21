@@ -107,7 +107,7 @@ class ResourceTypeController extends Controller
             return redirect()
                 ->back()
                 ->with(
-                    config('session.system-message'), 
+                    config('session.system_message'), 
                     'Uncatigorized resource type cannot be deleted!'
                 );
         }
