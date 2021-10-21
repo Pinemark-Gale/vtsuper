@@ -28,42 +28,29 @@
     }
 }
 
-.canvas {
-    position: relative;
-    height: 90vh;
-    min-height: 250px;
+.rocket-canvas {
+    background-image: url(/svg/rocket-planet-image.svg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: $super-white;
+    padding-right: 25%;
+    padding-bottom: 40%;
 
-    .home-page-rocket {
-        width: 100%;
-        position: absolute;
-        min-height: 250px;
-        height: 100%;
-        top: 0;
-        left: 0;
-    
+    .title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 5px;
     }
     
-    .section-left {
-        display: inline;
-        padding-top: 50px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding-right: 20%;
-
+    .sub-title {
+        font-size: 1.5rem;
+        font-weight: lighter;
+        margin: 5px;
+        text-transform: uppercase;
+    }
     
-        .title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 5px;
-        }
-        
-        .sub-title {
-            font-size: 1.5rem;
-            font-weight: lighter;
-            margin: 5px;
-            text-transform: uppercase;
-        }
+    .text {
+        background-color: #1A181880;
     }
 }
 
@@ -73,4 +60,17 @@
     left: 0;
     padding-left: 20%;
     text-align: right;
+
+    .title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 5px;
+    }
+    
+    .sub-title {
+        font-size: 1.5rem;
+        font-weight: lighter;
+        margin: 5px;
+        text-transform: uppercase;
+    }
 }
