@@ -17,13 +17,7 @@ class PermissionCheck
      */
     public function handle(Request $request, Closure $next, string $permission)
     {
-        $permissionTranslation = array(
-            'ADMIN' => 5,
-            'TEACHER' => 4,
-            'CONTRIBUTOR' => 3,
-            'STUDENT' => 2,
-            'UNCATIGORIZED' => 1
-        );
+        $permissionTranslation = config('privileges.privilege_map');
 
         $userPermission = $permissionTranslation[strtoupper(auth()->user()->privilege->title)];
         $permission = $permissionTranslation[strtoupper($permission)];

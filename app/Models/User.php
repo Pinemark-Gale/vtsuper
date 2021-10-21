@@ -55,4 +55,27 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Privilege::class);
     }
+
+    /**
+     * Checks if a user is at or above the given privilege.
+     *
+     * @param string $privilegeTitle
+     * @return bool
+     */
+    public function privilegeCheck(string $privilegeTitle) {
+        $permissionTranslation = config('privileges.privilege_map');
+
+        $userPermission = $permissionTranslation[strtoupper($this->privilege->title)];
+        $privilegeTitle = $permissionTranslation[strtoupper($privilegeTitle)];
+
+        $passCheck = null;
+
+        if ($userPermission < $privilegeTitle) {
+            $passCheck = false;
+        } else {
+            $passCheck = true;
+        }
+
+        return $passCheck;
+    }
 }
