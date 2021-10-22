@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PageStatus;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call([ResourceTypeSeeder::class]);
         $this->call([SourceSeeder::class]);
         $this->call([SchoolSeeder::class]);
+        $this->call([PageSectionSeeder::class]);
+        $this->call([PageStatusSeeder::class]);
         
         /* Generate schools and store for user attachment. */
         $schools = \App\Models\School::factory(5)->create();
@@ -34,6 +37,9 @@ class DatabaseSeeder extends Seeder
         foreach ($schools as $school) {
                 \App\Models\User::factory(5)->for($school)->create();
         }
+
+        /* Make pages for page sections. */
+        \App\Models\Page::factory(10)->create();
 
         /* Generate resources. */
         \App\Models\Resource::factory(5)->create();

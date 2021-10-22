@@ -22,7 +22,7 @@ class Resource extends Model
         'description'
     ];
  
-    /* Eloquent relationship for resource->type */
+    /* Eloquent relationship for $resource->type */
     public function type()
     {
         return $this->belongsTo(ResourceType::class, 'resource_type_id');
