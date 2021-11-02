@@ -18,6 +18,7 @@ class Page extends Model
         'user_id',
         'page_status_id',
         'page_section_id',
+        'title',
         'slug',
         'content',
     ];

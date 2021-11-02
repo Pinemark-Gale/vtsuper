@@ -11,6 +11,7 @@
             @if (auth()->user()->privilegeCheck('admin'))
                 <a href="{{ route('users') }}" class="red-link">Users</a>
                 <a href="{{ route('privileges') }}" class="red-link">Privileges</a>
+                <a href="{{ route('pages') }}" class="red-link">Pages</a>
             @endif
             @if (auth()->user()->privilegeCheck('contributor'))
                 <a href="{{ route('sources') }}" class="red-link">Sources</a>

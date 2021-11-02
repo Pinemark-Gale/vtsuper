@@ -19,15 +19,11 @@ class ResourceTypeSeeder extends Seeder
         ]);
 
         \App\Models\ResourceType::create([
-            'type' => 'Article'
+            'type' => 'Student'
         ]);
 
         \App\Models\ResourceType::create([
-            'type' => 'Video'
-        ]);
-
-        \App\Models\ResourceType::create([
-            'type' => 'Game'
+            'type' => 'Educator'
         ]);
     }
 }
