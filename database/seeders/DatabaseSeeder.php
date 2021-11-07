@@ -38,8 +38,18 @@ class DatabaseSeeder extends Seeder
                 \App\Models\User::factory(5)->for($school)->create();
         }
 
-        /* Make pages for page sections. */
+        /* Generate pages. */
         \App\Models\Page::factory(10)->create();
+
+        /* Link pages to sections. */
+        $pages = \App\Models\Page::all();
+        $sections = \App\Models\PageSection::all();
+
+        foreach ($pages as $page) {
+            $rand_sections = $sections->random(2);
+            $page->sections()->attach($rand_sections[0]);
+            $page->sections()->attach($rand_sections[1]);
+        }
 
         /* Generate resources. */
         \App\Models\Resource::factory(5)->create();

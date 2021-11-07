@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Page;
 use App\Models\User;
-use App\Models\PageSection;
 use App\Models\PageStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,7 +26,6 @@ class PageFactory extends Factory
         return [
             'user_id' => User::all()->random()->id,
             'page_status_id' => PageStatus::all()->random()->id,
-            'page_section_id' => PageSection::all()->random()->id,
             'title' => $this->faker->words(5, 'true'),
             'slug' => $this->faker->slug(),
             'content' => $this->faker->randomHtml()

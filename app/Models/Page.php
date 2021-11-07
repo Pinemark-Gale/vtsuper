@@ -35,9 +35,9 @@ class Page extends Model
         return $this->belongsTo(PageStatus::class, 'page_status_id');
     }
 
-    /* Eloquent relationship for $page->section */
-    public function section()
+    /* Eloquent relationship for $page->sections */
+    public function sections()
     {
-        return $this->belongsTo(PageSection::class, 'page_section_id');
+        return $this->belongsToMany(PageSection::class);
     }
 }

@@ -17,7 +17,6 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('page_status_id')->constrained();
-            $table->foreignId('page_section_id')->constrainted();
             $table->string('title');
             $table->string('slug');
             $table->text('content');
