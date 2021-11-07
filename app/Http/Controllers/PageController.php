@@ -19,7 +19,7 @@ class PageController extends Controller
     public function index()
     {
         return view('models.page.pages', [
-            'pages' => Page::with(['status', 'section'])
+            'pages' => Page::with(['status', 'sections'])
                 ->orderby('title')->get()
         ]);
     }
@@ -48,22 +48,25 @@ class PageController extends Controller
 
         $validatedData = $request->validate([
             'page_status_id' => ['required', 'integer', 'exists:App\Models\PageStatus,id'],
-            'page_section_id' => ['required', 'integer', 'exists:App\Models\PageSection,id'],
             'title' => ['required', 'unique:App\Models\Page', 'string'],
             'slug' => ['required', 'string'],
             'content' => ['required', 'string'],
+            'array' => ['array'],
+            'array.*' => ['integer', 'exists:App\Models\PageSection,id'],
         ]);
         
-        // dd(auth()->user()->id);
         $page = Page::create([
             'user_id' => auth()->user()->id,
             'page_status_id' => $request->page_status_id,
-            'page_section_id' => $request->page_section_id,
             'title' => $request->title,
             'slug' => $request->slug,
             'content' => $request->content
         ]);
         
+        foreach($request->array as $section) {
+            $page->sections()->attach($section);
+        }
+
         return redirect(route('pages'));
     }
 
@@ -108,15 +111,18 @@ class PageController extends Controller
         $validatedData = $request->validate([
             'user_id' => ['required', 'integer', 'exists:App\Models\User,id'],
             'page_status_id' => ['required', 'integer', 'exists:App\Models\PageStatus,id'],
-            'page_section_id' => ['required', 'integer', 'exists:App\Models\PageSection,id'],
             'title' => ['required', Rule::unique('pages', 'title')->ignore($page->id), 'string'],
             'slug' => ['required', 'string'],
             'content' => ['required', 'string'],
+            'array' => ['array'],
+            'array.*' => ['integer', 'exists:App\Models\PageSection,id'],
         ]);
+
+        /* Sync sections to many-to-many table. */
+        $page->sections()->sync($request->array, 'id');
 
         $page->user_id = $request->user_id;
         $page->page_status_id = $request->page_status_id;
-        $page->page_section_id = $request->page_section_id;
         $page->title = $request->title;
         $page->slug = $request->slug;
         $page->content = $request->content;
@@ -134,6 +140,8 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
+        $page->sections()->detach();
+
         $page->delete();
 
         return redirect(route('pages'));

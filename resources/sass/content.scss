@@ -177,4 +177,28 @@ form {
         width: 100%;
 
     }
+
+    .array-container {
+        border-radius: 2px;
+        display: flex;
+        margin: 5px;
+        text-align: center;
+        width: 80%;
+    }
+
+    .array-header {
+        display: block;
+        text-align: center;
+        margin: 5px;
+        width: 80%;
+    }
+
+    .enabled {
+        background-color: $accent-blue
+    }
+
+    .disabled {
+        background-color: $accent-dark-blue;
+        opacity: 0.7;
+    }
 }

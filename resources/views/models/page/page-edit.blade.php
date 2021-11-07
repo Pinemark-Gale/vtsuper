@@ -18,15 +18,10 @@
             @endforeach
         </select>
         
-        <x-form.label for="page_section_id" label="Section" />
-        <select  name="page_section_id">
-            @foreach ($sections as $section)
-                <option value="{{ $section->id }}" {{ old('page_section_id') == $section->id ? 'selected' : ($page->section->id == $section->id ? 'selected' : '') }}>{{ $section->section }}</option>
-            @endforeach
-        </select>
-
         <x-form.input name="slug" :value="old('slug') ? old('slug') : $page->slug" />
         <x-form.input name="content" :value="old('content') ? old('content') : $page->content" />
+        <x-form.array :items="$sections" :editItem="$page" label="Sections" />
+
 
         <x-form.button>Update page</x-form.button>
     </x-form.form>
