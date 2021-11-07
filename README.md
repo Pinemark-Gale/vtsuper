@@ -26,6 +26,8 @@
 
 [Recommended Developer Environment](#recommended-developer-environment)
 
+[Troubleshooting](#troubleshooting)
+
 [Useful Commands](#useful-commands)
 
 [Useful Links](#useful-links)
@@ -243,8 +245,6 @@ The following permissions and who can access them are shown below:
 | Manage privileges     | x     |         |             |         |
 | Manage users          | x     |         |             |         |
 
-
-
 [<< Previous Section](#naming-conventions) | [Content Table](#table-of-contents) | [Next Section >>](#recommended-developer-environment)
 
 ---
@@ -269,7 +269,19 @@ I love using a simple program such a Mark Text for editing markdown documents su
 
 We are using MySQL, so the open source program MySQL Workbench gets the job done. There are absolutely nicer looking programs out there, but this one is free and in reality it will hardly be used.
 
-[<< Previous Section](#privileges) | [Content Table](#table-of-contents) | [Next Section >>](#useful-commands)
+[<< Previous Section](#privileges) | [Content Table](#table-of-contents) | [Next Section >>](#troubleshooting)
+
+---
+
+# Troubleshooting
+
+## Table Migration Error
+
+Often times the following error will drop when migrating newly created tables: ```Cannot declare class CreateSomeTable, because the name is already in use```. More times than not, this error is thrown because a table migration is not named correctly. Make sure the name of the migration file is in the following format: ```yyyy-mm-dd_create_<table_name>_table.php```. It is very important the words "create" and "table" are included and the date doesn't break up the original tables created by Laravel Breeze.
+
+Additionally, make sure to not change the names or dates of the original migration file names created by Laravel Breeze. For some reason those are hard coded into the dependency.
+
+[<< Previous Section](#recommended-developer-environment) | [Content Table](#table-of-contents) | [Next Section >>](#useful-commands)
 
 ---
 
@@ -301,7 +313,7 @@ php artisan tinker
 
 Used for local testing, tinker will allow you to write php commands to test models. For example, while using tinker it is possible to test ```users = User::all()``` to see if all users are retrieved, what the data structure looks like, and any potential eloquent connection that have been made. This console allows for rapid testing of new code without testing in a browser.
 
-[<< Previous Section](#recommended-developer-environment) | [Content Table](#table-of-contents) | [Next Section >>](#useful-links)
+[<< Previous Section](#troubleshooting) | [Content Table](#table-of-contents) | [Next Section >>](#useful-links)
 
 ---
 
