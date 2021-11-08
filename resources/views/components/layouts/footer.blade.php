@@ -6,6 +6,11 @@
     </div>
     <x-svg.footer-seperator class="seperator" />
     <div class="link-container">
+        @foreach ($appLinks as $link)
+            @if ($link->sections->contains('section', 'Footer'))
+                <a href="{{ route('page', ['page' => $link->slug]) }}" class="link blue-link">{{ $link->title }}</a>
+            @endif
+        @endforeach
         <a class="link blue-link">Home</a>
         <a class="link blue-link">Contact Us</a>
         <a class="link blue-link">About VT-SUPER</a>

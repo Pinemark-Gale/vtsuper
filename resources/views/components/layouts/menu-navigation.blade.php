@@ -1,3 +1,5 @@
+@props(['appLinks'])
+
 <button onclick="menuSwitch()" id="menu-icon" class="menu-icon">
     <div class="top-bar"></div>
     <div class="middle-bar"></div>
@@ -44,6 +46,12 @@
                     </div>
             </form>
         @endauth
+
+        @foreach ($appLinks as $link)
+            @if ($link->sections->contains('section', 'Main Navigation'))
+                <a href="{{ route('page', ['page' => $link->slug]) }}" class="blue-link">{{ $link->title }}</a>
+            @endif
+        @endforeach
     </div>
 </div>
 

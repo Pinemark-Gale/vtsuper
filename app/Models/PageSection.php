@@ -16,6 +16,6 @@ class PageSection extends Model
     /* Eloquent relationship for $pageSection->page */
     public function page()
     {
-        return $this->hasMany(Page::class);
+        return $this->belongsToMany(Page::class);
     }
 }

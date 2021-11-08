@@ -17,10 +17,21 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- Import other scripts if needed. -->
         {{ $sJavaImport ?? "" }}
+
+        {{-- Fetch links for nav menu's static pages.--}}
+        @php
+            $appLinks = \App\Models\Page::with(['status', 'sections'])
+                ->whereHas('sections', function ($query) {
+                    $query->where('section', '=', 'Main Navigation')
+                        ->orWhere('section', '=', 'Footer');
+                })->whereHas('status', function ($query) {
+                    $query->where('status', '=', 'Published');
+                })->get();
+        @endphp
     </head>
     <body>
         <div class="app-container">
-            <x-layouts.top-navigation />
+            <x-layouts.top-navigation :appLinks="$appLinks" />
 
             <x-system-message />
 
@@ -28,7 +39,7 @@
                 {{ $slot }}
             </main>
 
-            <x-layouts.footer />
+            <x-layouts.footer :appLinks="$appLinks" />
         </div>
     </body>
 </html>
