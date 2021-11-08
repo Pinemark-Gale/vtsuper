@@ -64,9 +64,8 @@ class ResourceController extends Controller
             'description' => $request->description,
         ]);
 
-        foreach ($request->tags as $tag) {
-            $resource->tags()->attach($tag);
-        }
+         /* Sync tags to many-to-many table. */
+         $resource->tags()->sync($request->array, 'id');
 
         return redirect(route('resources'));
     }
@@ -120,12 +119,12 @@ class ResourceController extends Controller
             'name' => ['required', Rule::unique('resources', 'name')->ignore($resource->id), 'string'],
             'link' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'tags.*' => ['array:id'],
-            'tags.*.id' => ['integer', 'exists:App\Models\ResourceTag,id'],
+            'array' => ['array'],
+            'array.*' => ['integer', 'exists:App\Models\ResourceTag,id'],
         ]);
 
         /* Sync tags to many-to-many table. */
-        $resource->tags()->sync(array_unique(array_column($request->tags, 'id')));
+        $resource->tags()->sync($request->array, 'id');
 
         $resource->resource_type_id = $request->resource_type_id;
         $resource->source_id = $request->source_id;

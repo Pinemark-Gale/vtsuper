@@ -10,7 +10,7 @@
         <a href="{{ route('resource-edit', ['resource' => $resource->name]) }}">
             <div class="user-action">Edit</div>
         </a>
-        <form method="POST" :action="route('resource-destroy', ['resource' => $resource->name])" class="admin-form">
+        <form method="POST" action="{{ route('resource-destroy', ['resource' => $resource->name]) }}" class="admin-form">
             @csrf
             @method('DELETE')
             <button type="submit" class="form-submit">Destroy</button>

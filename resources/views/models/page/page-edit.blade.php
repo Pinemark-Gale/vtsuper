@@ -22,7 +22,6 @@
         <x-form.input name="content" :value="old('content') ? old('content') : $page->content" />
         <x-form.array :items="$sections" :editItem="$page" label="Sections" />
 
-
         <x-form.button>Update page</x-form.button>
     </x-form.form>
 </x-layouts.app>

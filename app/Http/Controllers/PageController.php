@@ -49,7 +49,7 @@ class PageController extends Controller
         $validatedData = $request->validate([
             'page_status_id' => ['required', 'integer', 'exists:App\Models\PageStatus,id'],
             'title' => ['required', 'unique:App\Models\Page', 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => ['required', 'unique:App\Models\Page', 'string'],
             'content' => ['required', 'string'],
             'array' => ['array'],
             'array.*' => ['integer', 'exists:App\Models\PageSection,id'],
@@ -62,10 +62,9 @@ class PageController extends Controller
             'slug' => $request->slug,
             'content' => $request->content
         ]);
-        
-        foreach($request->array as $section) {
-            $page->sections()->attach($section);
-        }
+
+        /* Sync sections to many-to-many table. */
+        $page->sections()->sync($request->array, 'id');
 
         return redirect(route('pages'));
     }
@@ -112,7 +111,7 @@ class PageController extends Controller
             'user_id' => ['required', 'integer', 'exists:App\Models\User,id'],
             'page_status_id' => ['required', 'integer', 'exists:App\Models\PageStatus,id'],
             'title' => ['required', Rule::unique('pages', 'title')->ignore($page->id), 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => ['required', Rule::unique('pages', 'title')->ignore($page->id), 'string'],
             'content' => ['required', 'string'],
             'array' => ['array'],
             'array.*' => ['integer', 'exists:App\Models\PageSection,id'],

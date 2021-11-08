@@ -23,24 +23,7 @@
 
         <x-form.input name="link" />
         <x-form.input name="description" />
-
-        <label for="tags">Tags</label>
-
-        <!-- tag container collection for user to select tags -->
-        <div id="tag-container">
-            <span>Available Tags</span>
-            @foreach ($tags as $tag)
-                <div data-tid="{{ $tag->id }}" class="tag-container-tag">{{ $tag->tag }}</div>
-            @endforeach
-        </div>
-
-        <!-- resource tags collection for user to remove and view current tags -->
-        <div id='resource-tags'>
-        </div>
-
-        <!-- resource tag ids for submitting tags to the database -->
-        <div id='resource-tag-ids'>
-        </div>
+        <x-form.array :items="$tags" label="Tags" />
 
         <x-form.button>Create Resource</x-form.button>
     </x-form.form>
