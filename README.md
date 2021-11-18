@@ -204,6 +204,10 @@ The authentication of Laravel was initialized through Laravel Breeze which means
 
 Do note that Auth routes are still defined in the ```routes``` directory, so there's no need to go into the vendor folder for changing routes.
 
+## Quill Editor
+
+For basic editing of web pages, the open source editor [Quill](https://quilljs.com) was used. This is an extremely simple implementation to give basic HTML editing features to users. All the code lies in the form.editor component. We are using the CDN for getting JS code.
+
 ## SSL Certificate - Let's Encrypt
 
 While this web application is not necessarily tied to any particular SSL certificate, it is important to state what is currently being used in production. To make sure the website is secure, the VT Super website uses Let's Encrypt. They have a [wonderful tutorial](https://letsencrypt.org/getting-started/) to get anyone started on securing their website.
