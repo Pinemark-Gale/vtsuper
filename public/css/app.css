@@ -392,6 +392,30 @@ form div {
   text-align: center;
   width: 100%;
 }
+.admin-form .ql-toolbar {
+  background-color: #F5E6C4;
+  margin-top: 10px;
+  width: 80%;
+}
+.admin-form .ql-toolbar button {
+  margin: 0px;
+  min-width: 0px;
+}
+.admin-form .ql-toolbar span {
+  color: #1A1818;
+}
+.admin-form .ql-toolbar span .ql-picker-item {
+  color: #6D80A9;
+}
+.admin-form .ql-toolbar svg {
+  background-color: #F5E6C4;
+}
+.admin-form .ql-container {
+  background-color: #F5E6C4;
+  color: #1A1818;
+  margin-bottom: 10px;
+  width: 80%;
+}
 .admin-form .array-container {
   border-radius: 2px;
   display: flex;

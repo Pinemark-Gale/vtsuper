@@ -175,7 +175,37 @@ form {
         min-width: 200px;
         text-align: center;
         width: 100%;
+    }
 
+    .ql-toolbar {
+        background-color: $super-white;
+        margin-top: 10px;
+        width: 80%;
+
+        button {
+            margin: 0px;
+            min-width: 0px;
+        }
+
+        span {
+            color: $super-black;
+
+            .ql-picker-item {
+                color: $accent-dark-blue;
+            }
+        }
+
+        svg {
+            background-color: $super-white;
+        }
+
+    }
+
+    .ql-container {
+        background-color: $super-white;
+        color: $super-black;
+        margin-bottom: 10px;
+        width: 80%;
     }
 
     .array-container {
@@ -201,4 +231,5 @@ form {
         background-color: $accent-dark-blue;
         opacity: 0.7;
     }
+
 }
