@@ -29,7 +29,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        return view('models.school.school-create');    
+
     }
 
     /**
@@ -40,17 +40,7 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => ['required', 'string', 'unique:App\Models\School,name'],
-            'district' => ['required', 'string']
-        ]);
 
-        School::create([
-            'name' => $request->name,
-            'district' => $request->district
-        ]);
-
-        return redirect(route('schools'));
     }
 
     /**
@@ -61,9 +51,7 @@ class SchoolController extends Controller
      */
     public function show(School $school)
     {
-        return view('models.school.school', [
-            'school' => $school
-        ]);
+
     }
 
     /**
@@ -74,9 +62,7 @@ class SchoolController extends Controller
      */
     public function edit(School $school)
     {
-        return view('models.school.school-edit', [
-            'school' => $school,
-        ]);
+
     }
 
     /**
@@ -88,16 +74,7 @@ class SchoolController extends Controller
      */
     public function update(Request $request, School $school)
     {
-        $validatedData = $request->validate([
-            'name' => ['required', 'string', 'unique:App\Models\School,name'],
-            'district' => ['required', 'string']
-        ]);
 
-        $school->name = $request->name;
-        $school->district = $request->district;
-        $school->save();
-
-        return redirect(route('schools'));
     }
 
     /**
@@ -108,31 +85,6 @@ class SchoolController extends Controller
      */
     public function destroy(School $school)
     {
-        // Check if user is trying to delete default school.
-        if ($school->name == 'None') {
-            return redirect()
-                ->back()
-                ->with(
-                    config('session.system_message'), 
-                    'None school option cannot be deleted!'
-                );
-        }
 
-        // Find or create None school.
-        $uncatigorized = School::where('name', '=', 'None')->first();
-        if (is_null($uncatigorized)) {
-            $uncatigorized = School::create([
-                'name' => 'None'
-            ]);
-            
-        }
-        
-        // Gather foreign keys and detach.
-        $toDetach = User::where('school_id', '=', $school->id)
-            ->update(['school_id' => $uncatigorized->id]);
-        
-        $school->delete();
-
-        return redirect(route('schools'));
     }
 }

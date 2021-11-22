@@ -19,7 +19,7 @@
                 <a href="{{ route('sources') }}" class="red-link">Sources</a>
             @endif
             @if (auth()->user()->privilegeCheck('teacher'))
-                <a href="{{ route('schools') }}" class="red-link">Schools</a>
+                <a href="{{ route('admin-schools') }}" class="red-link">Schools</a>
                 <a href="{{ route('resource-tags') }}" class="red-link">Resource Tags</a>
                 <a href="{{ route('resource-types') }}" class="red-link">Resource Types</a>
             @endif

@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('school-create') }}" style="display: block; width: 100%;">Create School</a>
+    <a href="{{ route('admin-school-create') }}" style="display: block; width: 100%;">Create School</a>
     <br>
     <div class="item-table">
         <!-- Define column headers. -->
@@ -14,7 +14,7 @@
         <!-- Generate rest of table. -->
         @foreach ($schools as $school)
             <div class="main-col row-bottom row-{{ $loop->index }}">
-                <a href="{{ route('school', ['school' => $school->name]) }}">{{ $school->name }}</a>
+                <a href="{{ route('admin-school', ['school' => $school->name]) }}">{{ $school->name }}</a>
             </div>
             <div class="side-col row-bottom row-{{ $loop->index }}">{{ $school->district }}</div>
             <div class="expand-col row-bottom row-{{ $loop->index }}">
@@ -25,10 +25,10 @@
                 <p>Created At: {{ $school->created_at->format('M j, Y') }}</p>
             </div>
             <div class="side-col row-bottom sub-row-{{ $loop->index }} hide-row">
-                <a href="{{ route('school-edit', ['school' => $school->name]) }}">
+                <a href="{{ route('admin-school-edit', ['school' => $school->name]) }}">
                     <div class="action-button">Edit</div>
                 </a>
-                <form method="POST" action="{{ route('school-destroy', ['school' => $school->name]) }}">
+                <form method="POST" action="{{ route('admin-school-destroy', ['school' => $school->name]) }}">
                     @csrf
                     @method('DELETE')
                     <button tag="submit" class="action-button">Destroy</button>
