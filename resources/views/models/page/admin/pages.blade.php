@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('page-create') }}" style="display: block; width: 100%;">Create Page</a>
+    <a href="{{ route('admin-page-create') }}" style="display: block; width: 100%;">Create Page</a>
     <br>
     <x-search />
     <br>
@@ -16,7 +16,7 @@
         <!-- Generate rest of table. -->
         @foreach ($pages as $page)
             <div class="main-col row-bottom row-{{ $loop->index }}">
-                <a href="{{ route('page', ['page' => $page->slug]) }}">{{ $page->title }}</a>
+                <a href="{{ route('admin-page', ['page' => $page->slug]) }}">{{ $page->title }}</a>
             </div>
             <div class="side-col row-bottom row-{{ $loop->index }}">{{ $page->status->status }}</div>
             <div class="expand-col row-bottom row-{{ $loop->index }}">
@@ -28,10 +28,10 @@
 
             </div>
             <div class="side-col row-bottom sub-row-{{ $loop->index }} hide-row">
-                <a href="{{ route('page-edit', ['page' => $page->slug]) }}">
+                <a href="{{ route('admin-page-edit', ['page' => $page->slug]) }}">
                     <div class="action-button">Edit</div>
                 </a>
-                <form method="POST" action="{{ route('page-destroy', ['page' => $page->slug]) }}">
+                <form method="POST" action="{{ route('admin-page-destroy', ['page' => $page->slug]) }}">
                     @csrf
                     @method('DELETE')
                     <button tag="submit" class="action-button">Destroy</button>

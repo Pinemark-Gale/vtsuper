@@ -31,10 +31,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('models.page.page-create', [
-            'statuses' => PageStatus::all(),
-            'sections' => PageSection::all()
-        ]);    
+
     }
 
     /**
@@ -46,27 +43,6 @@ class PageController extends Controller
     public function store(Request $request)
     {
 
-        $validatedData = $request->validate([
-            'page_status_id' => ['required', 'integer', 'exists:App\Models\PageStatus,id'],
-            'title' => ['required', 'unique:App\Models\Page', 'string'],
-            'slug' => ['required', 'unique:App\Models\Page', 'string'],
-            'content' => ['required', 'string'],
-            'array' => ['array'],
-            'array.*' => ['integer', 'exists:App\Models\PageSection,id'],
-        ]);
-        
-        $page = Page::create([
-            'user_id' => auth()->user()->id,
-            'page_status_id' => $request->page_status_id,
-            'title' => $request->title,
-            'slug' => $request->slug,
-            'content' => $request->content
-        ]);
-
-        /* Sync sections to many-to-many table. */
-        $page->sections()->sync($request->array, 'id');
-
-        return redirect(route('pages'));
     }
 
     /**
@@ -77,9 +53,7 @@ class PageController extends Controller
      */
     public function show(Page $page)
     {
-        return view('models.page.page', [
-            'page' => $page
-        ]);
+
     }
 
     /**
@@ -90,12 +64,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        return view('models.page.page-edit', [
-            'page' => $page,
-            'users' => User::all(),
-            'statuses' => PageStatus::all(),
-            'sections' => PageSection::all()
-        ]);
+
     }
 
     /**
@@ -107,28 +76,7 @@ class PageController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        $validatedData = $request->validate([
-            'user_id' => ['required', 'integer', 'exists:App\Models\User,id'],
-            'page_status_id' => ['required', 'integer', 'exists:App\Models\PageStatus,id'],
-            'title' => ['required', Rule::unique('pages', 'title')->ignore($page->id), 'string'],
-            'slug' => ['required', Rule::unique('pages', 'title')->ignore($page->id), 'string'],
-            'content' => ['required', 'string'],
-            'array' => ['array'],
-            'array.*' => ['integer', 'exists:App\Models\PageSection,id'],
-        ]);
 
-        /* Sync sections to many-to-many table. */
-        $page->sections()->sync($request->array, 'id');
-
-        $page->user_id = $request->user_id;
-        $page->page_status_id = $request->page_status_id;
-        $page->title = $request->title;
-        $page->slug = $request->slug;
-        $page->content = $request->content;
-
-        $page->save();
-
-        return redirect(route('pages'));
     }
 
     /**
@@ -139,10 +87,6 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        $page->sections()->detach();
 
-        $page->delete();
-
-        return redirect(route('pages'));
     }
 }

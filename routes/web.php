@@ -99,12 +99,8 @@ Route::patch('admin/school/{school:name}/update', [SchoolController::class, 'upd
 Route::delete('admin/school/{school:name}/destroy', [SchoolController::class, 'destroy'])->middleware('permission.check:admin')->name('school-destroy');
 
 /* Page routes. */
-Route::get('/pages', [PageController::class, 'index'])->middleware('permission.check:admin')->name('pages');
 Route::get('/pages/{page:slug}', [PageController::class, 'show'])->name('page');
-Route::get('admin/page/create', [PageController::class, 'create'])->middleware('permission.check:admin')->name('page-create');
-Route::get('admin/page/{page:slug}/edit', [PageController::class, 'edit'])->middleware('permission.check:admin')->name('page-edit');
-Route::post('admin/page/store', [PageController::class, 'store'])->middleware('permission.check:admin')->name('page-store');
-Route::patch('admin/page/{page:slug}/update', [PageController::class, 'update'])->middleware('permission.check:admin')->name('page-update');
-Route::delete('admin/page/{page:slug}/destroy', [PageController::class, 'destroy'])->middleware('permission.check:admin')->name('page-destroy');
 
+/* Add other route files. */
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';

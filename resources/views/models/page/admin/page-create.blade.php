@@ -1,6 +1,6 @@
 <x-layouts.app>
 
-    <x-form.form :action="route('page-store')">
+    <x-form.form :action="route('admin-page-store')">
         <x-form.title>Create Page</x-form.title>
         
         <x-form.input name="title" autofocus />

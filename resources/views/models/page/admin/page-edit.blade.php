@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <x-form.form :action="route('page-update', ['page' => $page->slug])">
+    <x-form.form :action="route('admin-page-update', ['page' => $page->slug])">
         @method('patch')
         <x-form.title>Edit Page {{ $page->title }}</x-form.title>
         <x-form.input name="title" :value="old('title') ? old('title') : $page->title" autofocus />
