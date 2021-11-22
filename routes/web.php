@@ -1,16 +1,16 @@
 <?php
 namespace App\Models;
 
-use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PrivilegeController;
-use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\ResourceTypeController;
-use App\Http\Controllers\ResourceTagController;
-use App\Http\Controllers\SourceController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\ResourceTagController;
+use App\Http\Controllers\ResourceTypeController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SourceController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
