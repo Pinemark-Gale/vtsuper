@@ -81,22 +81,8 @@ Route::patch('admin/user/{user:name}/update', [UserController::class, 'update'])
 Route::delete('admin/user/{user:name}/destroy', [UserController::class, 'destroy'])->middleware('permission.check:admin')->name('user-destroy');
 
 /* Privilege routes. */
-Route::get('admin/privileges', [PrivilegeController::class, 'index'])->middleware('permission.check:admin')->name('privileges');
-Route::get('admin/privileges/{privilege:title}', [PrivilegeController::class, 'show'])->middleware('permission.check:admin')->name('privilege');
-Route::get('admin/privilege/create', [PrivilegeController::class, 'create'])->middleware('permission.check:admin')->name('privilege-create');
-Route::get('admin/privilege/{privilege:title}/edit', [PrivilegeController::class, 'edit'])->middleware('permission.check:admin')->name('privilege-edit');
-Route::post('admin/privilege/store', [PrivilegeController::class, 'store'])->middleware('permission.check:admin')->name('privilege-store');
-Route::patch('admin//privilege/{privilege:title}/update', [PrivilegeController::class, 'update'])->middleware('permission.check:admin')->name('privilege-update');
-Route::delete('admin/privilege/{privilege:title}/destroy', [PrivilegeController::class, 'destroy'])->middleware('permission.check:admin')->name('privilege-destroy');
 
 /* School routes. */
-Route::get('/schools', [SchoolController::class, 'index'])->middleware('permission.check:teacher')->name('schools');
-Route::get('/schools/{school:name}', [SchoolController::class, 'show'])->middleware('permission.check:teacher')->name('school');
-Route::get('admin/school/create', [SchoolController::class, 'create'])->middleware('permission.check:teacher')->name('school-create');
-Route::get('admin/school/{school:name}/edit', [SchoolController::class, 'edit'])->middleware('permission.check:teacher')->name('school-edit');
-Route::post('admin/school/store', [SchoolController::class, 'store'])->middleware('permission.check:teacher')->name('school-store');
-Route::patch('admin/school/{school:name}/update', [SchoolController::class, 'update'])->middleware('permission.check:teacher')->name('school-update');
-Route::delete('admin/school/{school:name}/destroy', [SchoolController::class, 'destroy'])->middleware('permission.check:admin')->name('school-destroy');
 
 /* Page routes. */
 Route::get('/pages/{page:slug}', [PageController::class, 'show'])->name('page');

@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('privilege-create') }}" style="display: block; width: 100%;">Create Privilege</a>
+    <a href="{{ route('admin-privilege-create') }}" style="display: block; width: 100%;">Create Privilege</a>
     <br>
     <div class="item-table">
         <!-- Define column headers. -->
@@ -14,7 +14,7 @@
         <!-- Generate rest of table. -->
         @foreach ($privileges as $privilege)
             <div class="main-col row-bottom row-{{ $loop->index }}">
-                <a href="{{ route('privilege', ['privilege' => $privilege->title]) }}">{{ $privilege->title }}</a>
+                <a href="{{ route('admin-privilege', ['privilege' => $privilege->title]) }}">{{ $privilege->title }}</a>
             </div>
             <div class="side-col row-bottom row-{{ $loop->index }}">{{ $privilege->updated_at->format('M j, Y') }}</div>
             <div class="expand-col row-bottom row-{{ $loop->index }}">
@@ -22,10 +22,10 @@
             </div>
             <div class="main-col main-sub-col row-bottom sub-row-{{ $loop->index }} hide-row">Created At: {{ $privilege->created_at->format('M j, Y') }}</div>
             <div class="side-col row-bottom sub-row-{{ $loop->index }} hide-row">
-                <a href="{{ route('privilege-edit', ['privilege' => $privilege->title]) }}">
+                <a href="{{ route('admin-privilege-edit', ['privilege' => $privilege->title]) }}">
                     <div class="action-button">Edit</div>
                 </a>
-                <form method="POST" action="{{ route('privilege-destroy', ['privilege' => $privilege->title]) }}">
+                <form method="POST" action="{{ route('admin-privilege-destroy', ['privilege' => $privilege->title]) }}">
                     @csrf
                     @method('DELETE')
                     <button tag="submit" class="action-button">Destroy</button>

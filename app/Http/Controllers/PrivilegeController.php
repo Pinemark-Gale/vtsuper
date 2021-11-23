@@ -29,7 +29,7 @@ class PrivilegeController extends Controller
      */
     public function create()
     {
-        return view('models.privilege.privilege-create');    
+
     }
 
     /**
@@ -40,15 +40,7 @@ class PrivilegeController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => ['required', 'string',  'unique:App\Models\Privilege,title']
-        ]);
 
-        Privilege::create([
-            'title' => $request->title
-        ]);
-
-        return redirect(route('privileges'));
     }
 
     /**
@@ -59,9 +51,7 @@ class PrivilegeController extends Controller
      */
     public function show(Privilege $privilege)
     {
-        return view('models.privilege.privilege', [
-            'privilege' => $privilege
-        ]);
+
     }
 
     /**
@@ -72,9 +62,7 @@ class PrivilegeController extends Controller
      */
     public function edit(Privilege $privilege)
     {
-        return view('models.privilege.privilege-edit', [
-            'privilege' => $privilege,
-        ]);
+
     }
 
     /**
@@ -86,14 +74,7 @@ class PrivilegeController extends Controller
      */
     public function update(Request $request, Privilege $privilege)
     {
-        $validatedData = $request->validate([
-            'title' => ['required', 'string',  'unique:App\Models\Privilege,title'],
-        ]);
 
-        $privilege->title = $request->title;
-        $privilege->save();
-
-        return redirect(route('privileges'));
     }
 
     /**
@@ -104,32 +85,6 @@ class PrivilegeController extends Controller
      */
     public function destroy(Privilege $privilege)
     {
-        // Check if user is trying to delete default privilege.
-        if ($privilege->title == 'Uncatigorized') {
-            return redirect()
-                ->back()
-                ->with(
-                    config('session.system_message'), 
-                    'Uncatigorized privilege cannot be deleted!'
-                );
-        }
 
-        // Find or create an uncatigorized privilege title.
-        $uncatigorized = Privilege::where('title', '=', 'Uncatigorized')->first();
-        if (is_null($uncatigorized)) {
-            $uncatigorized = Privilege::create([
-                'title' => 'Uncatigorized'
-            ]);
-            
-        }
-        
-        // Gather foreign keys and detach.
-        $toDetach = User::where('privilege_id', '=', $privilege->id)
-            ->update(['privilege_id' => $uncatigorized->id]);
-
-        // Delete specified privilege.
-        $privilege->delete();
-
-        return redirect(route('privileges'));
     }
 }

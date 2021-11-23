@@ -4,10 +4,20 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminSchoolController;
+use App\Http\Controllers\Admin\AdminPrivilegeController;
 
 Route::middleware('permission.check:admin')->group(function () {
     /* School routes. */
     Route::delete('admin/school/{school:name}/destroy', [AdminSchoolController::class, 'destroy'])->name('admin-school-destroy');
+
+    /* Privilege routes. */
+    Route::get('admin/privileges', [AdminPrivilegeController::class, 'index'])->name('admin-privileges');
+    Route::get('admin/privileges/{privilege:title}', [AdminPrivilegeController::class, 'show'])->name('admin-privilege');
+    Route::get('admin/privilege/create', [AdminPrivilegeController::class, 'create'])->name('admin-privilege-create');
+    Route::get('admin/privilege/{privilege:title}/edit', [AdminPrivilegeController::class, 'edit'])->name('admin-privilege-edit');
+    Route::post('admin/privilege/store', [AdminPrivilegeController::class, 'store'])->name('admin-privilege-store');
+    Route::patch('admin//privilege/{privilege:title}/update', [AdminPrivilegeController::class, 'update'])->name('admin-privilege-update');
+    Route::delete('admin/privilege/{privilege:title}/destroy', [AdminPrivilegeController::class, 'destroy'])->name('admin-privilege-destroy');
 
     /* Page routes. */
     Route::get('admin/pages', [AdminPageController::class, 'index'])->name('admin-pages');
