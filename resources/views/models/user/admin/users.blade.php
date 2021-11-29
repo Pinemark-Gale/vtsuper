@@ -12,7 +12,7 @@
         <!-- Generate rest of table. -->
         @foreach ($users as $user)
             <div class="main-col row-bottom row-{{ $loop->index }}">
-                <a href="{{ route('user', ['user' => $user->name]) }}">{{ $user->name }}</a>
+                <a href="{{ route('admin-user', ['user' => $user->name]) }}">{{ $user->name }}</a>
             </div>
             <div class="side-col row-bottom row-{{ $loop->index }}">{{ $user->privilege->title }}</div>
             <div class="expand-col row-bottom row-{{ $loop->index }}">
@@ -23,10 +23,10 @@
                 <p>School: {{ $user->school->name }}</p>
             </div>
             <div class="side-col row-bottom sub-row-{{ $loop->index }} hide-row">
-                <a href="{{ route('user-edit', ['user' => $user->name]) }}">
+                <a href="{{ route('admin-user-edit', ['user' => $user->name]) }}">
                     <div class="action-button">Edit</div>
                 </a>
-                <form method="POST" action="{{ route('user-destroy', ['user' => $user->name]) }}">
+                <form method="POST" action="{{ route('admin-user-destroy', ['user' => $user->name]) }}">
                     @csrf
                     @method('DELETE')
                     <button tag="submit" class="action-button">Destroy</button>

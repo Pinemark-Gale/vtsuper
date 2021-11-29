@@ -11,7 +11,7 @@
     <div class="link-container">
         @auth
             @if (auth()->user()->privilegeCheck('admin'))
-                <a href="{{ route('users') }}" class="red-link">Users</a>
+                <a href="{{ route('admin-users') }}" class="red-link">Users</a>
                 <a href="{{ route('admin-privileges') }}" class="red-link">Privileges</a>
                 <a href="{{ route('admin-pages') }}" class="red-link">Pages</a>
             @endif
@@ -25,7 +25,7 @@
             @endif
         @else 
             <a href="{{ route('login') }}" class="red-link">Log in</a>
-            <a href="{{ route('user-create') }}" class="red-link">Register</a>
+            <a href="{{ route('admin-user-create') }}" class="red-link">Register</a>
         @endauth
     </div>
     <!-- menu divider -->
@@ -49,7 +49,7 @@
 
         @foreach ($appLinks as $link)
             @if ($link->sections->contains('section', 'Main Navigation'))
-                <a href="{{ route('page', ['page' => $link->slug]) }}" class="blue-link">{{ $link->title }}</a>
+                <a href="{{ route('admin-page', ['page' => $link->slug]) }}" class="blue-link">{{ $link->title }}</a>
             @endif
         @endforeach
     </div>

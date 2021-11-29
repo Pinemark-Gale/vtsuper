@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\Admin\AdminPrivilegeController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 Route::middleware('permission.check:admin')->group(function () {
     /* School routes. */
     Route::delete('admin/school/{school:name}/destroy', [AdminSchoolController::class, 'destroy'])->name('admin-school-destroy');
 
     /* Resource routes. */
-    Route::delete('admin/resource-type/{resourceType:type}/destroy', [ResourceTypeController::class, 'destroy'])->middleware('permission.check:admin')->name('resource-type-destroy');
+    Route::delete('admin/resource-type/{resourceType:type}/destroy', [ResourceTypeController::class, 'destroy'])->name('resource-type-destroy');
 
     /* Privilege routes. */
     Route::get('admin/privileges', [AdminPrivilegeController::class, 'index'])->name('admin-privileges');
@@ -30,6 +31,13 @@ Route::middleware('permission.check:admin')->group(function () {
     Route::post('admin/page/store', [AdminPageController::class, 'store'])->name('admin-page-store');
     Route::patch('admin/page/{page:slug}/update', [AdminPageController::class, 'update'])->name('admin-page-update');
     Route::delete('admin/page/{page:slug}/destroy', [AdminPageController::class, 'destroy'])->name('admin-page-destroy');    
+
+    /* User routes. */
+    Route::get('admin/users', [AdminUserController::class, 'index'])->name('admin-users');
+    Route::get('admin/users/{user:name}', [AdminUserController::class, 'show'])->name('admin-user');
+    Route::get('admin/users/{user:name}/edit', [AdminUserController::class, 'edit'])->name('admin-user-edit');
+    Route::patch('admin/user/{user:name}/update', [AdminUserController::class, 'update'])->name('admin-user-update');
+    Route::delete('admin/user/{user:name}/destroy', [AdminUserController::class, 'destroy'])->name('admin-user-destroy');
 });
 
 Route::middleware('permission.check:teacher')->group(function () {
@@ -49,3 +57,15 @@ Route::middleware('permission.check:teacher')->group(function () {
     Route::post('admin/resource-type/store', [ResourceTypeController::class, 'store'])->name('resource-type-store');
     Route::patch('admin//resource-type/{resourceType:type}/update', [ResourceTypeController::class, 'update'])->name('resource-type-update');
 });
+
+Route::middleware('permission.check:contributor')->group(function () {
+
+});
+
+Route::middleware('permission.check:student')->group(function () {
+    
+});
+
+Route::get('register', [AdminUserController::class, 'create'])->middleware('guest')->name('admin-user-create');
+Route::post('register', [AdminUserController::class, 'store'])->middleware('guest')->name('admin-user-store');
+

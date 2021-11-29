@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PageController;
@@ -65,13 +66,6 @@ Route::delete('admin/resource-tag/{resourceTag:tag}/destroy', [ResourceTagContro
 /* Resource type routes. */
 
 /* User routes. */
-Route::get('admin/users', [UserController::class, 'index'])->middleware('permission.check:admin')->name('users');
-Route::get('admin/users/{user:name}', [UserController::class, 'show'])->middleware('permission.check:admin')->name('user');
-Route::get('register', [UserController::class, 'create'])->middleware('guest')->name('user-create');
-Route::get('admin/users/{user:name}/edit', [UserController::class, 'edit'])->middleware('permission.check:admin')->name('user-edit');
-Route::post('register', [UserController::class, 'store'])->middleware('guest')->name('user-store');
-Route::patch('admin/user/{user:name}/update', [UserController::class, 'update'])->middleware('permission.check:admin')->name('user-update');
-Route::delete('admin/user/{user:name}/destroy', [UserController::class, 'destroy'])->middleware('permission.check:admin')->name('user-destroy');
 
 /* Privilege routes. */
 

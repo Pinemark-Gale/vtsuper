@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <x-form.form :action="route('user-store')">
+    <x-form.form :action="route('admin-user-store')">
         <x-form.title>Register</x-form.title>
         <x-form.input name="name" required autofocus />
 
