@@ -34,10 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('models.user.user-create', [
-            'schools' => School::all(),
-            'privileges' => Privilege::all()
-        ]);
+
     }
 
     /**
@@ -48,27 +45,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'string', 'max:255', 'unique:\App\Models\User'],
-            'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
-            'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
-            'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
-        ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'school_id' => $request->school_id,
-            'privilege_id' => $request->privilege_id
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(route('dashboard'));
     }
 
     /**
@@ -79,9 +56,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('models.user.user', [
-            'user' => $user
-        ]);
+
     }
 
     /**
@@ -92,11 +67,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('models.user.user-edit', [
-            'user' => $user,
-            'schools' => School::all(),
-            'privileges' => Privilege::all()
-        ]);
+
     }
 
     /**
@@ -108,27 +79,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        /* Link to validation rules: 
-         * https://laravel.com/docs/8.x/validation#a-note-on-optional-fields */
-        $validatedData = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
-            'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
-            'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
-            'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
-        ]);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if ($request->password) {
-            $user->password = Hash::make($request->password);
-        }
-        $user->school_id = $request->school_id;
-        $user->privilege_id = $request->privilege_id;
-
-        $user->save();
-
-        return redirect(route('users'));
     }
 
     /**
@@ -139,8 +90,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
 
-        return redirect(route('users'));
     }
 }
