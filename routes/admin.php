@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\Admin\AdminPrivilegeController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminResourceTagController;
 
+/* ==== ADMIN ROUTES === */
 Route::middleware('permission.check:admin')->group(function () {
     /* School routes. */
     Route::delete('admin/school/{school:name}/destroy', [AdminSchoolController::class, 'destroy'])->name('admin-school-destroy');
@@ -38,8 +40,13 @@ Route::middleware('permission.check:admin')->group(function () {
     Route::get('admin/users/{user:name}/edit', [AdminUserController::class, 'edit'])->name('admin-user-edit');
     Route::patch('admin/user/{user:name}/update', [AdminUserController::class, 'update'])->name('admin-user-update');
     Route::delete('admin/user/{user:name}/destroy', [AdminUserController::class, 'destroy'])->name('admin-user-destroy');
+
+    /* Resource tag routes. */
+    Route::delete('admin/resource-tag/{resourceTag:tag}/destroy', [AdminResourceTagController::class, 'destroy'])->name('admin-resource-tag-destroy');
+
 });
 
+/* ==== TEACHER ROUTES === */
 Route::middleware('permission.check:teacher')->group(function () {
     /* School routes. */
     Route::get('admin/schools', [AdminSchoolController::class, 'index'])->name('admin-schools');
@@ -56,12 +63,23 @@ Route::middleware('permission.check:teacher')->group(function () {
     Route::get('admin/resource-type/{resourceType:type}/edit', [ResourceTypeController::class, 'edit'])->name('resource-type-edit');
     Route::post('admin/resource-type/store', [ResourceTypeController::class, 'store'])->name('resource-type-store');
     Route::patch('admin//resource-type/{resourceType:type}/update', [ResourceTypeController::class, 'update'])->name('resource-type-update');
+
+    /* Resource tag routes. */
+    Route::get('admin/resource-tags', [AdminResourceTagController::class, 'index'])->name('admin-resource-tags');
+    Route::get('admin/resource-tags/{resourceTag:tag}', [AdminResourceTagController::class, 'show'])->name('admin-resource-tag');
+    Route::get('admin/resource-tag/create', [AdminResourceTagController::class, 'create'])->name('admin-resource-tag-create');
+    Route::get('admin/resource-tag/{resourceTag:tag}/edit', [AdminResourceTagController::class, 'edit'])->name('admin-resource-tag-edit');
+    Route::post('admin/resource-tag/store', [AdminResourceTagController::class, 'store'])->name('admin-resource-tag-store');
+    Route::patch('admin//resource-tag/{resourceTag:tag}/update', [AdminResourceTagController::class, 'update'])->name('admin-resource-tag-update');
+
 });
 
+/* ==== CONTRIBUTOR ROUTES === */
 Route::middleware('permission.check:contributor')->group(function () {
 
 });
 
+/* ==== STUDENT ROUTES === */
 Route::middleware('permission.check:student')->group(function () {
     
 });

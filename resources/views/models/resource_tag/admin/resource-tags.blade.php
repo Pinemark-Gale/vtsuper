@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('resource-tag-create') }}" style="display: block; width: 100%;">Create Resource Tag</a>
+    <a href="{{ route('admin-resource-tag-create') }}" style="display: block; width: 100%;">Create Resource Tag</a>
     <br>
     <div class="item-table">
         <!-- Define column headers. -->
@@ -14,7 +14,7 @@
         <!-- Generate rest of table. -->
         @foreach ($resourceTags as $resourceTag)
             <div class="main-col row-bottom row-{{ $loop->index }}">
-                <a href="{{ route('resource-tag', ['resourceTag' => $resourceTag->tag]) }}">{{ $resourceTag->tag }}</a>
+                <a href="{{ route('admin-resource-tag', ['resourceTag' => $resourceTag->tag]) }}">{{ $resourceTag->tag }}</a>
             </div>
             <div class="side-col row-bottom row-{{ $loop->index }}">{{ $resourceTag->updated_at->format('M j, Y') }}</div>
             <div class="expand-col row-bottom row-{{ $loop->index }}">
@@ -22,10 +22,10 @@
             </div>
             <div class="main-col main-sub-col row-bottom sub-row-{{ $loop->index }} hide-row">Created At: {{ $resourceTag->created_at->format('M j, Y') }}</div>
             <div class="side-col row-bottom sub-row-{{ $loop->index }} hide-row">
-                <a href="{{ route('resource-tag-edit', ['resourceTag' => $resourceTag->tag]) }}">
+                <a href="{{ route('admin-resource-tag-edit', ['resourceTag' => $resourceTag->tag]) }}">
                     <div class="action-button">Edit</div>
                 </a>
-                <form method="POST" action="{{ route('resource-tag-destroy', ['resourceTag' => $resourceTag->tag]) }}">
+                <form method="POST" action="{{ route('admin-resource-tag-destroy', ['resourceTag' => $resourceTag->tag]) }}">
                     @csrf
                     @method('DELETE')
                     <button tag="submit" class="action-button">Destroy</button>
