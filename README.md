@@ -2,7 +2,7 @@
 
 =========================================
 
-***Vermont Substance Abuse and Prevention Website***
+***Vermont Substance Use and Prevention Website***
 
 **Pinemark Studio** *Gale Proulx*
 
