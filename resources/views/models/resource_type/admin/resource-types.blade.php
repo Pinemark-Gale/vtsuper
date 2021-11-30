@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('resource-type-create') }}" style="display: block; width: 100%;">Create Resource Type</a>
+    <a href="{{ route('admin-resource-type-create') }}" style="display: block; width: 100%;">Create Resource Type</a>
     <br>
     <div class="item-table">
         <!-- Define column headers. -->
@@ -14,7 +14,7 @@
         <!-- Generate rest of table. -->
         @foreach ($resourceTypes as $resourceType)
             <div class="main-col row-bottom row-{{ $loop->index }}">
-                <a href="{{ route('resource-type', ['resourceType' => $resourceType->type]) }}">{{ $resourceType->type }}</a>
+                <a href="{{ route('admin-resource-type', ['resourceType' => $resourceType->type]) }}">{{ $resourceType->type }}</a>
             </div>
             <div class="side-col row-bottom row-{{ $loop->index }}">{{ $resourceType->updated_at->format('M j, Y') }}</div>
             <div class="expand-col row-bottom row-{{ $loop->index }}">
@@ -22,10 +22,10 @@
             </div>
             <div class="main-col main-sub-col row-bottom sub-row-{{ $loop->index }} hide-row">Created At: {{ $resourceType->created_at }}</div>
             <div class="side-col row-bottom sub-row-{{ $loop->index }} hide-row">
-                <a href="{{ route('resource-type-edit', ['resourceType' => $resourceType->type]) }}">
+                <a href="{{ route('admin-resource-type-edit', ['resourceType' => $resourceType->type]) }}">
                     <div class="action-button">Edit</div>
                 </a>
-                <form method="POST" action="{{ route('resource-type-destroy', ['resourceType' => $resourceType->type]) }}">
+                <form method="POST" action="{{ route('admin-resource-type-destroy', ['resourceType' => $resourceType->type]) }}">
                     @csrf
                     @method('DELETE')
                     <button tag="submit" class="action-button">Destroy</button>

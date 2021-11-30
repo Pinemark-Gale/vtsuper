@@ -22,7 +22,7 @@
             @if (auth()->user()->privilegeCheck('teacher'))
                 <a href="{{ route('admin-schools') }}" class="red-link">Schools</a>
                 <a href="{{ route('admin-resource-tags') }}" class="red-link">Resource Tags</a>
-                <a href="{{ route('resource-types') }}" class="red-link">Resource Types</a>
+                <a href="{{ route('admin-resource-types') }}" class="red-link">Resource Types</a>
             @endif
         @else 
             <a href="{{ route('login') }}" class="red-link">Log in</a>

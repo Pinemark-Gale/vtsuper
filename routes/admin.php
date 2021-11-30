@@ -9,14 +9,15 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminResourceTagController;
 use App\Http\Controllers\Admin\AdminSourceController;
 use App\Http\Controllers\Admin\AdminResourceController;
+use App\Http\Controllers\Admin\AdminResourceTypeController;
 
 /* ==== ADMIN ROUTES === */
 Route::middleware('permission.check:admin')->group(function () {
     /* School routes. */
     Route::delete('admin/school/{school:name}/destroy', [AdminSchoolController::class, 'destroy'])->name('admin-school-destroy');
 
-    /* Resource routes. */
-    Route::delete('admin/resource-type/{resourceType:type}/destroy', [ResourceTypeController::class, 'destroy'])->name('resource-type-destroy');
+    /* Resource type routes. */
+    Route::delete('admin/resource-type/{resourceType:type}/destroy', [AdminResourceTypeController::class, 'destroy'])->name('admin-resource-type-destroy');
 
     /* Privilege routes. */
     Route::get('admin/privileges', [AdminPrivilegeController::class, 'index'])->name('admin-privileges');
@@ -59,12 +60,12 @@ Route::middleware('permission.check:teacher')->group(function () {
     Route::patch('admin/school/{school:name}/update', [AdminSchoolController::class, 'update'])->name('admin-school-update');
 
     /* Resource type routes. */
-    Route::get('admin/resource-types', [ResourceTypeController::class, 'index'])->name('resource-types');
-    Route::get('admin/resource-types/{resourceType:type}', [ResourceTypeController::class, 'show'])->name('resource-type');
-    Route::get('admin/resource-type/create', [ResourceTypeController::class, 'create'])->name('resource-type-create');
-    Route::get('admin/resource-type/{resourceType:type}/edit', [ResourceTypeController::class, 'edit'])->name('resource-type-edit');
-    Route::post('admin/resource-type/store', [ResourceTypeController::class, 'store'])->name('resource-type-store');
-    Route::patch('admin//resource-type/{resourceType:type}/update', [ResourceTypeController::class, 'update'])->name('resource-type-update');
+    Route::get('admin/resource-types', [AdminResourceTypeController::class, 'index'])->name('admin-resource-types');
+    Route::get('admin/resource-types/{resourceType:type}', [AdminResourceTypeController::class, 'show'])->name('admin-resource-type');
+    Route::get('admin/resource-type/create', [AdminResourceTypeController::class, 'create'])->name('admin-resource-type-create');
+    Route::get('admin/resource-type/{resourceType:type}/edit', [AdminResourceTypeController::class, 'edit'])->name('admin-resource-type-edit');
+    Route::post('admin/resource-type/store', [AdminResourceTypeController::class, 'store'])->name('admin-resource-type-store');
+    Route::patch('admin//resource-type/{resourceType:type}/update', [AdminResourceTypeController::class, 'update'])->name('admin-resource-type-update');
 
     /* Resource tag routes. */
     Route::get('admin/resource-tags', [AdminResourceTagController::class, 'index'])->name('admin-resource-tags');
