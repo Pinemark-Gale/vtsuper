@@ -46,13 +46,6 @@ Route::patch('admin//resource/{resource:name}/update', [ResourceController::clas
 Route::delete('admin/resource/{resource:name}/destroy', [ResourceController::class, 'destroy'])->middleware('permission.check:teacher')->name('resource-destroy');
 
 /* Resource source routes. */
-Route::get('admin/sources', [SourceController::class, 'index'])->middleware('permission.check:contributor')->name('sources');
-Route::get('admin/sources/{source:source}', [SourceController::class, 'show'])->middleware('permission.check:contributor')->name('source');
-Route::get('admin/source/create', [SourceController::class, 'create'])->middleware('permission.check:contributor')->name('source-create');
-Route::get('admin/source/{source:source}/edit', [SourceController::class, 'edit'])->middleware('permission.check:contributor')->name('source-edit');
-Route::post('admin/source/store', [SourceController::class, 'store'])->middleware('permission.check:contributor')->name('source-store');
-Route::patch('admin//source/{source:source}/update', [SourceController::class, 'update'])->middleware('permission.check:contributor')->name('source-update');
-Route::delete('admin/source/{source:source}/destroy', [SourceController::class, 'destroy'])->middleware('permission.check:teacher')->name('source-destroy');
 
 /* Resource tag routes. */
 

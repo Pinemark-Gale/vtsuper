@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\Admin\AdminPrivilegeController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminResourceTagController;
+use App\Http\Controllers\Admin\AdminSourceController;
 
 /* ==== ADMIN ROUTES === */
 Route::middleware('permission.check:admin')->group(function () {
@@ -56,7 +57,7 @@ Route::middleware('permission.check:teacher')->group(function () {
     Route::post('admin/school/store', [AdminSchoolController::class, 'store'])->name('admin-school-store');
     Route::patch('admin/school/{school:name}/update', [AdminSchoolController::class, 'update'])->name('admin-school-update');
 
-    /* Resource routes. */
+    /* Resource type routes. */
     Route::get('admin/resource-types', [ResourceTypeController::class, 'index'])->name('resource-types');
     Route::get('admin/resource-types/{resourceType:type}', [ResourceTypeController::class, 'show'])->name('resource-type');
     Route::get('admin/resource-type/create', [ResourceTypeController::class, 'create'])->name('resource-type-create');
@@ -72,11 +73,19 @@ Route::middleware('permission.check:teacher')->group(function () {
     Route::post('admin/resource-tag/store', [AdminResourceTagController::class, 'store'])->name('admin-resource-tag-store');
     Route::patch('admin//resource-tag/{resourceTag:tag}/update', [AdminResourceTagController::class, 'update'])->name('admin-resource-tag-update');
 
+    /* Resource source routes. */
+    Route::delete('admin/source/{source:source}/destroy', [AdminSourceController::class, 'destroy'])->name('admin-source-destroy');
+    Route::patch('admin//source/{source:source}/update', [AdminSourceController::class, 'update'])->name('admin-source-update');
 });
 
 /* ==== CONTRIBUTOR ROUTES === */
 Route::middleware('permission.check:contributor')->group(function () {
-
+    /* Resource source routes. */
+    Route::get('admin/sources', [AdminSourceController::class, 'index'])->name('admin-sources');
+    Route::get('admin/sources/{source:source}', [AdminSourceController::class, 'show'])->name('admin-source');
+    Route::get('admin/source/create', [AdminSourceController::class, 'create'])->name('admin-source-create');
+    Route::get('admin/source/{source:source}/edit', [AdminSourceController::class, 'edit'])->name('admin-source-edit');
+    Route::post('admin/source/store', [AdminSourceController::class, 'store'])->name('admin-source-store');
 });
 
 /* ==== STUDENT ROUTES === */

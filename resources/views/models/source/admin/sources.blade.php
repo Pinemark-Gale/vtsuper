@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('source-create') }}" style="display: block; width: 100%;">Create Source</a>
+    <a href="{{ route('admin-source-create') }}" style="display: block; width: 100%;">Create Source</a>
     <br>
     <div class="item-table">
         <!-- Define column headers. -->
@@ -14,7 +14,7 @@
         <!-- Generate rest of table. -->
         @foreach ($sources as $source)
             <div class="main-col row-bottom row-{{ $loop->index }}">
-                <a href="{{ route('source', ['source' => $source->source]) }}">{{ $source->source }}</a>
+                <a href="{{ route('admin-source', ['source' => $source->source]) }}">{{ $source->source }}</a>
             </div>
             <div class="side-col row-bottom row-{{ $loop->index }}">{{ $source->updated_at->format('M j, Y') }}</div>
             <div class="expand-col row-bottom row-{{ $loop->index }}">
@@ -22,10 +22,10 @@
             </div>
             <div class="main-col main-sub-col row-bottom sub-row-{{ $loop->index }} hide-row">Created At: {{ $source->created_at->format('M j, Y') }}</div>
             <div class="side-col row-bottom sub-row-{{ $loop->index }} hide-row">
-                <a href="{{ route('source-edit', ['source' => $source->source]) }}">
+                <a href="{{ route('admin-source-edit', ['source' => $source->source]) }}">
                     <div class="action-button">Edit</div>
                 </a>
-                <form method="POST" action="{{ route('source-destroy', ['source' => $source->source]) }}">
+                <form method="POST" action="{{ route('admin-source-destroy', ['source' => $source->source]) }}">
                     @csrf
                     @method('DELETE')
                     <button tag="submit" class="action-button">Destroy</button>

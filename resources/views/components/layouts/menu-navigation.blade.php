@@ -16,7 +16,7 @@
                 <a href="{{ route('admin-pages') }}" class="red-link">Pages</a>
             @endif
             @if (auth()->user()->privilegeCheck('contributor'))
-                <a href="{{ route('sources') }}" class="red-link">Sources</a>
+                <a href="{{ route('admin-sources') }}" class="red-link">Sources</a>
             @endif
             @if (auth()->user()->privilegeCheck('teacher'))
                 <a href="{{ route('admin-schools') }}" class="red-link">Schools</a>
