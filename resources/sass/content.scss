@@ -15,6 +15,32 @@
     background-color: $accent-light-yellow;
 }
 
+/* admin panel header that goes above tables */
+.admin-panel-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: auto;
+
+    a {
+        border: 2px solid $super-white;
+        font-size: 1.2em;
+        min-width: 180px;
+        padding: 10px;
+        text-align: center;
+        width: 30%
+    }
+
+    a:hover {
+        background-color: $super-white;
+        color: $super-black;
+        font-weight: bold;
+    }
+}
+
 /* styling for tables with dropdowns
  * NOTE: class names tied to tables.js, do not
  * change.

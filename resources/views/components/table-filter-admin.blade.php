@@ -1,5 +1,7 @@
 @props(['createLink' => '#'])
 
+<x-admin-panel-header />
+
 <div class="table-filter-container">
     <x-search />
     <div class="filter-button">
