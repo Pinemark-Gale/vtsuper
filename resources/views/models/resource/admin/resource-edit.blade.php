@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <x-form.form :action="route('resource-update', ['resource' => $resource->name])">
+    <x-form.form :action="route('admin-resource-update', ['resource' => $resource->name])">
         @method('patch')
         <x-form.title>Edit Resource {{ $resource->name }}</x-form.title>
         <x-form.input name="name" :value="old('name') ? old('name') : $resource->name" autofocus />

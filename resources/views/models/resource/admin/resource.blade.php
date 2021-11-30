@@ -7,10 +7,10 @@
         <h2>Link: {{ $resource->link }}</h2>
         <p>{{ $resource->description }}</p>
         <p>Last Updated: {{ $resource->updated_at->format('M j, Y') }}</p>
-        <a href="{{ route('resource-edit', ['resource' => $resource->name]) }}">
+        <a href="{{ route('admin-resource-edit', ['resource' => $resource->name]) }}">
             <div class="user-action">Edit</div>
         </a>
-        <form method="POST" action="{{ route('resource-destroy', ['resource' => $resource->name]) }}" class="admin-form">
+        <form method="POST" action="{{ route('admin-resource-destroy', ['resource' => $resource->name]) }}" class="admin-form">
             @csrf
             @method('DELETE')
             <button type="submit" class="form-submit">Destroy</button>

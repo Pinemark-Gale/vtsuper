@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminPrivilegeController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminResourceTagController;
 use App\Http\Controllers\Admin\AdminSourceController;
+use App\Http\Controllers\Admin\AdminResourceController;
 
 /* ==== ADMIN ROUTES === */
 Route::middleware('permission.check:admin')->group(function () {
@@ -76,6 +77,9 @@ Route::middleware('permission.check:teacher')->group(function () {
     /* Resource source routes. */
     Route::delete('admin/source/{source:source}/destroy', [AdminSourceController::class, 'destroy'])->name('admin-source-destroy');
     Route::patch('admin//source/{source:source}/update', [AdminSourceController::class, 'update'])->name('admin-source-update');
+
+    /* Resource routes. */
+    Route::delete('admin/resource/{resource:name}/destroy', [AdminResourceController::class, 'destroy'])->name('admin-resource-destroy');
 });
 
 /* ==== CONTRIBUTOR ROUTES === */
@@ -86,11 +90,20 @@ Route::middleware('permission.check:contributor')->group(function () {
     Route::get('admin/source/create', [AdminSourceController::class, 'create'])->name('admin-source-create');
     Route::get('admin/source/{source:source}/edit', [AdminSourceController::class, 'edit'])->name('admin-source-edit');
     Route::post('admin/source/store', [AdminSourceController::class, 'store'])->name('admin-source-store');
+    
+    /* Resource routes. */
+    Route::get('resources', [AdminResourceController::class, 'index'])->name('admin-resources');
+    Route::get('admin/resource/create', [AdminResourceController::class, 'create'])->name('admin-resource-create');
+    Route::get('admin/resource/{resource:name}/edit', [AdminResourceController::class, 'edit'])->name('admin-resource-edit');
+    Route::post('admin/resource/store', [AdminResourceController::class, 'store'])->name('admin-resource-store');
+    Route::patch('admin//resource/{resource:name}/update', [AdminResourceController::class, 'update'])->name('admin-resource-update');
+    
 });
 
 /* ==== STUDENT ROUTES === */
 Route::middleware('permission.check:student')->group(function () {
-    
+    /* Resource routes. */
+    Route::get('resources/{resource:name}', [AdminResourceController::class, 'show'])->name('admin-resource');
 });
 
 Route::get('register', [AdminUserController::class, 'create'])->middleware('guest')->name('admin-user-create');

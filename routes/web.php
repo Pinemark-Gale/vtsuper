@@ -37,13 +37,6 @@ Route::get('/unauthorized-access', function() {
 })->name('unauthorized-access');
 
 /* Resource routes. */
-Route::get('resources', [ResourceController::class, 'index'])->name('resources');
-Route::get('resources/{resource:name}', [ResourceController::class, 'show'])->middleware('permission.check:student')->name('resource');
-Route::get('admin/resource/create', [ResourceController::class, 'create'])->middleware('permission.check:contributor')->name('resource-create');
-Route::get('admin/resource/{resource:name}/edit', [ResourceController::class, 'edit'])->middleware('permission.check:contributor')->name('resource-edit');
-Route::post('admin/resource/store', [ResourceController::class, 'store'])->middleware('permission.check:contributor')->name('resource-store');
-Route::patch('admin//resource/{resource:name}/update', [ResourceController::class, 'update'])->middleware('permission.check:contributor')->name('resource-update');
-Route::delete('admin/resource/{resource:name}/destroy', [ResourceController::class, 'destroy'])->middleware('permission.check:teacher')->name('resource-destroy');
 
 /* Resource source routes. */
 

@@ -17,6 +17,7 @@
             @endif
             @if (auth()->user()->privilegeCheck('contributor'))
                 <a href="{{ route('admin-sources') }}" class="red-link">Sources</a>
+                <a href="{{ route('admin-resources') }}" class=red-link>Resources</a>
             @endif
             @if (auth()->user()->privilegeCheck('teacher'))
                 <a href="{{ route('admin-schools') }}" class="red-link">Schools</a>
@@ -35,7 +36,6 @@
     <!-- right side of menu navigation -->
     <div class="link-container">
         <a href="{{ url('/dashboard') }}" class="blue-link">Dashboard</a>
-        <a href="{{ route('resources') }}" class=blue-link>Resources</a>
         @auth
             <form method="POST" action="{{ route('logout') }}" >
                     @csrf

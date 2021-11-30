@@ -3,7 +3,7 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('resource-create') }}" style="display: block; width: 100%;">Create Resource</a>
+    <a href="{{ route('admin-resource-create') }}" style="display: block; width: 100%;">Create Resource</a>
     <br>
     <x-search />
     <br>
@@ -16,7 +16,7 @@
         <!-- Generate rest of table. -->
         @foreach ($resources as $resource)
             <div class="main-col row-bottom row-{{ $loop->index }}">
-                <a href="{{ route('resource', ['resource' => $resource->name]) }}">{{ $resource->name }}</a>
+                <a href="{{ route('admin-resource', ['resource' => $resource->name]) }}">{{ $resource->name }}</a>
             </div>
             <div class="side-col row-bottom row-{{ $loop->index }}">{{ $resource->type->type }}</div>
             <div class="expand-col row-bottom row-{{ $loop->index }}">
