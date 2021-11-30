@@ -3,8 +3,8 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('admin-source-create') }}" style="display: block; width: 100%;">Create Source</a>
-    <br>
+    <x-table-filter-admin :createLink="route('admin-source-create')" />
+
     <div class="item-table">
         <!-- Define column headers. -->
         <div class="col-title">Source</div>

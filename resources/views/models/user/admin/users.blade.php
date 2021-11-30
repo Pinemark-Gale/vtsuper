@@ -2,6 +2,7 @@
     <x-slot name="sJavaImport">
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
+    <x-table-filter-admin />
 
     <div class="item-table">
         <!-- Define column headers. -->

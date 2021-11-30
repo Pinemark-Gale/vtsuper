@@ -25,22 +25,97 @@ a:hover {
   transition: 0.6s;
 }
 
-/* search component */
-.search-bar {
+/* filter button component */
+.table-filter-container {
   display: flex;
-  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 1.1em;
+  margin: 10px;
+  line-height: 100%;
+  vertical-align: middle;
+  /* search component */
 }
-.search-bar input {
+.table-filter-container .search-bar {
+  display: flex;
+  margin: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  min-width: 212px;
+  width: 35%;
+}
+.table-filter-container .search-bar input {
   background: #F5E6C4;
   border: none;
   border-radius: 20px;
+  margin: 5px;
   padding-left: 10px;
   text-transform: uppercase;
-  font-weight: bold;
+  font-size: 1.1em;
+  min-width: 150px;
+  width: 100%;
 }
-.search-bar svg {
+.table-filter-container .search-bar svg {
+  margin: auto;
   margin-right: 10px;
+  min-width: 20px;
   width: 20px;
+}
+.table-filter-container .filter-button {
+  color: #1A1818;
+  display: flex;
+  margin: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  min-width: 110px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 35%;
+}
+.table-filter-container .filter-button .filter-button-title {
+  background: #F5E6C4;
+  border: none;
+  border-radius: 20px;
+  margin: 5px;
+  padding: 5px;
+  padding-right: 45px;
+  text-align: center;
+  width: 80%;
+}
+.table-filter-container .filter-button .filter-button-arrow {
+  background-color: #869AC6;
+  border-radius: 20px;
+  color: #F5E6C4;
+  margin: 5px;
+  margin-left: -42px;
+  max-width: 25px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  width: 20%;
+}
+.table-filter-container .filter-link {
+  background-color: #66B29E;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1.2em;
+  line-height: 2;
+  margin: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  min-height: 40px;
+  min-width: 100px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 15%;
+}
+.table-filter-container .filter-link:hover {
+  background-color: #598D7F;
+  color: #F5E6C4;
 }
 
 /* system message component */
@@ -231,8 +306,13 @@ a:hover {
   display: none;
 }
 
+.app-container {
+  background-image: url(/svg/stars-background-home.svg);
+}
+
 /* website left and right margins */
 .content {
+  background-color: #1A1818;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -252,7 +332,7 @@ a:hover {
   grid-template-columns: 70% 25% 5%;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 90%;
 }
 .item-table .col-title {
   color: #D52121;
@@ -446,10 +526,6 @@ form div {
   width: 100%;
 }
 
-.stars {
-  max-height: 580px;
-}
-
 .home-page-hero-options {
   display: flex;
   justify-content: space-between;
@@ -505,6 +581,10 @@ form div {
   font-weight: lighter;
   margin: 5px;
   text-transform: uppercase;
+}
+
+.bottom-container {
+  background-color: #1A1818;
 }
 
 .rainbow-border {

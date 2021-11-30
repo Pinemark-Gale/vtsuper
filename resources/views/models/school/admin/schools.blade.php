@@ -3,8 +3,8 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('admin-school-create') }}" style="display: block; width: 100%;">Create School</a>
-    <br>
+    <x-table-filter-admin :createLink="route('admin-school-create')" />
+
     <div class="item-table">
         <!-- Define column headers. -->
         <div class="col-title">School</div>

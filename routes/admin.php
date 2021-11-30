@@ -46,7 +46,6 @@ Route::middleware('permission.check:admin')->group(function () {
 
     /* Resource tag routes. */
     Route::delete('admin/resource-tag/{resourceTag:tag}/destroy', [AdminResourceTagController::class, 'destroy'])->name('admin-resource-tag-destroy');
-
 });
 
 /* ==== TEACHER ROUTES === */

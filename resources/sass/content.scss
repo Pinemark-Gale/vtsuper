@@ -1,5 +1,10 @@
+.app-container {
+    background-image: url(/svg/stars-background-home.svg);
+}
+
 /* website left and right margins */
 .content {
+    background-color: $super-black;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
@@ -19,7 +24,7 @@
     grid-template-columns: 70% 25% 5%;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 90%;
 
     .col-title {
         color: $super-dark-red;

@@ -1,6 +1,5 @@
 <x-layouts.app>
     <div>
-        <x-svg.home-stars-background class="stars home-page-hero" />
         <x-svg.home-page-hero class="home-page-hero" />
         <div class="home-page-hero-options">
             <h1>Educators</h1>

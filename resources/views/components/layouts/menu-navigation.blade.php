@@ -15,14 +15,15 @@
                 <a href="{{ route('admin-privileges') }}" class="red-link">Privileges</a>
                 <a href="{{ route('admin-pages') }}" class="red-link">Pages</a>
             @endif
-            @if (auth()->user()->privilegeCheck('contributor'))
-                <a href="{{ route('admin-sources') }}" class="red-link">Sources</a>
-                <a href="{{ route('admin-resources') }}" class=red-link>Resources</a>
-            @endif
             @if (auth()->user()->privilegeCheck('teacher'))
                 <a href="{{ route('admin-schools') }}" class="red-link">Schools</a>
                 <a href="{{ route('admin-resource-tags') }}" class="red-link">Resource Tags</a>
                 <a href="{{ route('admin-resource-types') }}" class="red-link">Resource Types</a>
+            @endif
+            @if (auth()->user()->privilegeCheck('contributor'))
+                <a href="{{ route('admin-sources') }}" class="red-link">Sources</a>
+                <a href="{{ route('admin-resources') }}" class=red-link>Resources</a>
+                <a href="{{ route('admin-users') }}" class="red-link">Admin Panel</a>
             @endif
         @else 
             <a href="{{ route('login') }}" class="red-link">Log in</a>

@@ -3,8 +3,8 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('admin-resource-type-create') }}" style="display: block; width: 100%;">Create Resource Type</a>
-    <br>
+    <x-table-filter-admin :createLink="route('admin-resource-type-create')" />
+
     <div class="item-table">
         <!-- Define column headers. -->
         <div class="col-title">Resource Type</div>

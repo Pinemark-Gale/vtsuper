@@ -3,10 +3,8 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <a href="{{ route('admin-page-create') }}" style="display: block; width: 100%;">Create Page</a>
-    <br>
-    <x-search />
-    <br>
+    <x-table-filter-admin :createLink="route('admin-page-create')" />
+    
     <div class="item-table">
         <!-- Define column headers. -->
         <div class="col-title">Page Title</div>
