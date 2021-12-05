@@ -45,104 +45,143 @@
  * NOTE: class names tied to tables.js, do not
  * change.
  * ***/
-.item-table {
-    display: grid;
-    grid-template-columns: 70% 25% 5%;
+.general-table {
+    border-collapse: collapse;
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 95%;
 
-    .col-title {
+    caption {
+        color: $super-black;
+        cursor: default;
+    }
+
+    thead {
         color: $super-dark-red;
         font-style: italic;
         font-family: Lobster;
         padding: 5px;
     }
 
-    .main-col {
-        font-weight:  bold;
-        padding: 15px;
-        padding-left: 0px;
-        margin-left: 5px;
+    tbody {
+        width: 100%;
 
+        .bottom-border {
+           border-bottom: 1px solid $accent-dark-green; 
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .action-container-title {
+            margin: 0px;
+            padding-right: 10px;
+            text-align: right;
+        }
+
+        .action-container {
+            display: flex;
+            justify-content: end;
+            flex-wrap: wrap;
+            padding-right: 10px;
+
+            .action-button {
+                background-color: $accent-blue;
+                border: none;
+                color: $super-white;
+                cursor: pointer;
+                display: block;
+                font-size: 1.0rem;
+                font-style: normal;
+                font-weight: bold;
+                margin: 2px;
+                padding: 4px;
+                padding-left: 6px;
+                padding-right: 6px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            .delete-button {
+                background-color: $super-red;
+            }
+
+        }
+        
+        .tag-container-title {
+            margin: 0px;
+            padding-right: 10px;
+        }
+
+        .tag-container {
+            display: flex;
+            justify-content: start;
+            flex-wrap: wrap;
+
+            .tag-button {
+                background-color: $accent-blue;
+                border: none;
+                color: $super-white;
+                cursor: pointer;
+                display: block;
+                font-size: 1.0rem;
+                font-style: normal;
+                font-weight: bold;
+                margin: 2px;
+                padding: 4px;
+                padding-left: 6px;
+                padding-right: 6px;
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
     }
     
-    .main-sub-col {
-        font-weight: normal;
-        padding: 15px;
-        padding-left: 0px;
-        margin-left: 5px;
+
+    .first-col {
+        text-align: left;;
+        width: 60%;
     }
 
-    .side-col {
-        display: flex;
-        flex-wrap: wrap;
-        font-weight: bold;
-        font-style: italic;
-        padding: 15px;
-        padding-left: 5px;
-
-        span {
-            background-color: $super-red;
-            color: $super-white;
-            display: block;
-            font-weight: normal;
-            font-style: normal;
-            margin: 2px;
-            padding: 2px;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        .action-button {
-            background-color: $accent-blue;
-            border: none;
-            border-radius: 3px;
-            color: $super-white;
-            cursor: pointer;
-            display: block;
-            font-size: 1.0rem;
-            font-style: normal;
-            font-weight: bold;
-            margin: 2px;
-            padding: 8px;
-            padding-left: 12px;
-            padding-right: 12px;
-            text-align: center;
-            text-transform: uppercase;
-        }
+    .second-col {
+        text-align: center;
+        width: 50%;
     }
 
+    /* Class name has tables.js dependency. */
     .expand-col {
+        text-align: center;
+        transform: rotate(0deg);
+        transition: 0.2s;
+        width: 10%;
+    }
+
+    /* Class name has tables.js dependency. */
+    .active-expand-col {
+        transform: rotate(-45deg);
+        transition: 0.2s;
+    }
+
+    .expand-button {
+        background-color: transparent;
+        border: none;
+        color: $super-white;
         cursor: pointer;
         font-size: 2em;
         font-weight: bold;
-        padding-top: 5px;
+        padding: 5px;
+        padding-bottom: 8px;
         text-align: right;
+        transition: 0.2s;
         user-select: none;
     }
-
-    .active-expand-col {
-        transform: rotate(-45deg);
-    }
-
-    .row-bottom {
-        border-bottom: 1px solid $accent-dark-green;
-    }
-
-    .hide-row {
-        display: none;
-    }
-
 }
-
-form {
-    div {
-        text-decoration: none;
-        cursor:pointer;
-    }
-}
-
 
 // OLD CSS - TO DELETE
 .admin-form {

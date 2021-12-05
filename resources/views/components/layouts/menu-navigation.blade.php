@@ -1,6 +1,6 @@
 @props(['appLinks'])
 
-<button onclick="menuSwitch()" id="menu-icon" class="menu-icon">
+<button onclick="menuSwitch()" id="menu-icon" class="menu-icon" data-message="Pull up the main navigation for the website.">
     <div class="top-bar"></div>
     <div class="middle-bar"></div>
     <div class="bottom-bar"></div>

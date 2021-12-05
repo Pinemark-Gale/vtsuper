@@ -1,3 +1,5 @@
+@props(['webpageTitle' => NULL])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -31,10 +33,9 @@
     </head>
     <body>
         <div class="app-container">
-            <x-layouts.top-navigation :appLinks="$appLinks" />
+            <x-layouts.top-navigation :appLinks="$appLinks" :webpageTitle="$webpageTitle" />
 
             <x-system-message />
-
             <main class="content">
                 {{ $slot }}
             </main>
