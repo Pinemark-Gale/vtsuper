@@ -49,6 +49,7 @@
     .light-logo {
         background: $super-white;
         color: $super-black;
+        transition: $transition-time;
 
         a {
             color: $super-black;
@@ -58,6 +59,7 @@
     .dark-logo {
         background: $super-black;
         color: $super-white;
+        transition: $transition-time;
 
         a {
             color: $super-white;
@@ -76,9 +78,11 @@
 
     .light-arrow {
         filter: invert(0%);
+        transition: $transition-time;
     }
 
     .dark-arrow {
         filter: invert(100%);
+        transition: $transition-time;
     }
 }

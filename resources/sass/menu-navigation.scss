@@ -10,6 +10,21 @@
     transition: $transition-time;
     z-index: 2;
 
+    .top-bar {
+        transform: rotate(0deg) translate(0px, 0px);
+        transition: $transition-time;
+    }
+
+    .middle-bar {
+        opacity: 1;
+        transition: $transition-time;
+    }
+
+    .bottom-bar {
+        transform: rotate(0deg) translate(0px, 0px);
+        transition: $transition-time;
+    }
+
     div {
         background-color: $super-white;
         display: block;

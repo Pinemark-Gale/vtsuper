@@ -172,6 +172,7 @@ a:hover {
 .top-nav-container .light-logo {
   background: #F5E6C4;
   color: #1A1818;
+  transition: 0.6s;
 }
 .top-nav-container .light-logo a {
   color: #1A1818;
@@ -179,6 +180,7 @@ a:hover {
 .top-nav-container .dark-logo {
   background: #1A1818;
   color: #F5E6C4;
+  transition: 0.6s;
 }
 .top-nav-container .dark-logo a {
   color: #F5E6C4;
@@ -193,9 +195,11 @@ a:hover {
 }
 .top-nav-container .light-arrow {
   filter: invert(0%);
+  transition: 0.6s;
 }
 .top-nav-container .dark-arrow {
   filter: invert(100%);
+  transition: 0.6s;
 }
 
 .menu-icon {
@@ -209,6 +213,18 @@ a:hover {
   vertical-align: top;
   transition: 0.6s;
   z-index: 2;
+}
+.menu-icon .top-bar {
+  transform: rotate(0deg) translate(0px, 0px);
+  transition: 0.6s;
+}
+.menu-icon .middle-bar {
+  opacity: 1;
+  transition: 0.6s;
+}
+.menu-icon .bottom-bar {
+  transform: rotate(0deg) translate(0px, 0px);
+  transition: 0.6s;
 }
 .menu-icon div {
   background-color: #F5E6C4;
