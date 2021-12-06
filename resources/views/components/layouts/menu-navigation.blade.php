@@ -6,7 +6,7 @@
     <div class="bottom-bar"></div>
 </button>
 
-<div id="menu-nav" class="menu-nav-container menu-nav-hide">
+<nav id="menu-nav" class="menu-nav-container menu-nav-hide">
     <!-- left side of menu navigation -->
     <div class="link-container">
         @auth
@@ -42,7 +42,7 @@
             @endif
         @endforeach
     </div>
-</div>
+</nav>
 
 <script type="application/javascript">
     // Toggle Modal Hide
