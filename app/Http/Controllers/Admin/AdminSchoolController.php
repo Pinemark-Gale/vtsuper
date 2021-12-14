@@ -137,4 +137,27 @@ class AdminSchoolController extends Controller
 
         return redirect(route('admin-schools'));
     }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.school.admin.schools', [
+            'schools' => School::where('name', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('district', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orderby('name')->get()
+        ]);
+    }
+
 }

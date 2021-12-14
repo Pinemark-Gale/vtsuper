@@ -131,4 +131,26 @@ class AdminSourceController extends Controller
 
         return redirect(route('admin-sources'));
     }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.source.admin.sources', [
+            'sources' => Source::where('source', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orderby('source')->get()
+        ]);
+    }
+
 }

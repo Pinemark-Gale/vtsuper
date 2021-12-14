@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Privilege;
 use App\Models\School;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -145,4 +146,30 @@ class AdminUserController extends Controller
 
         return redirect(route('admin-users'));
     }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.user.admin.users', [
+            'users' => User::whereHas('privilege', function (Builder $query) use($request) {
+                $query->where('title', 'LIKE', '%'.$request->search_term.'%');
+            })->orWhere('name', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('email', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->with(['school', 'privilege'])
+            ->orderby('name')->get()
+        ]);
+    }
+
 }

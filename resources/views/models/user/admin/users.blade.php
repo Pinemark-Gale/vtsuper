@@ -3,8 +3,10 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <x-table.table-filter-admin />
-
+    <x-table.table-filter-admin 
+        :searchAction="route('admin-users-search')" 
+        :createLink="route('admin-user-create')"
+    />
     <x-table.table
         caption="List of users and associated information." 
         header1="User"

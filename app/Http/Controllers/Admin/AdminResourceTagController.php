@@ -109,4 +109,25 @@ class AdminResourceTagController extends Controller
 
         return redirect(route('admin-resource-tags'));
     }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.resource_tag.admin.resource-tags', [
+            'resourceTags' => ResourceTag::where('tag', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orderby('tag')->get()
+        ]);
+    }
 }

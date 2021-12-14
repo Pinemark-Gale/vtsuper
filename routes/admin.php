@@ -21,6 +21,7 @@ Route::middleware('permission.check:admin')->group(function () {
 
     /* Privilege routes. */
     Route::get('admin/privileges', [AdminPrivilegeController::class, 'index'])->name('admin-privileges');
+    Route::get('admin/privileges/search', [AdminPrivilegeController::class, 'search'])->name('admin-privileges-search');
     Route::get('admin/privileges/{privilege:title}', [AdminPrivilegeController::class, 'show'])->name('admin-privilege');
     Route::get('admin/privilege/create', [AdminPrivilegeController::class, 'create'])->name('admin-privilege-create');
     Route::get('admin/privilege/{privilege:title}/edit', [AdminPrivilegeController::class, 'edit'])->name('admin-privilege-edit');
@@ -40,6 +41,7 @@ Route::middleware('permission.check:admin')->group(function () {
 
     /* User routes. */
     Route::get('admin/users', [AdminUserController::class, 'index'])->name('admin-users');
+    Route::get('admin/users/search', [AdminUserController::class, 'search'])->name('admin-users-search');
     Route::get('admin/users/{user:name}', [AdminUserController::class, 'show'])->name('admin-user');
     Route::get('admin/users/{user:name}/edit', [AdminUserController::class, 'edit'])->name('admin-user-edit');
     Route::patch('admin/user/{user:name}/update', [AdminUserController::class, 'update'])->name('admin-user-update');
@@ -53,6 +55,7 @@ Route::middleware('permission.check:admin')->group(function () {
 Route::middleware('permission.check:teacher')->group(function () {
     /* School routes. */
     Route::get('admin/schools', [AdminSchoolController::class, 'index'])->name('admin-schools');
+    Route::get('admin/schools/search', [AdminSchoolController::class, 'search'])->name('admin-schools-search');
     Route::get('admin/schools/{school:name}', [AdminSchoolController::class, 'show'])->name('admin-school');
     Route::get('admin/school/create', [AdminSchoolController::class, 'create'])->name('admin-school-create');
     Route::get('admin/school/{school:name}/edit', [AdminSchoolController::class, 'edit'])->name('admin-school-edit');
@@ -61,6 +64,7 @@ Route::middleware('permission.check:teacher')->group(function () {
 
     /* Resource type routes. */
     Route::get('admin/resource-types', [AdminResourceTypeController::class, 'index'])->name('admin-resource-types');
+    Route::get('admin/resource-types/search', [AdminResourceTypeController::class, 'search'])->name('admin-resource-types-search');
     Route::get('admin/resource-types/{resourceType:type}', [AdminResourceTypeController::class, 'show'])->name('admin-resource-type');
     Route::get('admin/resource-type/create', [AdminResourceTypeController::class, 'create'])->name('admin-resource-type-create');
     Route::get('admin/resource-type/{resourceType:type}/edit', [AdminResourceTypeController::class, 'edit'])->name('admin-resource-type-edit');
@@ -69,6 +73,7 @@ Route::middleware('permission.check:teacher')->group(function () {
 
     /* Resource tag routes. */
     Route::get('admin/resource-tags', [AdminResourceTagController::class, 'index'])->name('admin-resource-tags');
+    Route::get('admin/resource-tags/search', [AdminResourceTagController::class, 'search'])->name('admin-resource-tags-search');
     Route::get('admin/resource-tags/{resourceTag:tag}', [AdminResourceTagController::class, 'show'])->name('admin-resource-tag');
     Route::get('admin/resource-tag/create', [AdminResourceTagController::class, 'create'])->name('admin-resource-tag-create');
     Route::get('admin/resource-tag/{resourceTag:tag}/edit', [AdminResourceTagController::class, 'edit'])->name('admin-resource-tag-edit');
@@ -87,13 +92,15 @@ Route::middleware('permission.check:teacher')->group(function () {
 Route::middleware('permission.check:contributor')->group(function () {
     /* Resource source routes. */
     Route::get('admin/sources', [AdminSourceController::class, 'index'])->name('admin-sources');
+    Route::get('admin/sources/search', [AdminSourceController::class, 'search'])->name('admin-sources-search');
     Route::get('admin/sources/{source:source}', [AdminSourceController::class, 'show'])->name('admin-source');
     Route::get('admin/source/create', [AdminSourceController::class, 'create'])->name('admin-source-create');
     Route::get('admin/source/{source:source}/edit', [AdminSourceController::class, 'edit'])->name('admin-source-edit');
     Route::post('admin/source/store', [AdminSourceController::class, 'store'])->name('admin-source-store');
     
     /* Resource routes. */
-    Route::get('resources', [AdminResourceController::class, 'index'])->name('admin-resources');
+    Route::get('admin/resources', [AdminResourceController::class, 'index'])->name('admin-resources');
+    Route::get('admin/resources/search', [AdminResourceController::class, 'search'])->name('admin-resources-search');
     Route::get('admin/resource/create', [AdminResourceController::class, 'create'])->name('admin-resource-create');
     Route::get('admin/resource/{resource:name}/edit', [AdminResourceController::class, 'edit'])->name('admin-resource-edit');
     Route::post('admin/resource/store', [AdminResourceController::class, 'store'])->name('admin-resource-store');

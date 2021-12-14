@@ -3,7 +3,10 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <x-table.table-filter-admin :createLink="route('admin-resource-tag-create')" />
+    <x-table.table-filter-admin 
+        :searchAction="route('admin-resource-tags-search')" 
+        :createLink="route('admin-resource-tag-create')"
+    />
 
     <x-table.table
         caption="List of resource tags on the website." 

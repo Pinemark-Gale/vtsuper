@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\PrivilegeController;
 use App\Models\Privilege;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -134,4 +134,26 @@ class AdminPrivilegeController extends Controller
 
         return redirect(route('admin-privileges'));
     }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.privilege.admin.privileges', [
+            'privileges' => Privilege::where('title', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orderby('title')->get()
+        ]);
+    }
+
 }

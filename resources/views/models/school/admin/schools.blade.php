@@ -3,7 +3,10 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <x-table.table-filter-admin :createLink="route('admin-school-create')" />
+    <x-table.table-filter-admin 
+        :searchAction="route('admin-schools-search')" 
+        :createLink="route('admin-school-create')"
+    />
 
     <x-table.table
         caption="List of all schools belonging to users." 

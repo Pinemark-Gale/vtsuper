@@ -8,6 +8,7 @@ use App\Models\Resource;
 use App\Models\ResourceType;
 use App\Models\ResourceTag;
 use App\Models\Source;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -153,4 +154,34 @@ class AdminResourceController extends Controller
 
         return redirect(route('admin-resources'));
     }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.resource.admin.resources', [
+            'resources' => Resource::whereHas('type', function (Builder $query) use($request) {
+                $query->where('type', 'LIKE', '%'.$request->search_term.'%');
+            })->orWhereHas('source', function (Builder $query) use($request) {
+                $query->where('source', 'LIKE', '%'.$request->search_term.'%');
+            })->orWhereHas('tags', function (Builder $query) use($request) {
+                $query->where('tag', 'LIKE', '%'.$request->search_term.'%');
+            })->orWhere('name', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('link', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->with(['type', 'source', 'tags'])
+            ->orderby('name')->get()
+        ]);
+    }
+
 }

@@ -131,4 +131,25 @@ class AdminResourceTypeController extends Controller
 
         return redirect(route('admin-resource-types'));
     }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.resource_type.admin.resource-types', [
+            'resourceTypes' => ResourceType::where('type', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orderby('type')->get()
+        ]);
+    }
 }
