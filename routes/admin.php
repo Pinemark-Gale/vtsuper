@@ -30,6 +30,7 @@ Route::middleware('permission.check:admin')->group(function () {
 
     /* Page routes. */
     Route::get('admin/pages', [AdminPageController::class, 'index'])->name('admin-pages');
+    Route::get('admin/pages/search', [AdminPageController::class, 'search'])->name('admin-pages-search');
     Route::get('admin/pages/{page:slug}', [AdminPageController::class, 'show'])->name('admin-page');
     Route::get('admin/page/create', [AdminPageController::class, 'create'])->name('admin-page-create');
     Route::get('admin/page/{page:slug}/edit', [AdminPageController::class, 'edit'])->name('admin-page-edit');

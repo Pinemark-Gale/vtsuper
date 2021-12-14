@@ -3,7 +3,10 @@
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <x-table.table-filter-admin :createLink="route('admin-page-create')" />
+    <x-table.table-filter-admin 
+        :searchAction="route('admin-pages-search')" 
+        :createLink="route('admin-page-create')"
+    />
     
     <x-table.table
         caption="List of static pages across the website ." 

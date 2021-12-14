@@ -147,4 +147,27 @@ class AdminPageController extends Controller
 
         return redirect(route('admin-pages'));
     }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.page.admin.pages', [
+            'pages' => Page::where('title', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('slug', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->with(['status', 'sections'])
+                ->orderby('title')->get()
+        ]);
+    }
 }

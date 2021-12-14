@@ -8,7 +8,7 @@
         <th scope="col" class="second-col">{{ $header2 }}</th>
         <th scope="col" class="expand-col">Expand</th>
     </thead>
-    <tbody>
+    <tbody class="table-body">
         {{ $sTableBody }}
     </tbody>
 </table>
