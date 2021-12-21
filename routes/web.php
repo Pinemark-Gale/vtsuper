@@ -45,6 +45,12 @@ Route::get('/unauthorized-access', function() {
 /* Resource type routes. */
 
 /* User routes. */
+Route::get('/register', [UserController::class, 'create'])->middleware('guest')->name('user-create');
+Route::post('/register', [UserController::class, 'store'])->middleware('guest')->name('user-store');
+Route::get('/my-settings', [UserController::class, 'edit'])->name('user-edit');
+Route::patch('/my-settings/{user:name}', [UserController::class, 'update'])->middleware('permission.self')->name('user-update');
+Route::get('/my-settings/reset-password', [UserController::class, 'editPassword'])->name('user-edit-password');
+Route::patch('/my-settings/reset-password/{user:name}', [UserController::class, 'updatePassword'])->middleware('permission.self:{user:name}')->name('user-update-password');
 
 /* Privilege routes. */
 

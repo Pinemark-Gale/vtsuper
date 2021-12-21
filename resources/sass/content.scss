@@ -191,6 +191,12 @@
     justify-content: space-around;
     padding: 5px;
 
+    .title {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
     label {
         background-color: $accent-dark-green;
         display: block;

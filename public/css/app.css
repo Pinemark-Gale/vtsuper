@@ -502,6 +502,11 @@ a:hover {
   justify-content: space-around;
   padding: 5px;
 }
+.admin-form .title {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
 .admin-form label {
   background-color: #598D7F;
   display: block;

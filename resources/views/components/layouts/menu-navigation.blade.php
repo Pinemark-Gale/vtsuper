@@ -11,11 +11,12 @@
     <div class="link-container">
         @auth
             @if (auth()->user()->privilegeCheck('contributor'))
+                <a href="{{ route('user-edit') }}" class="red-link">My Settings</a>
                 <a href="{{ route('admin-users') }}" class="red-link">Admin Panel</a>
             @endif
         @else 
             <a href="{{ route('login') }}" class="red-link">Log in</a>
-            <a href="{{ route('admin-user-create') }}" class="red-link">Register</a>
+            <a href="{{ route('user-create') }}" class="red-link">Register</a>
         @endauth
     </div>
     <!-- menu divider -->

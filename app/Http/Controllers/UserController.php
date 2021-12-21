@@ -34,7 +34,9 @@ class UserController extends Controller
      */
     public function create()
     {
-
+        return view('models.user.user-create', [
+            'schools' => School::all(),
+        ]);
     }
 
     /**
@@ -45,7 +47,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email', 'string', 'max:255', 'unique:\App\Models\User'],
+            'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
+            'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
+        ]);
 
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'school_id' => $request->school_id,
+            'privilege_id' => config('privileges.privilege_map')['UNCATIGORIZED']
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect(route('home'));
     }
 
     /**
@@ -56,7 +77,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
+        return view('models.user.user', [
+            'user' => auth()->user()
+        ]);
     }
 
     /**
@@ -67,7 +90,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-
+        return view('models.user.user-edit', [
+            'user' => auth()->user(),
+            'schools' => School::all(),
+        ]);
     }
 
     /**
@@ -79,7 +105,52 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $validatedData = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
+        ]);
 
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->school_id = $request->school_id;
+
+        $user->save();
+
+        return redirect(route('user-edit'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function editPassword(User $user)
+    {
+        return view('models.user.user-password', [
+            'user' => auth()->user(),
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePassword(Request $request, User $user)
+    {
+        $validatedData = $request->validate([
+            'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        return redirect(route('user-edit'));
     }
 
     /**
