@@ -19,7 +19,7 @@ class CreateActivityDetailsTable extends Migration
             $table->foreignId('resource_id')->constrained()->nullable();
             $table->string('name');
             $table->text('instructions');
-            $table->integer('minutes_to_complete');
+            $table->unsignedSmallInteger('minutes_to_complete');
             $table->timestamps();
         });
     }

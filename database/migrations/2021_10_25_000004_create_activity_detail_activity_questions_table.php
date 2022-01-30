@@ -13,7 +13,7 @@ class CreateActivityDetailActivityQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('activity_detail_activity_questions', function (Blueprint $table) {
+        Schema::create('activity_detail_activity_question', function (Blueprint $table) {
             $table->id();
             $table->foreignId('activity_detail_id')->constrained();
             $table->foreignId('activity_question_id')->constrained();
