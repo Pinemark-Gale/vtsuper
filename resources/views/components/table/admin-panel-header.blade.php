@@ -11,6 +11,7 @@
     @endif
     @if (auth()->user()->privilegeCheck('contributor'))
         <a href="{{ route('admin-sources') }}" class="">Sources</a>
-        <a href="{{ route('admin-resources') }}" class=red-link>Resources</a>
+        <a href="{{ route('admin-resources') }}" class="">Resources</a>
+        <a href="{{ route('admin-activities') }}" class="">Activities</a>
     @endif
 </div>
