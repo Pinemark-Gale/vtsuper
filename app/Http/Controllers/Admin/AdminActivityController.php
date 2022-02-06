@@ -13,7 +13,7 @@ use App\Models\Resource;
 class AdminActivityController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the activity.
      *
      * @return \Illuminate\Http\Response
      */
@@ -25,7 +25,7 @@ class AdminActivityController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new activity.
      *
      * @return \Illuminate\Http\Response
      */
@@ -37,7 +37,7 @@ class AdminActivityController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created activity in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -48,46 +48,46 @@ class AdminActivityController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified activity.
      *
-     * @param  \App\Models\PageSection  $pageSection
+     * @param  \App\Models\ActivityDetail  $activityDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(PageSection $pageSection)
+    public function show(ActivityDetail $activityDetail)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified activity.
      *
-     * @param  \App\Models\PageSection  $pageSection
+     * @param  \App\Models\ActivityDetail  $activityDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(PageSection $pageSection)
+    public function edit(ActivityDetail $activityDetail)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified activity in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PageSection  $pageSection
+     * @param  \App\Models\ActivityDetail  $activityDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PageSection $pageSection)
+    public function update(Request $request, ActivityDetail $activityDetail)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified activity from storage.
      *
-     * @param  \App\Models\PageSection  $pageSection
+     * @param  \App\Models\ActivityDetail  $activityDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PageSection $pageSection)
+    public function destroy( ActivityDetail $activityDetail)
     {
         //
     }

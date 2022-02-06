@@ -5,7 +5,7 @@
         
         <x-form.input name="title" autofocus />
         
-        <x-form.label for="page_status_id" labetl="Status" />
+        <x-form.label for="page_status_id" label="Status" />
         <select  name="page_status_id">
             @foreach ($statuses as $status)
                 <option value="{{ $status->id }}" {{ old('page_status_id') == $status->id ? 'selected' : '' }}>{{ $status->status }}</option>

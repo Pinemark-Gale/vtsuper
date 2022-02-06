@@ -94,8 +94,9 @@ Route::middleware('permission.check:teacher')->group(function () {
     Route::get('admin/activities', [AdminActivityController::class, 'index'])->name('admin-activities');
     Route::get('admin/activities/search', [AdminPrivilegeController::class, 'search'])->name('admin-activities-search');
     Route::get('admin/activities/{activity:name}', [AdminActivityController::class, 'show'])->name('admin-activity');
-    Route::get('admin/activity/create', [AdminActivityController::class, 'index'])->name('admin-activity-create');
+    Route::get('admin/activity/create', [AdminActivityController::class, 'create'])->name('admin-activity-create');
     Route::get('admin/activity/{activity:name}/edit', [AdminActivityController::class, 'edit'])->name('admin-activity-edit');
+    Route::post('admin/activity/store', [AdminActivityController::class, 'store'])->name('admin-activity-store');
     Route::delete('admin/activity/{activity:name}/destroy', [AdminActivityController::class, 'destroy'])->name('admin-activity-destroy');
 });
 
