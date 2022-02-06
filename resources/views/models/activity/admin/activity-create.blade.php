@@ -1,5 +1,5 @@
 <x-layouts.app webpageTitle="Admin Panel">
-    
+
     <x-form.form :action="route('admin-activity-store')">
         <x-form.title>Create Activity</x-form.title>
         <x-form.input-hidden name="user_id" value="{{ auth()->user()->id }}" />
@@ -8,12 +8,26 @@
 
         <x-form.label for="resource_id" label="Resource" />
         <select name="resource_id">
+            <option value=""></option>
             @foreach ($resources as $resource)
                 <option value="{{ $resource->id }}" {{ old('resource_id') == $resource-> id ? 'selected' : '' }}>{{ $resource->name }}</option>
             @endforeach
         </select>
         
+        <x-form.label for="instructions" />
         <x-form.editor name="instructions" />
+
+        <script src="{{ asset('js/form-activity.js') }}" defer></script>
+
+        <div id="question-container">
+
+        </div>
+
+        <div class="button-options">
+            <button id="button-fitb">Add Fill in the Blank Question</button>
+            <button id="button-mc">Add Multiple Choice Question</button>
+            <button id="button-sa">Add Short Answer Question</button>
+        </div>
         <x-form.button>Create Activity</x-form.button>
     </x-form.form>
 

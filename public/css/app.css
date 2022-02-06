@@ -501,6 +501,8 @@ a:hover {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 5px;
+  /* Class name has form-array.js dependency. */
+  /* Class name has form-array.js dependency. */
 }
 .admin-form .title {
   display: block;
@@ -585,9 +587,14 @@ a:hover {
 .admin-form .array-container {
   border-radius: 2px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   margin: 5px;
   text-align: center;
   width: 80%;
+}
+.admin-form .array-container .array-item {
+  width: 30%;
 }
 .admin-form .array-header {
   display: block;
@@ -601,6 +608,37 @@ a:hover {
 .admin-form .disabled {
   background-color: #6D80A9;
   opacity: 0.7;
+}
+.admin-form .button-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 80%;
+}
+.admin-form .button-options button {
+  margin: 5px;
+  padding: 5px;
+  width: 30%;
+}
+.admin-form #question-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 80%;
+}
+.admin-form #question-container label {
+  border: 1px solid #F5E6C4;
+  width: calc(100% - 22px);
+}
+.admin-form #question-container input {
+  border: 1px solid #F5E6C4;
+  width: calc(100% - 22px);
+}
+.admin-form #question-container button {
+  border: 1px solid #F5E6C4;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: calc(100% - 10px);
 }
 
 .home-page-hero {
