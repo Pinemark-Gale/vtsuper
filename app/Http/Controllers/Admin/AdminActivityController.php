@@ -32,7 +32,7 @@ class AdminActivityController extends Controller
     public function create()
     {
         return view('models.activity.admin.activity-create', [
-            'resources' => Resource::all()
+            'resources' => Resource::all(),
         ]);
     }
 
@@ -44,7 +44,21 @@ class AdminActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'unique:App\Models\ActivityDetail,id'],
+            'minutes_to_complete' => ['required', 'integer'],
+            'resource_id' => ['required', 'integer', 'exists:App\Models\Resource,id'],
+            'instructions' => ['required', 'string'],
+            'module' => ['required', 'array'],
+            'module.*.type' => ['required', 'string', 'exists:App\Models\ActivityAnswerType,type'],
+            'module.*.question' => ['required', 'string'],
+            'module.*.answer' => ['required', 'array'],
+            'module.*.answer.*' => ['required', 'string'],
+            'module.*.placement' => ['array'],
+            'module.*.placement.*' =>  ['string']
+        ]);
+
+        dd($request);
     }
 
     /**

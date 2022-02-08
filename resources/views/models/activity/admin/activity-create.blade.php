@@ -2,7 +2,6 @@
 
     <x-form.form :action="route('admin-activity-store')">
         <x-form.title>Create Activity</x-form.title>
-        <x-form.input-hidden name="user_id" value="{{ auth()->user()->id }}" />
         <x-form.input name="name" required autofocus />
         <x-form.input name="minutes_to_complete" label="Minutes to Complete" />
 
@@ -20,13 +19,16 @@
         <script src="{{ asset('js/form-activity.js') }}" defer></script>
 
         <div id="question-container">
-
+            
         </div>
+        @foreach($errors->all() as $message)
+            {{ $message }}
+        @endforeach
 
         <div class="button-options">
-            <button id="button-fitb">Add Fill in the Blank Question</button>
-            <button id="button-mc">Add Multiple Choice Question</button>
-            <button id="button-sa">Add Short Answer Question</button>
+            <button id="button-fitb" type="button">Add Fill in the Blank Question</button>
+            <button id="button-mc" type="button">Add Multiple Choice Question</button>
+            <button id="button-sa" type="button">Add Short Answer Question</button>
         </div>
         <x-form.button>Create Activity</x-form.button>
     </x-form.form>

@@ -11,18 +11,25 @@ function remove_element(to_remove) {
  * Purpose: Create FITB questions for an activity.
  ********************************************************************/
 function add_fitb() {
+    var order = document.getElementById('question-container').childElementCount;
+
     var label = document.createElement('label');
-    label.setAttribute('for', 'question_fitb[]');
+    label.setAttribute('for', 'module[' + order + '][question]');
     label.setAttribute('label', 'Fill in the Blank Question');
     label.innerHTML = 'Fill in the Blank Question';
+
+    var type = document.createElement('input');
+    type.setAttribute('name', 'module[' + order + '][type]');
+    type.setAttribute('type', 'hidden');
+    type.setAttribute('value', 'fitb');
     
     var question = document.createElement('input');
-    question.setAttribute('name', 'question_fitb[]')
+    question.setAttribute('name', 'module[' + order + '][question]');
     question.setAttribute('type', 'text');
     question.setAttribute('placeholder', 'question');
 
     var answer = document.createElement('input');
-    answer.setAttribute('name', 'answer_fitb[]')
+    answer.setAttribute('name', 'module[' + order + '][answer][]')
     answer.setAttribute('type', 'text');
     answer.setAttribute('placeholder', 'answer');
 
@@ -32,6 +39,7 @@ function add_fitb() {
 
     var container = document.getElementById('question-container')
     container.appendChild(label);
+    label.appendChild(type);
     label.appendChild(question);
     label.appendChild(answer);
     label.appendChild(delete_button);
@@ -42,13 +50,20 @@ function add_fitb() {
  * Purpose: Create MC questions for an activity.
  ********************************************************************/
 function add_mc() {
+    var order = document.getElementById('question-container').childElementCount;
+
     var label = document.createElement('label');
-    label.setAttribute('for', 'question_mc[]');
+    label.setAttribute('for', 'module[' + order + '][question]');
     label.setAttribute('label', 'Multiple Choice Question');
     label.innerHTML = 'Multiple Choice Question';
 
+    var type = document.createElement('input');
+    type.setAttribute('name', 'module[' + order + '][type]');
+    type.setAttribute('type', 'hidden');
+    type.setAttribute('value', 'mc');
+
     var question = document.createElement('input');
-    question.setAttribute('name', 'question_mc[]')
+    question.setAttribute('name', 'module[' + order + '][question]');
     question.setAttribute('type', 'text');
     question.setAttribute('placeholder', 'question');
 
@@ -56,17 +71,18 @@ function add_mc() {
     delete_button.innerHTML = 'Delete Question';
     delete_button.onclick = function () {remove_element(label)};
 
-    var container = document.getElementById('question-container')
+    var container = document.getElementById('question-container');
     container.appendChild(label);
+    label.appendChild(type);
     label.appendChild(question);
     for (var i = 0; i < 4; i++) {
         var placement = document.createElement('input');
-        placement.setAttribute('name', 'placement_mc[]')
+        placement.setAttribute('name', 'module[' + order + '][placement][]');
         placement.setAttribute('type', 'text');
         placement.setAttribute('placeholder', 'placement: for example \"a)\"');
     
         var answer = document.createElement('input');
-        answer.setAttribute('name', 'answer_mc[]')
+        answer.setAttribute('name', 'module[' + order + '][answer][]');
         answer.setAttribute('type', 'text');
         answer.setAttribute('placeholder', 'answer');
     
@@ -81,18 +97,25 @@ function add_mc() {
  * Purpose: Create SA questions for an activity.
  ********************************************************************/
 function add_sa() {
+    var order = document.getElementById('question-container').childElementCount;
+
     var label = document.createElement('label');
-    label.setAttribute('for', 'question_sa[]');
+    label.setAttribute('for', 'module[' + order + '][question]');
     label.setAttribute('label', 'Short Answer');
     label.innerHTML = 'Short Answer';
+
+    var type = document.createElement('input');
+    type.setAttribute('name', 'module[' + order + '][type]');
+    type.setAttribute('type', 'hidden');
+    type.setAttribute('value', 'sa');
     
     var question = document.createElement('input');
-    question.setAttribute('name', 'question_sa[]')
+    question.setAttribute('name', 'module[' + order + '][question]');
     question.setAttribute('type', 'text');
     question.setAttribute('placeholder', 'question');
 
     var answer = document.createElement('input');
-    answer.setAttribute('name', 'answer_sa[]')
+    answer.setAttribute('name', 'module[' + order + '][answer][]');
     answer.setAttribute('type', 'text');
     answer.setAttribute('placeholder', 'expected answer');
 
@@ -100,8 +123,9 @@ function add_sa() {
     delete_button.innerHTML = 'Delete Question';
     delete_button.onclick = function () {remove_element(label)};
 
-    var container = document.getElementById('question-container')
+    var container = document.getElementById('question-container');
     container.appendChild(label);
+    label.appendChild(type);
     label.appendChild(question);
     label.appendChild(answer);
     label.appendChild(delete_button);
