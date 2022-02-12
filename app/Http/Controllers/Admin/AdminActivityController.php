@@ -6,6 +6,14 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\ActivityDetails;
+use App\Models\ActivityQuestion;
+use App\Models\ActivityAnswer;
+use App\Models\ActivityAnswerType;
+use App\Models\ActivityAnswerFITB;
+use App\Models\ActivityAnswerMC;
+use App\Models\ActivityAnswerSA;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Models\ActivityDetail;
 use App\Models\Resource;
@@ -57,8 +65,63 @@ class AdminActivityController extends Controller
             'module.*.placement' => ['array'],
             'module.*.placement.*' =>  ['string']
         ]);
+        
+        $activityDetail = ActivityDetail::create([
+            'name' => $request->name,
+            'minutes_to_complete' => $request->minutes_to_complete,
+            'resource_id' => $request->resource_id,
+            'user_id' => Auth::user()->id,
+            'instructions' => $request->instructions
+        ]);
+        
+        foreach ($request->module as $module) {
+            $activityTypes = ActivityAnswerType::all()->mapWithKeys(function ($item, $key) {
+                return [$item['type'] => $item['id']];
+            });
+            
+            $activityQuestion = ActivityQuestion::firstOrCreate([
+                'question' => $module['question']
+            ]);
 
-        dd($request);
+            $activityAnswer = ActivityAnswer::create([
+                'activity_question_id' => $activityQuestion->id,
+                'activity_answer_type_id' => $activityTypes[$module['type']]
+            ]);
+            
+            switch($module['type']) {
+                case "fitb":
+                    $activityAnswerFITB = ActivityAnswerFITB::create([
+                        'activity_answer_id' => $activityAnswer->id,
+                        'response' => $module['answer'][0]
+                    ]);
+                    break;
+                case "mc":
+                    foreach ($module['answer'] as $index => $answer) {
+                        $activityAnswerMC = ActivityAnswerMC::create([
+                            'activity_answer_id' => $activityAnswer->id,
+                            'placement' => $module['placement'][$index],
+                            'response' => $answer,
+                            'correct' => 0
+                        ]);
+                    };
+                    break;
+                case "sa":
+                    $activityAnswerSA = ActivityAnswerSA::create([
+                        'activity_answer_id' => $activityAnswer->id,
+                        'response' => $module['answer'][0]
+                    ]);
+                    break;
+                default:
+                    return redirect()
+                    ->back()
+                    ->with(
+                        config('session.system_message'), 
+                        'Please contact the system administrator and give the following message: Module type ' . $module['type'] . ' cannot be found and got past system validation.'
+                    );
+            }
+        };
+
+        return redirect(route('admin-activities'));
     }
 
     /**
