@@ -10,7 +10,7 @@
 
     <x-table.table
         caption="List of activities on the website." 
-        header1="Resource Name"
+        header1="Activity Name"
         header2="Type"
     >
         <x-slot name="sTableBody">

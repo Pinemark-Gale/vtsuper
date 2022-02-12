@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\ActivityDetails;
+use App\Models\ActivityDetail;
+use App\Models\Resource;
 use App\Models\ActivityQuestion;
 use App\Models\ActivityAnswer;
 use App\Models\ActivityAnswerType;
@@ -15,8 +16,6 @@ use App\Models\ActivityAnswerSA;
 use Illuminate\Support\Facades\Auth;
 
 
-use App\Models\ActivityDetail;
-use App\Models\Resource;
 
 class AdminActivityController extends Controller
 {
@@ -182,11 +181,12 @@ class AdminActivityController extends Controller
             'search_term' => ['required', 'string'],
         ]);
 
-        return view('models.page.admin.pages', [
-            'pages' => ActivityDetail::where('name', 'LIKE', '%'.$request->search_term.'%')
+        return view('models.activity.admin.activities', [
+            'activities' => ActivityDetail::where('name', 'LIKE', '%'.$request->search_term.'%')
             ->orWhere('minutes_to_complete', 'LIKE', '%'.$request->search_term.'%')
             ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
             ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orderby('name')->get()
         ]);
     }
 
