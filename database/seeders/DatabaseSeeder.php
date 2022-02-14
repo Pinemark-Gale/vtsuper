@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call([PageSectionSeeder::class]);
         $this->call([PageStatusSeeder::class]);
         $this->call([UserSeeder::class]);
+        $this->call([ActivityAnswerTypeSeeder::class]);
         
         /* Generate schools and store for user attachment. */
         $schools = \App\Models\School::factory(5)->create();
