@@ -55,8 +55,8 @@ class AdminResourceController extends Controller
             'name' => ['required', 'unique:App\Models\Resource', 'string'],
             'link' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'tags.*' => ['array:id,tag'],
-            'tags.*.id' => ['exists:App\Models\ResourceTag,id']
+            'array' => ['array'],
+            'array.*' => ['integer', 'exists:App\Models\ResourceTag,id'],
         ]);
         
         $resource = Resource::create([
@@ -67,6 +67,7 @@ class AdminResourceController extends Controller
             'description' => $request->description,
         ]);
 
+        dd($request->array);
          /* Sync tags to many-to-many table. */
          $resource->tags()->sync($request->array, 'id');
 

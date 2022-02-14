@@ -52,9 +52,10 @@ class AdminActivityController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'string', 'unique:App\Models\ActivityDetail,id'],
+            'name' => ['required', 'string'],
             'minutes_to_complete' => ['required', 'integer'],
             'resource_id' => ['required', 'integer', 'exists:App\Models\Resource,id'],
+            'slug' => ['required', 'unique:App\Models\ActivityDetail', 'string'],
             'instructions' => ['required', 'string'],
             'module' => ['required', 'array'],
             'module.*.type' => ['required', 'string', 'exists:App\Models\ActivityAnswerType,type'],
@@ -72,6 +73,8 @@ class AdminActivityController extends Controller
             'user_id' => Auth::user()->id,
             'instructions' => $request->instructions
         ]);
+
+        $questionsToSync = array();
         
         foreach ($request->module as $module) {
             $activityTypes = ActivityAnswerType::all()->mapWithKeys(function ($item, $key) {
@@ -81,6 +84,8 @@ class AdminActivityController extends Controller
             $activityQuestion = ActivityQuestion::firstOrCreate([
                 'question' => $module['question']
             ]);
+
+            array_push($questionsToSync, $activityQuestion->id);
 
             $activityAnswer = ActivityAnswer::create([
                 'activity_question_id' => $activityQuestion->id,
@@ -120,6 +125,9 @@ class AdminActivityController extends Controller
             }
         };
 
+        // dd($questionsToSync);
+        $activityDetail->questions()->sync($questionsToSync, 'id');
+
         return redirect(route('admin-activities'));
     }
 
@@ -131,7 +139,9 @@ class AdminActivityController extends Controller
      */
     public function show(ActivityDetail $activityDetail)
     {
-        //
+        return view('models.activity.admin.activity', [
+            'activityDetail' => $activityDetail
+        ]);
     }
 
     /**

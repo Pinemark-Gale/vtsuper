@@ -18,6 +18,7 @@ class CreateActivityDetailsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('resource_id')->constrained()->nullable();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->text('instructions');
             $table->unsignedSmallInteger('minutes_to_complete');
             $table->timestamps();

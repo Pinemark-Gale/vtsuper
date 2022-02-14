@@ -3,6 +3,7 @@
     <x-form.form :action="route('admin-activity-store')">
         <x-form.title>Create Activity</x-form.title>
         <x-form.input name="name" required autofocus />
+        <x-form.input name="slug" required />
         <x-form.input name="minutes_to_complete" label="Minutes to Complete" />
 
         <x-form.label for="resource_id" label="Resource" />
