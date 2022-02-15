@@ -17,7 +17,7 @@
             @foreach ($activities as $activity)
                 <tr class="base-row bottom-border">
                     <th class="first-col" scope="row">
-                        <a href="{{ route('admin-activity-edit', ['activityDetail' => $activity->name]) }}">{{ $activity->name }}</a>
+                        <a href="{{ route('admin-activity-edit', ['activityDetail' => $activity->slug]) }}">{{ $activity->name }}</a>
                     </th>
                     <td class="second-col">{{ $activity->name }}</td>
                     <td class="expand-col">
@@ -29,10 +29,10 @@
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
-                            <a href="{{ route('admin-activity', ['activityDetail' => $activity->name]) }}">
+                            <a href="{{ route('admin-activity', ['activityDetail' => $activity->slug]) }}">
                                 <button class="action-button" data-message="Get more info on {{ $activity->name }} activity.">More Info</button>
                             </a>
-                            <form method="POST" action="{{ route('admin-activity-destroy', ['activityDetail' => $activity->name]) }}">
+                            <form method="POST" action="{{ route('admin-activity-destroy', ['activityDetail' => $activity->slug]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button tag="submit" class="action-button delete-button" data-message="Delete {{ $activity->name }} activity.">Delete</button>

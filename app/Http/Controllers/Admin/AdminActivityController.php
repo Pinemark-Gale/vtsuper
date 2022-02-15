@@ -68,6 +68,7 @@ class AdminActivityController extends Controller
         
         $activityDetail = ActivityDetail::create([
             'name' => $request->name,
+            'slug' => $request->slug,
             'minutes_to_complete' => $request->minutes_to_complete,
             'resource_id' => $request->resource_id,
             'user_id' => Auth::user()->id,
@@ -125,7 +126,6 @@ class AdminActivityController extends Controller
             }
         };
 
-        // dd($questionsToSync);
         $activityDetail->questions()->sync($questionsToSync, 'id');
 
         return redirect(route('admin-activities'));

@@ -22,4 +22,9 @@ class ActivityQuestion extends Model
     {
         return $this->belongsToMany(ActivityDetail::class);
     }
+
+    public function answers()
+    {
+        return $this->hasMany(ActivityAnswer::class);
+    }
 }

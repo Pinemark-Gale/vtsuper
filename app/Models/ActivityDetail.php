@@ -18,6 +18,7 @@ class ActivityDetail extends Model
         'user_id',
         'resource_id',
         'name',
+        'slug',
         'instructions',
         'minutes_to_complete',
     ];
