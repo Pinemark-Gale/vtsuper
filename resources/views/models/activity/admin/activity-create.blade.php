@@ -10,7 +10,7 @@
         <select name="resource_id">
             <option value=""></option>
             @foreach ($resources as $resource)
-                <option value="{{ $resource->id }}" {{ old('resource_id') == $resource-> id ? 'selected' : '' }}>{{ $resource->name }}</option>
+                <option value="{{ $resource->id }}" {{ old('resource_id') == $resource->id ? 'selected' : '' }}>{{ $resource->name }}</option>
             @endforeach
         </select>
         

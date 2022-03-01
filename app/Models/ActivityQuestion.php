@@ -15,12 +15,13 @@ class ActivityQuestion extends Model
      * @var string[]
      */
     protected $fillable = [
+        'activity_detail_id',
         'question'
     ];
 
     public function activities()
     {
-        return $this->belongsToMany(ActivityDetail::class);
+        return $this->belongsTo(ActivityDetail::class);
     }
 
     public function answers()

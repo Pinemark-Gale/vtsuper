@@ -6,8 +6,55 @@ var __webpack_exports__ = {};
 /* Description: A set of functions used to add fitb, mc, or sa 
  * questions when creating a activity.
  ********************************************************************/
+
+/* Pre:  edit and create views for activities
+ * Post:  reset indicies of inputs/labels
+ * Purpose: Reset the indicies of inputs and labels of activity 
+ * questions to avoid data loss due to the same index is submitted
+ * in a form array.
+ ********************************************************************/
+function reset_indicies() {
+  /* gather all other question elements */
+  var questions = document.getElementsByClassName('activity_question');
+  /* reset index of all other elements to stop duplicate numbers from 
+   * appearing (using regular expression to replace index/numbers) */
+
+  for (q_index = 0; q_index < questions.length; q_index++) {
+    /* change label to match input names */
+    questions[q_index].setAttribute('for', questions[q_index].getAttribute('for').replace(/[0-9]+/, q_index));
+    /* reset input array indicies */
+
+    for (i_index = 0; i_index < questions[q_index].childElementCount - 1; i_index++) {
+      console.log(questions[q_index].children[i_index]);
+      questions[q_index].children[i_index].setAttribute('name', questions[q_index].children[i_index].getAttribute('name').replace(/[0-9]+/, q_index));
+    }
+  }
+}
+/* Pre:  create_view
+ * Post:  delete question (label and child elements)
+ * Purpose: Deletes a question from the activity creation form.
+ ********************************************************************/
+
+
 function remove_element(to_remove) {
+  /* delete the question */
   to_remove.remove();
+  /* reset indicies of other questions */
+
+  reset_indicies();
+}
+/* Pre:  edit_view
+ * Post:  delete question (label and child elements)
+ * Purpose: Deletes a question from the activity edit form.
+ ********************************************************************/
+
+
+function remove_parent(label_button) {
+  /* delete the question */
+  label_button.parentElement.remove();
+  /* reset indicies of other questions */
+
+  reset_indicies();
 }
 /* Pre:  function to be onloaded to FITB button
  * Post:  onclick function create question or delete
@@ -18,6 +65,7 @@ function remove_element(to_remove) {
 function add_fitb() {
   var order = document.getElementById('question-container').childElementCount;
   var label = document.createElement('label');
+  label.setAttribute('class', 'activity_question');
   label.setAttribute('for', 'module[' + order + '][question]');
   label.setAttribute('label', 'Fill in the Blank Question');
   label.innerHTML = 'Fill in the Blank Question';
@@ -56,6 +104,7 @@ function add_fitb() {
 function add_mc() {
   var order = document.getElementById('question-container').childElementCount;
   var label = document.createElement('label');
+  label.setAttribute('class', 'activity_question');
   label.setAttribute('for', 'module[' + order + '][question]');
   label.setAttribute('label', 'Multiple Choice Question');
   label.innerHTML = 'Multiple Choice Question';
@@ -103,6 +152,7 @@ function add_mc() {
 function add_sa() {
   var order = document.getElementById('question-container').childElementCount;
   var label = document.createElement('label');
+  label.setAttribute('class', 'activity_question');
   label.setAttribute('for', 'module[' + order + '][question]');
   label.setAttribute('label', 'Short Answer');
   label.innerHTML = 'Short Answer';
@@ -150,6 +200,14 @@ window.onload = function () {
   document.getElementById('button-sa').onclick = function () {
     add_sa();
   };
+  /* for activity edit view if questions already exist */
+
+
+  var editDeleteButtons = document.getElementsByClassName('label_button');
+
+  for (index = 0; index < editDeleteButtons.length; index++) {
+    editDeleteButtons[index].onclick = remove_parent.bind(this, editDeleteButtons[index]);
+  }
 };
 /******/ })()
 ;

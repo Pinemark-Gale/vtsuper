@@ -38,7 +38,7 @@ class ActivityDetail extends Model
     /* Eloquent relationship for $activityDetail->questions */
     public function questions()
     {
-        return $this->belongsToMany(ActivityQuestion::class);
+        return $this->hasMany(ActivityQuestion::class);
     }
 
 }

@@ -14,8 +14,7 @@ use App\Models\ActivityAnswerFITB;
 use App\Models\ActivityAnswerMC;
 use App\Models\ActivityAnswerSA;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Validation\Rule;
 
 class AdminActivityController extends Controller
 {
@@ -74,19 +73,16 @@ class AdminActivityController extends Controller
             'user_id' => Auth::user()->id,
             'instructions' => $request->instructions
         ]);
-
-        $questionsToSync = array();
         
         foreach ($request->module as $module) {
             $activityTypes = ActivityAnswerType::all()->mapWithKeys(function ($item, $key) {
                 return [$item['type'] => $item['id']];
             });
             
-            $activityQuestion = ActivityQuestion::firstOrCreate([
+            $activityQuestion = ActivityQuestion::create([
+                'activity_detail_id' => $activityDetail->id,
                 'question' => $module['question']
             ]);
-
-            array_push($questionsToSync, $activityQuestion->id);
 
             $activityAnswer = ActivityAnswer::create([
                 'activity_question_id' => $activityQuestion->id,
@@ -126,8 +122,6 @@ class AdminActivityController extends Controller
             }
         };
 
-        $activityDetail->questions()->sync($questionsToSync, 'id');
-
         return redirect(route('admin-activities'));
     }
 
@@ -152,7 +146,10 @@ class AdminActivityController extends Controller
      */
     public function edit(ActivityDetail $activityDetail)
     {
-        //
+        return view('models.activity.admin.activity-edit', [
+            'activity' => $activityDetail,
+            'resources' => Resource::all(),
+        ]);
     }
 
     /**
@@ -164,7 +161,90 @@ class AdminActivityController extends Controller
      */
     public function update(Request $request, ActivityDetail $activityDetail)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'string'],
+            'minutes_to_complete' => ['required', 'integer'],
+            'resource_id' => ['required', 'integer', 'exists:App\Models\Resource,id'],
+            'slug' => ['required', Rule::unique('activity_tables', 'slug')->ignore($activityDetail->id), 'string'],
+            'instructions' => ['required', 'string'],
+            'module' => ['required', 'array'],
+            'module.*.type' => ['required', 'string', 'exists:App\Models\ActivityAnswerType,type'],
+            'module.*.question' => ['required', 'string'],
+            'module.*.answer' => ['required', 'array'],
+            'module.*.answer.*' => ['required', 'string'],
+            'module.*.placement' => ['array'],
+            'module.*.placement.*' =>  ['string']
+        ]);
+        
+        $activityDetail->name = $request->name;
+        $activityDetail->slug = $request->slug;
+        $activityDetail->minutes_to_complete = $request->minutes_to_complete;
+        $activityDetail->resource_id = $request->resource_id;
+        $activityDetail->user_id = Auth::user()-id;
+        $activityDetail->instructions = $request->instructions;
+
+        $activityDetail->save();
+
+        /* REST OF FUNCTION NEEDS TO BE REWRITTEN! */
+
+        $activityDetail = ActivityDetail::create([
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'minutes_to_complete' => $request->minutes_to_complete,
+            'resource_id' => $request->resource_id,
+            'user_id' => Auth::user()->id,
+            'instructions' => $request->instructions
+        ]);
+        
+        foreach ($request->module as $module) {
+            $activityTypes = ActivityAnswerType::all()->mapWithKeys(function ($item, $key) {
+                return [$item['type'] => $item['id']];
+            });
+            
+            $activityQuestion = ActivityQuestion::create([
+                'activity_detail_id' => $activityDetail->id,
+                'question' => $module['question']
+            ]);
+
+            $activityAnswer = ActivityAnswer::create([
+                'activity_question_id' => $activityQuestion->id,
+                'activity_answer_type_id' => $activityTypes[$module['type']]
+            ]);
+            
+            switch($module['type']) {
+                case "fitb":
+                    $activityAnswerFITB = ActivityAnswerFITB::create([
+                        'activity_answer_id' => $activityAnswer->id,
+                        'response' => $module['answer'][0]
+                    ]);
+                    break;
+                case "mc":
+                    foreach ($module['answer'] as $index => $answer) {
+                        $activityAnswerMC = ActivityAnswerMC::create([
+                            'activity_answer_id' => $activityAnswer->id,
+                            'placement' => $module['placement'][$index],
+                            'response' => $answer,
+                            'correct' => 0
+                        ]);
+                    };
+                    break;
+                case "sa":
+                    $activityAnswerSA = ActivityAnswerSA::create([
+                        'activity_answer_id' => $activityAnswer->id,
+                        'response' => $module['answer'][0]
+                    ]);
+                    break;
+                default:
+                    return redirect()
+                    ->back()
+                    ->with(
+                        config('session.system_message'), 
+                        'Please contact the system administrator and give the following message: Module type ' . $module['type'] . ' cannot be found and got past system validation.'
+                    );
+            }
+        };
+
+        return redirect(route('admin-activities'));
     }
 
     /**

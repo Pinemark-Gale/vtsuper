@@ -15,6 +15,7 @@ class CreateActivityQuestionsTable extends Migration
     {
         Schema::create('activity_questions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('activity_detail_id')->constrained();
             $table->text('question');
             $table->timestamps();
         });
