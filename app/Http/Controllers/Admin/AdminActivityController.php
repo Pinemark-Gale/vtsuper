@@ -250,7 +250,9 @@ class AdminActivityController extends Controller
      */
     public function destroy( ActivityDetail $activityDetail)
     {
-        //
+        $activityDetail->delete();
+
+        return redirect(route('admin-activities'));
     }
 
     /**
