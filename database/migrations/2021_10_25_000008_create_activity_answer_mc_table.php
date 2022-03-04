@@ -16,7 +16,7 @@ class CreateActivityAnswerMCTable extends Migration
     {
         Schema::create('activity_answer_mc', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('activity_answer_id')->constrained();
+            $table->foreignId('activity_answer_id')->constrained()->onDelete('cascade');
             $table->char('placement', 3);
             $table->string('response');
             $table->boolean('correct');

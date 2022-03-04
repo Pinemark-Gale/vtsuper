@@ -16,7 +16,7 @@ class CreateActivityAnswerFITBTable extends Migration
     {
         Schema::create('activity_answer_fitb', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('activity_answer_id')->constrained();
+            $table->foreignId('activity_answer_id')->constrained()->onDelete('cascade');
             $table->string('response');
             $table->timestamps();
         });

@@ -97,6 +97,7 @@ Route::middleware('permission.check:teacher')->group(function () {
     Route::get('admin/activity/create', [AdminActivityController::class, 'create'])->name('admin-activity-create');
     Route::get('admin/activity/{activityDetail:slug}/edit', [AdminActivityController::class, 'edit'])->name('admin-activity-edit');
     Route::post('admin/activity/store', [AdminActivityController::class, 'store'])->name('admin-activity-store');
+    Route::patch('admin/activity/{activityDetail:slug}/update', [AdminActivityController::class, 'update'])->name('admin-activity-update');
     Route::delete('admin/activity/{activityDetail:slug}/destroy', [AdminActivityController::class, 'destroy'])->name('admin-activity-destroy');
 });
 
@@ -116,7 +117,7 @@ Route::middleware('permission.check:contributor')->group(function () {
     Route::get('admin/resource/create', [AdminResourceController::class, 'create'])->name('admin-resource-create');
     Route::get('admin/resource/{resource:name}/edit', [AdminResourceController::class, 'edit'])->name('admin-resource-edit');
     Route::post('admin/resource/store', [AdminResourceController::class, 'store'])->name('admin-resource-store');
-    Route::patch('admin//resource/{resource:name}/update', [AdminResourceController::class, 'update'])->name('admin-resource-update');
+    Route::patch('admin/resource/{resource:name}/update', [AdminResourceController::class, 'update'])->name('admin-resource-update');
     
 });
 

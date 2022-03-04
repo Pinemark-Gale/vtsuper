@@ -165,7 +165,7 @@ class AdminActivityController extends Controller
             'name' => ['required', 'string'],
             'minutes_to_complete' => ['required', 'integer'],
             'resource_id' => ['required', 'integer', 'exists:App\Models\Resource,id'],
-            'slug' => ['required', Rule::unique('activity_tables', 'slug')->ignore($activityDetail->id), 'string'],
+            'slug' => ['required', Rule::unique('activity_details', 'slug')->ignore($activityDetail->id), 'string'],
             'instructions' => ['required', 'string'],
             'module' => ['required', 'array'],
             'module.*.type' => ['required', 'string', 'exists:App\Models\ActivityAnswerType,type'],
@@ -180,21 +180,16 @@ class AdminActivityController extends Controller
         $activityDetail->slug = $request->slug;
         $activityDetail->minutes_to_complete = $request->minutes_to_complete;
         $activityDetail->resource_id = $request->resource_id;
-        $activityDetail->user_id = Auth::user()-id;
+        $activityDetail->user_id = Auth::user()->id;
         $activityDetail->instructions = $request->instructions;
 
         $activityDetail->save();
 
-        /* REST OF FUNCTION NEEDS TO BE REWRITTEN! */
+        $questions = $activityDetail->questions;
 
-        $activityDetail = ActivityDetail::create([
-            'name' => $request->name,
-            'slug' => $request->slug,
-            'minutes_to_complete' => $request->minutes_to_complete,
-            'resource_id' => $request->resource_id,
-            'user_id' => Auth::user()->id,
-            'instructions' => $request->instructions
-        ]);
+        foreach ($questions as $question) {
+            $question->delete();
+        }
         
         foreach ($request->module as $module) {
             $activityTypes = ActivityAnswerType::all()->mapWithKeys(function ($item, $key) {

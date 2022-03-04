@@ -1,6 +1,7 @@
 <x-layouts.app webpageTitle="Admin Panel">
 
-    <x-form.form :action="route('admin-activity-store')">
+    <x-form.form :action="route('admin-activity-update', ['activityDetail' => $activity->slug])">
+        @method('patch')
         <x-form.title>Edit Activity</x-form.title>
         <x-form.input name="name" :value="old('name') ? old('name') : $activity->name" required autofocus />
         <x-form.input name="slug" :value="old('slug') ? old('slug') : $activity->slug" required />
@@ -59,7 +60,7 @@
             <button id="button-mc" type="button">Add Multiple Choice Question</button>
             <button id="button-sa" type="button">Add Short Answer Question</button>
         </div>
-        <x-form.button>Create Activity</x-form.button>
+        <x-form.button>Update Activity</x-form.button>
     </x-form.form>
 
 </x-layouts.app>
