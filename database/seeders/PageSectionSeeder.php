@@ -21,5 +21,9 @@ class PageSectionSeeder extends Seeder
         \App\Models\PageSection::create([
             'section' => 'Main Navigation'
         ]);
+
+        \App\Models\PageSection::create([
+            'section' => 'Sub Footer'
+        ]);
     }
 }
