@@ -346,6 +346,11 @@ a:hover {
   background-color: #FFD9A8;
 }
 
+/* general use classes */
+.bold {
+  font-weight: bold;
+}
+
 /* admin panel header that goes above tables */
 .admin-panel-header {
   display: flex;

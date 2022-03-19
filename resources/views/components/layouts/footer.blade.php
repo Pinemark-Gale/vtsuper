@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="info-container">
-        <a class="info">2021 (c) Winooski Partners for Prevention</a>
+        <a class="info">2022 (c) Winooski Partners for Prevention</a>
         <a class="info">Site by Pinemark Studio</a>
             @foreach ($appLinks as $link)
                 @if ($link->sections->contains('section', 'Sub Footer'))
