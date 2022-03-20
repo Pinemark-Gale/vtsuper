@@ -16,6 +16,7 @@
     var toolbarOptions = [
         {'header': 1}, {'header': 2}, 
         {'list': 'ordered'}, {'list': 'bullet'},
+        'align', {'align': 'center'}, {'align': 'right'} ,
         'bold', 'italic', 'underline', 'strike',
         'blockquote', 'link', 'image', 'video',
         'code-block', 'clean'
