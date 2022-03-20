@@ -67,7 +67,6 @@ class AdminResourceController extends Controller
             'description' => $request->description,
         ]);
 
-        dd($request->array);
          /* Sync tags to many-to-many table. */
          $resource->tags()->sync($request->array, 'id');
 
