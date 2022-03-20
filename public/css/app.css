@@ -757,6 +757,9 @@ a:hover {
   border-bottom: 5px solid #6D80A9;
   margin: 5px;
   width: 45%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .footer-container .seperator {
   min-width: 175px;
