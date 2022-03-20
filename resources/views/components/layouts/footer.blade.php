@@ -9,7 +9,7 @@
         <div class="link-container">
             @foreach ($appLinks as $link)
                 @if ($link->sections->contains('section', 'Footer'))
-                    <a href="{{ route('page', ['page' => $link->slug]) }}" class="link blue-link">{{ $link->title }}</a>
+                    <a href="{{ route('admin-page', ['page' => $link->slug]) }}" class="link blue-link">{{ $link->title }}</a>
                 @endif
             @endforeach
         </div>
@@ -19,7 +19,7 @@
         <a class="info">Site by Pinemark Studio</a>
             @foreach ($appLinks as $link)
                 @if ($link->sections->contains('section', 'Sub Footer'))
-                    <a href="{{ route('page', ['page' => $link->slug]) }}" class="info">{{ $link->title }}</a>
+                    <a href="{{ route('admin-page', ['page' => $link->slug]) }}" class="info">{{ $link->title }}</a>
                 @endif
             @endforeach
     </div>
