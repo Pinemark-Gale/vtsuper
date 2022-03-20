@@ -15,7 +15,7 @@ class ResourceTagSeeder extends Seeder
     {
         /* Make common resource tags for app. */
         \App\Models\ResourceTag::create([
-            'tag' => 'Substance Abuse & Prevention'
+            'tag' => 'Substance Use & Prevention'
         ]);
 
         \App\Models\ResourceTag::create([
