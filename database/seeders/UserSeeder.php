@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             'email' => "admin@example.com",
             'password' => Hash::make("admin"),
             'school_id' => 1,
-            'privilege_id' => 5
+            'privilege_id' => 5,
+            'pronoun_id' => 1
         ]);
     }
 }

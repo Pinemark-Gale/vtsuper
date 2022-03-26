@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
          * resource tags for app. 
          * */
         $this->call([PrivilegeSeeder::class]);
+        $this->call([PronounSeeder::class]);
         $this->call([ResourceTagSeeder::class]);
         $this->call([ResourceTypeSeeder::class]);
         $this->call([SourceSeeder::class]);

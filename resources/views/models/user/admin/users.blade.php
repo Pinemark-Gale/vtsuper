@@ -25,6 +25,7 @@
                 </tr>
                 <tr class="hidden bottom-border">
                     <td class="first-col">
+                        <p><span class="bold">Pronouns: </span> {{ $user->pronoun->pronouns == 'not specified' ? '' : $user->pronoun->pronouns }}</p>
                         <p><span class="bold">Email: </span> {{ $user->email }}</p>
                         <p><span class="bold">School: </span> {{ $user->school->name }}</p>
                     </td>

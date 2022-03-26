@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'privilege_id',
-        'school_id'
+        'school_id',
+        'pronoun_id'
     ];
 
     /**
@@ -54,6 +55,12 @@ class User extends Authenticatable
     public function privilege()
     {
         return $this->belongsTo(Privilege::class);
+    }
+
+    /* Eloquent relationship for user->pronoun */
+    public function pronoun()
+    {
+        return $this->belongsTo(Pronoun::class);
     }
 
     /**

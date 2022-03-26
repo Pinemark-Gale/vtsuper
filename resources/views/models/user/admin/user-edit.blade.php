@@ -3,6 +3,7 @@
         @method('patch')
         <x-form.title>Edit User {{ $user->name }}</x-form.title>
         <x-form.input name="name" :value="old('name') ? old('name') : $user->name" autofocus />
+        <x-form.input name="pronouns" :value="old('pronouns') ? old('pronouns') : $user->pronoun->pronouns" />
 
         <x-form.label for="school_id" label="school" />
         <select  name="school_id">

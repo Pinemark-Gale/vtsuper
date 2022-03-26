@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Privilege;
 use App\Models\School;
 use App\Models\Page;
+use App\Models\Pronoun;
 use App\Models\ActivityDetail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,7 +28,7 @@ class AdminUserController extends Controller
     public function index()
     {
         return view('models.user.admin.users', [
-            'users' => User::with(['school', 'privilege'])
+            'users' => User::with(['school', 'privilege', 'pronoun'])
                 ->orderby('name')->get()
         ]);
     }
@@ -58,20 +59,27 @@ class AdminUserController extends Controller
             'email' => ['required', 'email', 'string', 'max:255', 'unique:\App\Models\User'],
             'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
-            'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
+            'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id'],
+            'pronouns' => ['string', 'max:100', 'nullable']
         ]);
+
+        /* Set pronoun id to default or create/fetch new one if specified. */
+        $pronoun_id = 1;
+        if (isset($request->pronouns)) {
+            $pronoun_id = Pronoun::firstOrCreate([
+                'pronouns' => $request->pronouns
+            ]);
+            $pronoun_id = $pronoun_id->id;
+        } 
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'school_id' => $request->school_id,
-            'privilege_id' => $request->privilege_id
+            'privilege_id' => $request->privilege_id,
+            'pronoun_id' => $pronoun_id
         ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
 
         return redirect(route('admin-users'));
     }
@@ -120,8 +128,18 @@ class AdminUserController extends Controller
             'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
-            'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id']
+            'privilege_id' => ['required', 'numeric', 'integer', 'exists:App\Models\Privilege,id'],
+            'pronouns' => ['string', 'max:100', 'nullable']
         ]);
+
+        /* Set pronoun id to default or create/fetch new one if specified. */
+        $pronoun_id = 1;
+        if (isset($request->pronouns)) {
+            $pronoun_id = Pronoun::firstOrCreate([
+                'pronouns' => $request->pronouns
+            ]);
+            $pronoun_id = $pronoun_id->id;
+        } 
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -130,6 +148,7 @@ class AdminUserController extends Controller
         }
         $user->school_id = $request->school_id;
         $user->privilege_id = $request->privilege_id;
+        $user->pronoun_id = $pronoun_id;
 
         $user->save();
 

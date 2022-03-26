@@ -2,6 +2,7 @@
     <x-form.form :action="route('admin-user-store')">
         <x-form.title>Register</x-form.title>
         <x-form.input name="name" required autofocus />
+        <x-form.input name="pronouns" />
 
         <x-form.label for="school_id" label="school" />
         <select  name="school_id">

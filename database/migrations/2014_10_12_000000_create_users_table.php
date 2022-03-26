@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->foreignId('privilege_id')->constrained();
             $table->foreignId('school_id')->constrained();
+            $table->foreignId('pronoun_id')->constrained();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

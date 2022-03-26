@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Privilege;
 use App\Models\School;
+use App\Models\Pronoun;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,14 +53,25 @@ class UserController extends Controller
             'email' => ['required', 'email', 'string', 'max:255', 'unique:\App\Models\User'],
             'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
+            'pronouns' => ['string', 'max:100', 'nullable']
         ]);
+
+        /* Set pronoun id to default or create/fetch new one if specified. */
+        $pronoun_id = 1;
+        if (isset($request->pronouns)) {
+            $pronoun_id = Pronoun::firstOrCreate([
+                'pronouns' => $request->pronouns
+            ]);
+            $pronoun_id = $pronoun_id->id;
+        }         
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'school_id' => $request->school_id,
-            'privilege_id' => config('privileges.privilege_map')['UNCATIGORIZED']
+            'privilege_id' => config('privileges.privilege_map')['UNCATIGORIZED'],
+            'pronoun_id' => $pronoun_id
         ]);
 
         event(new Registered($user));
@@ -109,15 +121,26 @@ class UserController extends Controller
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
+            'pronouns' => ['string', 'max:100', 'nullable']
         ]);
 
+        /* Set pronoun id to default or create/fetch new one if specified. */
+        $pronoun_id = 1;
+        if (isset($request->pronouns)) {
+            $pronoun_id = Pronoun::firstOrCreate([
+                'pronouns' => $request->pronouns
+            ]);
+            $pronoun_id = $pronoun_id->id;
+        }
+        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->school_id = $request->school_id;
+        $user->pronoun_id = $pronoun_id;
 
         $user->save();
 
-        return redirect(route('user-edit'));
+        return redirect(route('dashboard'));
     }
 
     /**
