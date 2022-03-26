@@ -28,7 +28,7 @@ class PageFactory extends Factory
             'page_status_id' => PageStatus::all()->random()->id,
             'title' => $this->faker->words(5, 'true'),
             'slug' => $this->faker->slug(),
-            'content' => $this->faker->randomHtml()
+            'content' => $this->faker->words(50, 'true')
         ];
     }
 }

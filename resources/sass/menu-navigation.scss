@@ -95,8 +95,8 @@
                 color: $super-black;
                 font-size: 1.7rem;
                 margin: 10px;
-                margin-bottom: 15px;
-                margin-top: 15px;
+                margin-bottom: 5px;
+                margin-top: 5px;
                 line-height: 0.4;
             }
 
@@ -111,10 +111,12 @@
 
             .red-link {
                 border-bottom: 5px solid $super-red;
+                line-height: 1;
             }
 
             .blue-link {
                 border-bottom: 5px solid $accent-dark-blue;
+                line-height: 1;
             }
     }
 

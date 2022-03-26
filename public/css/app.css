@@ -298,8 +298,8 @@ a:hover {
   color: #1A1818;
   font-size: 1.7rem;
   margin: 10px;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   line-height: 0.4;
 }
 .menu-nav-container .link-container form {
@@ -312,9 +312,11 @@ a:hover {
 }
 .menu-nav-container .link-container .red-link {
   border-bottom: 5px solid #F03C3C;
+  line-height: 1;
 }
 .menu-nav-container .link-container .blue-link {
   border-bottom: 5px solid #6D80A9;
+  line-height: 1;
 }
 .menu-nav-container .svg-container {
   display: flex;
