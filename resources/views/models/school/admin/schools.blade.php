@@ -17,23 +17,23 @@
             @foreach ($schools as $school)
                 <tr class="base-row bottom-border">
                     <th class="first-col" scope="row">
-                        <a href="{{ route('admin-school-edit', ['school' => $school->name]) }}">{{ $school->name }}</a>
+                        {{ $school->name }}
                     </th>
-                    <td class="second-col">{{ $school->district }}</td>
+                    <td class="second-col lobster-italic">{{ $school->district }}</td>
                     <td class="expand-col">
                         <button class="expand-button" data-message="Expand this row.">+</button>
                     </td>
                 </tr>
                 <tr class="hidden bottom-border">
                     <td class="first-col">
-                        <p>Updated At: {{ $school->updated_at->format('M j, Y') }}</p>
-                        <p>Created At: {{ $school->created_at->format('M j, Y') }}</p>
+                        <p><span class="bold">Total Enrolled:</span> {{ $school->user->count() }}</p>
+                        <p><span class="bold">Last Modified At:</span> {{ $school->updated_at->format('M j, Y') }}</p>
                     </td>
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
-                        <a href="{{ route('admin-school', ['school' => $school->name]) }}">
-                            <button class="action-button" data-message="Get more info on {{ $school->name }}.">More Info</button>
+                        <a href="{{ route('admin-school-edit', ['school' => $school->name]) }}">
+                            <button class="action-button" data-message="Edit details of {{ $school->name }}.">Edit</button>
                         </a>
                         <form method="POST" action="{{ route('admin-school-destroy', ['school' => $school->name]) }}">
                             @csrf

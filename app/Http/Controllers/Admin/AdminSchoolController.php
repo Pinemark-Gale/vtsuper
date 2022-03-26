@@ -20,7 +20,7 @@ class AdminSchoolController extends Controller
     public function index()
     {
         return view('models.school.admin.schools', [
-            'schools' => School::all()
+            'schools' => School::with(['user'])->get()
         ]);       
      }
 

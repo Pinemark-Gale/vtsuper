@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Privilege;
 use App\Models\School;
+use App\Models\Page;
+use App\Models\ActivityDetail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -142,6 +144,32 @@ class AdminUserController extends Controller
      */
     public function destroy(User $user)
     {
+        // Check if user is trying to delete admin user.
+        if ($user->name == 'admin') {
+            return redirect()
+                ->back()
+                ->with(
+                    config('session.system_message'), 
+                    'admin user cannot be deleted!'
+                );
+        }
+
+        // Find or create admin user.
+        $uncatigorized = User::where('name', '=', 'admin')->first();
+        if (is_null($uncatigorized)) {
+            $uncatigorized = User::create([
+                'name' => 'admin'
+            ]);
+            
+        }
+        
+        // Gather foreign keys and detach from pages.
+        $pagesToDetach = Page::where('user_id', '=', $user->id)
+            ->update(['user_id' => $uncatigorized->id]);
+        
+        $activityDetailToDetach = ActivityDetail::where('user_id', '=', $user->id)
+            ->update(['user_id' => $uncatigorized->id]);
+
         $user->delete();
 
         return redirect(route('admin-users'));

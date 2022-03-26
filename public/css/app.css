@@ -351,6 +351,11 @@ a:hover {
   font-weight: bold;
 }
 
+.lobster-italic {
+  font-style: italic;
+  font-family: Lobster;
+}
+
 /* admin panel header that goes above tables */
 .admin-panel-header {
   display: flex;
@@ -467,7 +472,13 @@ a:hover {
 }
 .general-table .first-col {
   text-align: left;
-  width: 60%;
+  width: 75%;
+  padding: 5px;
+}
+.general-table .first-col p {
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .general-table .second-col {
   text-align: center;
@@ -490,7 +501,6 @@ a:hover {
   cursor: pointer;
   font-size: 2em;
   font-weight: bold;
-  padding: 5px;
   padding-bottom: 8px;
   text-align: right;
   transition: 0.2s;

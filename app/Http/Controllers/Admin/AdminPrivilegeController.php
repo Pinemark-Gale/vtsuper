@@ -20,7 +20,7 @@ class AdminPrivilegeController extends Controller
     public function index()
     {
         return view('models.privilege.admin.privileges', [
-            'privileges' => Privilege::all()
+            'privileges' => Privilege::with(['user'])->get()
         ]);    
     }
 
