@@ -32,6 +32,9 @@
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
+                            <a href="{{ route('admin-activity', ['activityDetail' => $activity->slug]) }}">
+                                <button class="action-button" data-message="See a preview of {{ $activity->name }} activity.">Preview</button>
+                            </a>
                             <a href="{{ route('admin-activity-edit', ['activityDetail' => $activity->slug]) }}">
                                 <button class="action-button" data-message="Edit details of {{ $activity->name }} activity.">Edit</button>
                             </a>
