@@ -11,6 +11,14 @@
     <div class="link-container">
         @auth
             <a href="{{ route('user-edit') }}" class="red-link">My Settings</a>
+            <form method="POST" action="{{ route('logout') }}" >
+                    @csrf
+
+                    <div  class="red-link":href="route('logout')" onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </div>
+            </form>
             @if (auth()->user()->privilegeCheck('contributor'))
                 <a href="{{ route('admin-users') }}" class="red-link">Admin Panel</a>
             @endif
@@ -26,17 +34,6 @@
     <!-- right side of menu navigation -->
     <div class="link-container">
         <a href="{{ url('/dashboard') }}" class="blue-link">Dashboard</a>
-        @auth
-            <form method="POST" action="{{ route('logout') }}" >
-                    @csrf
-
-                    <div  class="blue-link":href="route('logout')" onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </div>
-            </form>
-        @endauth
-
         @foreach ($appLinks as $link)
             @if ($link->sections->contains('section', 'Main Navigation'))
                 <a href="{{ route('admin-page', ['page' => $link->slug]) }}" class="blue-link">{{ $link->title }}</a>
