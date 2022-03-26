@@ -33,7 +33,7 @@
                             <form method="POST" action="{{ route('admin-privilege-destroy', ['privilege' => $privilege->title]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button tag="submit" class="action-button delete-button" data-message="Delete {{ $privilege->title }} privilege.">Destroy</button>
+                                <button tag="submit" class="action-button delete-button" data-message="Delete {{ $privilege->title }} privilege.">Delete</button>
                             </form>
                         </div>    
                     </td>

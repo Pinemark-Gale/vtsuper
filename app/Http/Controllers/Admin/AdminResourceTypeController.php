@@ -18,7 +18,7 @@ class AdminResourceTypeController extends Controller
     public function index()
     {
         return view('models.resource_type.admin.resource-types', [
-            'resourceTypes' => ResourceType::all()
+            'resourceTypes' => ResourceType::with('resources')->get()
         ]);        
     }
 

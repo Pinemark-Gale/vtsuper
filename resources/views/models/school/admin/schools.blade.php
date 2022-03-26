@@ -38,7 +38,7 @@
                         <form method="POST" action="{{ route('admin-school-destroy', ['school' => $school->name]) }}">
                             @csrf
                             @method('DELETE')
-                            <button tag="submit" class="action-button delete-button" data-message="Delete {{ $school->name }}.">Destroy</button>
+                            <button tag="submit" class="action-button delete-button" data-message="Delete {{ $school->name }}.">Delete</button>
                         </form>
                         </div>    
                     </td>

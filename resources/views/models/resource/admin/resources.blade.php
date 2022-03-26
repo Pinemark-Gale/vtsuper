@@ -17,15 +17,17 @@
             @foreach ($resources as $resource)
                 <tr class="base-row bottom-border">
                     <th class="first-col" scope="row">
-                        <a href="{{ route('admin-resource-edit', ['resource' => $resource->name]) }}">{{ $resource->name }}</a>
+                        <a href="">{{ $resource->name }}</a>
                     </th>
-                    <td class="second-col">{{ $resource->type->type }}</td>
+                    <td class="second-col lobster-italic">{{ $resource->type->type }}</td>
                     <td class="expand-col">
                         <button class="expand-button" data-message="Expand this row.">+</button>
                     </td>
                 </tr>
                 <tr class="hidden bottom-border">
                     <td class="first-col">
+                        <p><span class="bold">Description:</span> {{ $resource->description }}</p>
+                        <br>
                         <h3 class="tag-container-title">Tags</h3>
                         <div class="tag-container">
                             @foreach ($resource->tags->pluck('tag') as $tag)
@@ -38,8 +40,8 @@
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
-                            <a href="{{ route('admin-resource', ['resource' => $resource->name]) }}">
-                                <button class="action-button" data-message="Get more info on {{ $resource->name }} resource.">More Info</button>
+                            <a href="{{ route('admin-resource-edit', ['resource' => $resource->name]) }}">
+                                <button class="action-button" data-message="Edit details of {{ $resource->name }} resource.">Edit</button>
                             </a>
                             <form method="POST" action="{{ route('admin-resource-destroy', ['resource' => $resource->name]) }}">
                                 @csrf

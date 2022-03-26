@@ -11,31 +11,29 @@
     <x-table.table
         caption="List of resource types on website." 
         header1="Resource Type"
-        header2="Last Updated"
+        header2="Resources"
     >
         <x-slot name="sTableBody">
             @foreach ($resourceTypes as $resourceType)
                 <tr class="base-row bottom-border">
-                    <th class="first-col" scope="row">
-                       <a href="{{ route('admin-resource-type-edit', ['resourceType' => $resourceType->type]) }}">{{ $resourceType->type }}</a>
-                    </th>
-                    <td class="second-col">{{ $resourceType->updated_at->format('M j, Y') }}</td>
+                    <th class="first-col" scope="row">{{ $resourceType->type }}</th>
+                    <td class="second-col lobster-italic">{{ $resourceType->resources->count() }}</td>
                     <td class="expand-col">
                         <button class="expand-button" data-message="Expand this row.">+</button>
                     </td>
                 </tr>
                 <tr class="hidden bottom-border">
-                    <td class="first-col">Created At: {{ $resourceType->created_at }}</td>
+                    <td class="first-col"><span class="bold">Last Modified:</span> {{ $resourceType->updated_at->format('M j, Y') }}</td>
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
-                            <a href="{{ route('admin-resource-type', ['resourceType' => $resourceType->type]) }}">
-                                <button class="action-button" data-message="Get more info on {{ $resourceType->type }} resource type.">More Info</button>
+                            <a href="{{ route('admin-resource-type-edit', ['resourceType' => $resourceType->type]) }}">
+                                <button class="action-button" data-message="Edit the details of {{ $resourceType->type }} resource type.">Edit</button>
                             </a>
                             <form method="POST" action="{{ route('admin-resource-type-destroy', ['resourceType' => $resourceType->type]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button tag="submit" class="action-button delete-button" data-message="Delete {{ $resourceType->type }} resource type.">Destroy</button>
+                                <button tag="submit" class="action-button delete-button" data-message="Delete {{ $resourceType->type }} resource type.">Delete</button>
                             </form>
                         </div>    
                     </td>

@@ -17,7 +17,7 @@ class AdminResourceTagController extends Controller
     public function index()
     {
         return view('models.resource_tag.admin.resource-tags', [
-            'resourceTags' => ResourceTag::all()
+            'resourceTags' => ResourceTag::with(['resources'])->get()
         ]);        
     }
 

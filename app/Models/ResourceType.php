@@ -19,7 +19,7 @@ class ResourceType extends Model
     ];
 
     /* Eloquent relationship for resourceType->Resource */
-    public function resource()
+    public function resources()
     {
         return $this->hasMany(Resource::class);
     }
