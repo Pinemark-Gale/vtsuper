@@ -18,7 +18,7 @@ class AdminSourceController extends Controller
     public function index()
     {
         return view('models.source.admin.sources', [
-            'sources' => Source::all()
+            'sources' => Source::with(['resources'])->get()
         ]);        
     }
 

@@ -11,26 +11,29 @@
     <x-table.table
         caption="List of activities on the website." 
         header1="Activity Name"
-        header2="Type"
+        header2="Minutes to Complete"
     >
         <x-slot name="sTableBody">
             @foreach ($activities as $activity)
                 <tr class="base-row bottom-border">
-                    <th class="first-col" scope="row">
-                        <a href="{{ route('admin-activity-edit', ['activityDetail' => $activity->slug]) }}">{{ $activity->name }}</a>
-                    </th>
-                    <td class="second-col">{{ $activity->name }}</td>
+                    <th class="first-col" scope="row">{{ $activity->name }}</th>
+                    <td class="second-col lobster-italic">{{ $activity->minutes_to_complete }}</td>
                     <td class="expand-col">
                         <button class="expand-button" data-message="Expand this row.">+</button>
                     </td>
                 </tr>
                 <tr class="hidden bottom-border">
-                    <td class="first-col">{{ $activity->instructions }}</td>
+                    <td class="first-col">
+                        <p><span class="bold">Author:</span> {{ $activity->author->name }}</p>
+                        <p><span class="bold">Resource:</span> {{ $activity->resource->name }}</p>
+                        <p><span class="bold">Questions:</span> {{ $activity->questions->count() }}</p>
+                        <p><span class="bold">Slug:</span> {{ $activity->slug }}</p>
+                    </td>
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
-                            <a href="{{ route('admin-activity', ['activityDetail' => $activity->slug]) }}">
-                                <button class="action-button" data-message="Get more info on {{ $activity->name }} activity.">More Info</button>
+                            <a href="{{ route('admin-activity-edit', ['activityDetail' => $activity->slug]) }}">
+                                <button class="action-button" data-message="Edit details of {{ $activity->name }} activity.">Edit</button>
                             </a>
                             <form method="POST" action="{{ route('admin-activity-destroy', ['activityDetail' => $activity->slug]) }}">
                                 @csrf

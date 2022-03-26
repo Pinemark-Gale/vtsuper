@@ -26,7 +26,7 @@ class AdminActivityController extends Controller
     public function index()
     {
         return view('models.activity.admin.activities', [
-            'activities' => ActivityDetail::all()
+            'activities' => ActivityDetail::with(['author', 'resource', 'questions'])->get()
         ]);
     }
 
