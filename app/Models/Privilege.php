@@ -15,7 +15,8 @@ class Privilege extends Model
      * @var string[]
      */
     protected $fillable = [
-        'title'
+        'title',
+        'description'
     ];
 
     /* Eloquent relationship for privilege->user */

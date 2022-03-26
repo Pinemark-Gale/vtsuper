@@ -15,23 +15,28 @@ class PrivilegeSeeder extends Seeder
     {
         /* Make common privileges for app. */
         \App\Models\Privilege::create([
-            'title' => 'Uncatigorized'
+            'title' => 'Uncatigorized',
+            'description' => 'Default when a user has no privilege. Gives no acces to website features.'
         ]);
 
         \App\Models\Privilege::create([
-            'title' => 'Student'
+            'title' => 'Student',
+            'description' => 'Someone who is able to view resources and pages. Can make submissions but cannot make activities.'
         ]);
 
         \App\Models\Privilege::create([
-            'title' => 'Teacher'
+            'title' => 'Teacher',
+            'description' => 'Someone who is able to make activities and approve the students in their class. Can also add resources.'
         ]);
 
         \App\Models\Privilege::create([
             'title' => 'Contributor',
+            'description' => 'Someone who is able to create resources and view pages and activities.'
         ]);
 
         \App\Models\Privilege::create([
-            'title' => 'Admin'
+            'title' => 'Admin',
+            'description' => 'Someone who has complete and unfettered access to the whole website.'
         ]);
     }
 }

@@ -23,7 +23,11 @@
                     </td>
                 </tr>
                 <tr class="hidden bottom-border">
-                    <td class="first-col"><span class="bold">Last Modified:</span> {{ $privilege->updated_at->format('M j, Y') }}</td>
+                    <td class="first-col">
+                        <p><span class="bold">About the Role: </span>{{ $privilege->description }}</p>
+                        <br>
+                        <p><span class="bold">Last Modified:</span> {{ $privilege->updated_at->format('M j, Y') }}</p>
+                    </td>
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">

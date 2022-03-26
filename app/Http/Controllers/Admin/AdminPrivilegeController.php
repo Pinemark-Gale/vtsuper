@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminPrivilegeController extends Controller
 {
@@ -43,11 +44,13 @@ class AdminPrivilegeController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => ['required', 'string',  'unique:App\Models\Privilege,title']
+            'title' => ['required', 'string',  'unique:App\Models\Privilege,title'],
+            'description' => ['required', 'string']
         ]);
 
         Privilege::create([
-            'title' => $request->title
+            'title' => $request->title,
+            'description' => $request->description
         ]);
 
         return redirect(route('admin-privileges'));
@@ -89,10 +92,12 @@ class AdminPrivilegeController extends Controller
     public function update(Request $request, Privilege $privilege)
     {
         $validatedData = $request->validate([
-            'title' => ['required', 'string',  'unique:App\Models\Privilege,title'],
+            'title' => ['required', 'string', Rule::unique('privileges', 'title')->ignore($privilege->id)],
+            'description' => ['required', 'string']
         ]);
 
         $privilege->title = $request->title;
+        $privilege->description = $request->description;
         $privilege->save();
 
         return redirect(route('admin-privileges'));
