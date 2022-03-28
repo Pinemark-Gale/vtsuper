@@ -2,8 +2,8 @@
     <div>
         <x-svg.home-page-hero class="home-page-hero" />
         <div class="home-page-hero-options">
-            <h1>Educators</h1>
-            <h1>Students</h1>
+            <h1><a href="/resources">Resources</a></h1>
+            <h1><a href="/activities">Activities</a></h1>
         </div>
     </div>
     <div class="rocket-canvas">

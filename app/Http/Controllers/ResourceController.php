@@ -6,6 +6,7 @@ use App\Models\Resource;
 use App\Models\ResourceType;
 use App\Models\ResourceTag;
 use App\Models\Source;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -20,6 +21,22 @@ class ResourceController extends Controller
     {
         return view('models.resource.resources', [
             'resources' => Resource::with(['type', 'source', 'tags'])
+                ->orderby('name')->get()
+        ]);
+    }
+
+    public function index_student()
+    {
+        return view('models.resource.resources', [
+            'resources' => Resource::where('resource_type_id', '=', '2')->with(['type', 'source', 'tags'])
+                ->orderby('name')->get()
+        ]);
+    }
+
+    public function index_educator()
+    {
+        return view('models.resource.resources', [
+            'resources' => Resource::where('resource_type_id', '=', '3')->with(['type', 'source', 'tags'])
                 ->orderby('name')->get()
         ]);
     }
@@ -150,5 +167,34 @@ class ResourceController extends Controller
         $resource->delete();
 
         return redirect(route('resources'));
+    }
+
+    /**
+     * Search function that returns same index view
+     * with select where statement.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            'search_term' => ['required', 'string'],
+        ]);
+
+        return view('models.resource.resources', [
+            'resources' => Resource::whereHas('type', function (Builder $query) use($request) {
+                $query->where('type', 'LIKE', '%'.$request->search_term.'%');
+            })->orWhereHas('source', function (Builder $query) use($request) {
+                $query->where('source', 'LIKE', '%'.$request->search_term.'%');
+            })->orWhereHas('tags', function (Builder $query) use($request) {
+                $query->where('tag', 'LIKE', '%'.$request->search_term.'%');
+            })->orWhere('name', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('link', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
+            ->orWhere('updated_at', 'LIKE', '%'.$request->search_term.'%')
+            ->with(['type', 'source', 'tags'])
+            ->orderby('name')->get()
+        ]);
     }
 }

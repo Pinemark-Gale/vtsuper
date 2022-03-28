@@ -1,11 +1,10 @@
-<x-layouts.app webpageTitle="Admin Panel">
+<x-layouts.app webpageTitle="Resources">
     <x-slot name="sJavaImport">
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
-    <x-table.table-filter-admin 
-        :searchAction="route('admin-resources-search')" 
-        :createLink="route('admin-resource-create')"
+    <x-table.table-filter 
+        :searchAction="route('resources-search')" 
     />
 
     <x-table.table
@@ -16,9 +15,7 @@
         <x-slot name="sTableBody">
             @foreach ($resources as $resource)
                 <tr class="base-row bottom-border">
-                    <th class="first-col" scope="row">
-                        <a href="{{ $resource->link }}">{{ $resource->name }}</a>
-                    </th>
+                    <th class="first-col" scope="row">{{ $resource->name }}</th>
                     <td class="second-col lobster-italic">{{ $resource->type->type }}</td>
                     <td class="expand-col">
                         <button class="expand-button" data-message="Expand this row.">+</button>
@@ -40,14 +37,9 @@
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
-                            <a href="{{ route('admin-resource-edit', ['resource' => $resource->name]) }}">
-                                <button class="action-button" data-message="Edit details of {{ $resource->name }} resource.">Edit</button>
+                            <a href="{{ $resource->link }}">
+                                <button class="action-button" data-message="Go to link in specified resource.">Go to Resource</button>
                             </a>
-                            <form method="POST" action="{{ route('admin-resource-destroy', ['resource' => $resource->name]) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button tag="submit" class="action-button delete-button" data-message="Delete {{ $resource->name }} resource.">Delete</button>
-                            </form>
                         </div>    
                     </td>
                     <td></td>

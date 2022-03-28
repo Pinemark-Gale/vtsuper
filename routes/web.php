@@ -12,6 +12,7 @@ use App\Http\Controllers\ResourceTypeController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,16 @@ Route::get('/unauthorized-access', function() {
     return view('unauthorized-access');
 })->name('unauthorized-access');
 
+/* Activity routes. */
+Route::get('/activities', [ActivityController::class, 'index'])->name('acitivities');
+Route::get('/activity/{activityDetail:slug}', [ActivityController::class, 'show'])->name('activity');
+Route::get('/activities/search', [ActivityController::class, 'search'])->name('activities-search');
+
 /* Resource routes. */
+Route::get('/resources', [ResourceController::class, 'index'])->name('resources');
+Route::get('/resources/student', [ResourceController::class, 'index_student'])->name('resources');
+Route::get('/resources/educator', [ResourceController::class, 'index_educator'])->name('resources');
+Route::get('/resources/search', [ResourceController::class, 'search'])->name('resources-search');
 
 /* Resource source routes. */
 

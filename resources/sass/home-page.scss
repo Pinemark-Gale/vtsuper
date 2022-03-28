@@ -5,7 +5,7 @@
     min-height: 400px;
     top: 0;
     width: 100%;
-
+    z-index: 0;
 }
 
 .home-page-hero-options {
@@ -16,6 +16,8 @@
     max-height: 300px;
     min-height: 250px;
     padding-bottom: 20vw;
+    position: relative;
+    z-index: 5;    
 
     h1 {
         font-size: 3vw;
