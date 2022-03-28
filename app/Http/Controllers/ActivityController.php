@@ -102,7 +102,7 @@ class ActivityController extends Controller
             'search_term' => ['required', 'string'],
         ]);
 
-        return view('models.activity.admin.activities', [
+        return view('models.activity.activities', [
             'activities' => ActivityDetail::where('name', 'LIKE', '%'.$request->search_term.'%')
             ->orWhere('minutes_to_complete', 'LIKE', '%'.$request->search_term.'%')
             ->orWhere('created_at', 'LIKE', '%'.$request->search_term.'%')
