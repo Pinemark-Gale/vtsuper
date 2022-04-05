@@ -157,7 +157,7 @@ a:hover {
   height: 20vw;
   width: 19vw;
   transition: 0.3s;
-  z-index: 2;
+  z-index: 10;
 }
 .top-nav-container .logo a {
   color: #1A1818;
@@ -298,8 +298,8 @@ a:hover {
   color: #1A1818;
   font-size: 1.7rem;
   margin: 10px;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   line-height: 0.4;
 }
 .menu-nav-container .link-container form {
