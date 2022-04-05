@@ -36,7 +36,7 @@
         <a href="{{ url('/dashboard') }}" class="blue-link">Dashboard</a>
         @foreach ($appLinks as $link)
             @if ($link->sections->contains('section', 'Main Navigation'))
-                <a href="{{ route('admin-page', ['page' => $link->slug]) }}" class="blue-link">{{ $link->title }}</a>
+                <a href="{{ route('page', ['page' => $link->slug]) }}" class="blue-link">{{ $link->title }}</a>
             @endif
         @endforeach
     </div>
