@@ -51,25 +51,23 @@ window.onload = function () {
   }
   /* ASSIGN SEARCH FILTER FUNCTION
   *************************************************/
+  // var searchBar = document.getElementsByClassName("search-bar-input");
+  // var tableBody = document.getElementsByClassName("table-body");
+  // tableBody = tableBody[0].children;
+  // console.log(tableBody);
+  //  searchBar[0].addEventListener("input", function() {
+  //     console.log(this.value);
+  //     for (var i = 0; i < tableBody.length; i = i + 2) {
+  //         var rowOneResults = new Set()
+  //         var rowOne = tableBody[i].children;
+  //         var rowTwo = tableBody[i + 1].children;
+  //         console.log("STARTING ROW #" + i);
+  //         var rowOneText = getChildText(rowOne, rowOneResults);
+  //         console.log("ROW NUMBER: " + i);
+  //         console.log(rowOneText);
+  //      }
+  //  }); 
 
-
-  var searchBar = document.getElementsByClassName("search-bar-input");
-  var tableBody = document.getElementsByClassName("table-body");
-  tableBody = tableBody[0].children;
-  console.log(tableBody);
-  searchBar[0].addEventListener("input", function () {
-    console.log(this.value);
-
-    for (var i = 0; i < tableBody.length; i = i + 2) {
-      var rowOneResults = new Set();
-      var rowOne = tableBody[i].children;
-      var rowTwo = tableBody[i + 1].children;
-      console.log("STARTING ROW #" + i);
-      var rowOneText = getChildText(rowOne, rowOneResults);
-      console.log("ROW NUMBER: " + i);
-      console.log(rowOneText);
-    }
-  });
 };
 /******/ })()
 ;
