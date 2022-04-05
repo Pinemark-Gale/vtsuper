@@ -1,0 +1,59 @@
+.activity-container {
+
+    .activity-title {
+        text-align: center;
+        font-size: 2.4em;
+    }
+
+    .instructions {
+        margin-top: 40px;
+    }
+
+    .question-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .question-header {
+            color: $super-black;
+            display: flex;
+            flex-wrap: nowrap;
+            width: 100%;
+    
+            .question-type {
+                background-color: $super-white;
+                font-size: 1.5em;
+                margin: 0px;
+                padding: 10px;
+                width: 70%;
+            }
+    
+            .question-filler {
+                background: linear-gradient(90deg, #869AC6 0% 25%, #F03C3C 25% 50%, #66B29E 50% 75%, #EEAA52 75%);
+                width: 20%;
+            }
+        }
+    
+        .question-prompt {
+            background-color: $super-white;
+            border-bottom: 1px solid $super-black;
+            color: $super-black;
+            padding: 10px;
+            width: 100%;
+        }
+    
+        .answer-container {
+            background-color: $super-white;
+            color: $super-black;
+            display: block;
+            padding: 5px;
+            width: 100%;
+
+            .text-response {
+                border: 1px solid $super-black;
+                padding: 5px;
+            }
+        }
+    }
+}

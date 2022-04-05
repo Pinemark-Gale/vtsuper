@@ -24,22 +24,14 @@
                 <tr class="hidden bottom-border">
                     <td class="first-col">
                         <p><span class="bold">Description:</span> {{ $resource->description }}</p>
-                        <br>
-                        <h3 class="tag-container-title">Tags</h3>
-                        <div class="tag-container">
-                            @foreach ($resource->tags->pluck('tag') as $tag)
-                                <button class="tag-button" data-message="Get more info on {{ $tag }} resource tag.">
-                                    <a href="{{ route('admin-resource-tag', ['resourceTag' => $tag]) }}">{{ $tag }}</a>
-                                </button>
-                            @endforeach                   
-                        </div>
+                        <a class="goto-resource" href="{{ $resource->link }}">Check out this resource</a>
                     </td>
                     <td class="second-col">
-                        <h3 class="action-container-title">Actions</h3>
-                        <div class="action-container">
-                            <a href="{{ $resource->link }}">
-                                <button class="action-button" data-message="Go to link in specified resource.">Go to Resource</button>
-                            </a>
+                        <h3 class="action-container-title">Tags</h3>
+                        <div class="tag-container">
+                            @foreach ($resource->tags->pluck('tag') as $tag)
+                                <span class="tag-button">{{ $tag }}</span>
+                            @endforeach                   
                         </div>    
                     </td>
                     <td></td>

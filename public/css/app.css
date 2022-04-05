@@ -219,7 +219,7 @@ a:hover {
   font-weight: 200;
   vertical-align: top;
   transition: 0.6s;
-  z-index: 2;
+  z-index: 10;
 }
 .menu-icon .top-bar {
   transform: rotate(0deg) translate(0px, 0px);
@@ -251,7 +251,7 @@ a:hover {
   font-weight: 200;
   vertical-align: top;
   transition: 0.6s;
-  z-index: 2;
+  z-index: 10;
 }
 .active-menu-icon .top-bar {
   transform: rotate(-45deg) translate(-5px, 5px);
@@ -285,7 +285,7 @@ a:hover {
   transition: 0.6s;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: 9;
 }
 .menu-nav-container .link-container {
   display: flex;
@@ -457,10 +457,10 @@ a:hover {
   flex-wrap: wrap;
 }
 .general-table tbody .tag-container .tag-button {
-  background-color: #869AC6;
+  background-color: #F03C3C;
   border: none;
   color: #F5E6C4;
-  cursor: pointer;
+  cursor: auto;
   display: block;
   font-size: 1rem;
   font-style: normal;
@@ -471,6 +471,17 @@ a:hover {
   padding-right: 6px;
   text-align: center;
   text-transform: uppercase;
+}
+.general-table tbody .tag-container .tag-button a:hover {
+  color: #1A1818;
+}
+.general-table tbody .goto-resource {
+  border-bottom: 5px solid #F03C3C;
+  display: block;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .general-table .first-col {
   text-align: left;
@@ -725,6 +736,55 @@ a:hover {
   font-weight: lighter;
   margin: 5px;
   text-transform: uppercase;
+}
+
+.activity-container .activity-title {
+  text-align: center;
+  font-size: 2.4em;
+}
+.activity-container .instructions {
+  margin-top: 40px;
+}
+.activity-container .question-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.activity-container .question-container .question-header {
+  color: #1A1818;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.activity-container .question-container .question-header .question-type {
+  background-color: #F5E6C4;
+  font-size: 1.5em;
+  margin: 0px;
+  padding: 10px;
+  width: 70%;
+}
+.activity-container .question-container .question-header .question-filler {
+  background: linear-gradient(90deg, #869AC6 0% 25%, #F03C3C 25% 50%, #66B29E 50% 75%, #EEAA52 75%);
+  width: 20%;
+}
+.activity-container .question-container .question-prompt {
+  background-color: #F5E6C4;
+  border-bottom: 1px solid #1A1818;
+  color: #1A1818;
+  padding: 10px;
+  width: 100%;
+}
+.activity-container .question-container .answer-container {
+  background-color: #F5E6C4;
+  color: #1A1818;
+  display: block;
+  padding: 5px;
+  width: 100%;
+}
+.activity-container .question-container .answer-container .text-response {
+  border: 1px solid #1A1818;
+  padding: 5px;
 }
 
 .bottom-container {

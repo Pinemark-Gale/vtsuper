@@ -8,7 +8,7 @@
     font-weight: 200;
     vertical-align: top;
     transition: $transition-time;
-    z-index: 2;
+    z-index: 10;
 
     .top-bar {
         transform: rotate(0deg) translate(0px, 0px);
@@ -44,7 +44,7 @@
     font-weight: 200;
     vertical-align: top;
     transition: $transition-time;
-    z-index: 2;
+    z-index: 10;
 
     .top-bar {
         transform: rotate(-45deg) translate(-5px, 5px);
@@ -82,7 +82,7 @@
     transition: $transition-time;
     height: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 9;
 
     .link-container {
         display: flex;

@@ -135,10 +135,10 @@
             flex-wrap: wrap;
 
             .tag-button {
-                background-color: $accent-blue;
+                background-color: $super-red;
                 border: none;
                 color: $super-white;
-                cursor: pointer;
+                cursor: auto;
                 display: block;
                 font-size: 1.0rem;
                 font-style: normal;
@@ -149,7 +149,21 @@
                 padding-right: 6px;
                 text-align: center;
                 text-transform: uppercase;
+
+                a:hover {
+                    color: $super-black;
+                }
             }
+
+        }
+
+        .goto-resource {
+            border-bottom: 5px solid $super-red;
+            display: block;
+            line-height: 1;
+            text-transform: uppercase;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
     }
     
