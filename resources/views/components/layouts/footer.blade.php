@@ -9,7 +9,7 @@
         <div class="link-container">
             @foreach ($appLinks as $link)
                 @if ($link->sections->contains('section', 'Footer'))
-                    <a href="{{ route('admin-page', ['page' => $link->slug]) }}" class="link blue-link">{{ $link->title }}</a>
+                    <a href="{{ route('page', ['page' => $link->slug]) }}" class="link blue-link">{{ $link->title }}</a>
                 @endif
             @endforeach
         </div>
