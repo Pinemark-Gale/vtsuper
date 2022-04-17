@@ -22,6 +22,9 @@
             @if (auth()->user()->privilegeCheck('contributor'))
                 <a href="{{ route('admin-users') }}" class="red-link">Admin Panel</a>
             @endif
+            @if (auth()->user()->privilegeCheck('student'))
+                <a href="{{ route('submissions') }}" class="red-link">My Submissions</a>
+            @endif
         @else 
             <a href="{{ route('login') }}" class="red-link">Log in</a>
             <a href="{{ route('user-create') }}" class="red-link">Register</a>

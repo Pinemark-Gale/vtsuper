@@ -13,6 +13,7 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\SubmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,12 @@ Route::get('/unauthorized-access', function() {
 Route::get('/activities', [ActivityController::class, 'index'])->name('acitivities');
 Route::get('/activity/{activityDetail:slug}', [ActivityController::class, 'show'])->name('activity');
 Route::get('/activities/search', [ActivityController::class, 'search'])->name('activities-search');
+
+/* Submission routes. */
+Route::get('/submissions', [SubmissionController::class, 'index'])->name('submissions');
+Route::get('/submission/{activityDetail:slug}', [SubmissionController::class, 'show'])->name('submission');
+Route::get('/submission/create/{activityDetail:slug}', [SubmissionController::class, 'create'])->name('submission-create');
+Route::get('/submissions/search', [SubmissionController::class, 'search'])->name('submissions-search');
 
 /* Resource routes. */
 Route::get('/resources', [ResourceController::class, 'index'])->name('resources');

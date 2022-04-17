@@ -1,10 +1,10 @@
-<x-layouts.app webpageTitle="Activities">
+<x-layouts.app webpageTitle="Submissions">
     <x-slot name="sJavaImport">
         <script src="{{ asset('js/tables.js') }}" defer></script>
     </x-slot>
 
     <x-table.table-filter 
-        :searchAction="route('activities-search')" 
+        :searchAction="route('submissions-search')" 
     />
 
     <x-table.table
@@ -33,9 +33,6 @@
                         <div class="action-container">
                             <a href="{{ route('activity', ['activityDetail' => $activity->slug]) }}">
                                 <button class="action-button" data-message="See a preview of {{ $activity->name }} activity.">Preview</button>
-                            </a>
-                            <a href="{{ route('submission-create', ['activityDetail' => $activity->slug]) }}">
-                                <button class="action-button" data-message="Create a submission for {{ $activity->name }} activity.">Submission</button>
                             </a>
                         </div>    
                     </td>

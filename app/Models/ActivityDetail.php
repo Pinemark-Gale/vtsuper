@@ -41,4 +41,16 @@ class ActivityDetail extends Model
         return $this->hasMany(ActivityQuestion::class);
     }
 
+    /* Eloquent relationship for $activityDetail->submissions */
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class);
+    }
+
+    /* Find user related submissions. */
+    public function mySubmissions()
+    {
+        return $this->submissions->where('user_id', '=', auth()->user()->id);
+    }
+
 }
