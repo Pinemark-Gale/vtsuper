@@ -128,9 +128,38 @@ function add_mc() {
     label.appendChild(type);
     label.appendChild(question);
     for (var i = 0; i < 4; i++) {
+        var correct_label = document.createElement('label');
+        correct_label.setAttribute('class', 'correct_button');
+        correct_label.setAttribute('for', 'module[' + order + '][correct][]');
+        correct_label.setAttribute('label', 'answer correctness');
+        correct_label.innerHTML = 'Incorrect';
+        
+        var correct_answer = document.createElement('input');
+        correct_answer.setAttribute('name', 'module[' + order + '][correct][]');
+        correct_answer.setAttribute('type', 'hidden');
+        correct_answer.setAttribute('value', '0');
+        correct_label.appendChild(correct_answer);
+        correct_label.addEventListener('click', function () {      
+            var child = this.childNodes[1];
+
+            if (child.value == "1") {
+                this.childNodes[1].setAttribute('value', 0);
+                child = this.childNodes[1];
+                this.innerHTML = "Incorrect";
+                this.appendChild(child);
+            } else if (child.value == "0") {
+                this.childNodes[1].setAttribute('value', 1);
+                child = this.childNodes[1];
+                this.innerHTML = "Correct";
+                this.appendChild(child);
+            }
+        
+        });
+
         var placement = document.createElement('input');
         placement.setAttribute('name', 'module[' + order + '][placement][]');
         placement.setAttribute('type', 'text');
+        placement.setAttribute('class', 'placement');
         placement.setAttribute('placeholder', 'placement: for example \"a)\"');
     
         var answer = document.createElement('input');
@@ -138,6 +167,7 @@ function add_mc() {
         answer.setAttribute('type', 'text');
         answer.setAttribute('placeholder', 'answer');
     
+        label.appendChild(correct_label);
         label.appendChild(placement);
         label.appendChild(answer);
     }

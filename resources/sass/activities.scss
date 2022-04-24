@@ -54,6 +54,17 @@
                 border: 1px solid $super-black;
                 padding: 5px;
             }
+
+            input {
+                background-color: transparent;
+                width: calc(100% - 15px);
+            }
+
+            .correct { 
+                background-color: $accent-dark-yellow;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
         }
     }
 }

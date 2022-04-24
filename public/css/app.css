@@ -652,6 +652,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding: 5px;
   width: 80%;
 }
 .admin-form #question-container label {
@@ -667,6 +668,17 @@ a:hover {
   margin-left: 5px;
   margin-right: 5px;
   width: calc(100% - 10px);
+}
+.admin-form #question-container .placement {
+  display: inline-block;
+  margin: 5px;
+  width: auto;
+}
+.admin-form #question-container .correct_button {
+  display: inline-block;
+  margin: 5px;
+  min-width: 70px;
+  width: 10%;
 }
 
 .home-page-hero {
@@ -785,6 +797,15 @@ a:hover {
 .activity-container .question-container .answer-container .text-response {
   border: 1px solid #1A1818;
   padding: 5px;
+}
+.activity-container .question-container .answer-container input {
+  background-color: transparent;
+  width: calc(100% - 15px);
+}
+.activity-container .question-container .answer-container .correct {
+  background-color: #EEAA52;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .bottom-container {

@@ -63,7 +63,8 @@ class AdminActivityController extends Controller
             'module.*.answer' => ['required', 'array'],
             'module.*.answer.*' => ['required', 'string'],
             'module.*.placement' => ['array'],
-            'module.*.placement.*' =>  ['string']
+            'module.*.placement.*' =>  ['string'],
+            'module.*.correct.*' => ['boolean']
         ]);
         
         $activityDetail = ActivityDetail::create([
@@ -103,7 +104,7 @@ class AdminActivityController extends Controller
                             'activity_answer_id' => $activityAnswer->id,
                             'placement' => $module['placement'][$index],
                             'response' => $answer,
-                            'correct' => 0
+                            'correct' => $module['correct'][$index]
                         ]);
                     };
                     break;

@@ -55,7 +55,11 @@
                             @endforeach
                         @elseif ($answer->type->type == "mc")
                             @foreach ($answer->mc as $response)
-                                <p>{{ $response->placement }} {{ $response->response }}</p>
+                                @if ($response->correct)
+                                    <p class="correct">{{ $response->placement }} {{ $response->response }}</p>
+                                @else
+                                    <p>{{ $response->placement }} {{ $response->response }}</p>
+                                @endif
                             @endforeach
                         @elseif ($answer->type->type == "sa")
                             @foreach ($answer->sa as $response)
