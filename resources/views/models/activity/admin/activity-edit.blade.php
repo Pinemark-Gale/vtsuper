@@ -38,11 +38,11 @@
                             @endforeach
                         @elseif ($answer->type->type == "mc")
                             @foreach ($answer->mc as $response)
-                                <label class="correct_button" for="module[0][correct][]" label="answer correctness">
+                                <label class="correct_button" for="module[{{ $index}}][correct][]" label="answer correctness">
                                     @if ($response->correct)
-                                        Correct<input name="module[0][correct][]" type="hidden" value="1">
+                                        Correct<input name="module[{{ $index }}][correct][]" type="hidden" value="1">
                                     @else
-                                        Incorrect<input name="module[0][correct][]" type="hidden" value="0">
+                                        Incorrect<input name="module[{{ $index}}][correct][]" type="hidden" value="0">
                                     @endif
                                 </label>
                                 <input name="module[{{ $index }}][placement][]" type="text" placeholder="placement" value="{{ $response->placement }}" class="placement">

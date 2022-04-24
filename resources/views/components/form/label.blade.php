@@ -1,3 +1,3 @@
-@props(['for', 'label' => $for])
+@props(['for', 'label' => $for, 'class' => ''])
 
-<label for="{{ $for }}">{{ ucwords($label) }}</label>
+<label class="{{ $class }}" for="{{ $for }}">{{ ucwords($label) }}</label>

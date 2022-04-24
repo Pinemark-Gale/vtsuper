@@ -358,6 +358,10 @@ a:hover {
   font-family: Lobster;
 }
 
+.hidden {
+  display: none;
+}
+
 /* admin panel header that goes above tables */
 .admin-panel-header {
   display: flex;
@@ -787,6 +791,15 @@ a:hover {
   padding: 10px;
   width: 100%;
 }
+.activity-container .question-container .question-prompt-submission {
+  background-color: #F5E6C4;
+  border-bottom: 1px solid #1A1818;
+  color: #1A1818;
+  font-size: 1em;
+  font-family: Josefin Sans;
+  padding: 10px;
+  width: 100%;
+}
 .activity-container .question-container .answer-container {
   background-color: #F5E6C4;
   color: #1A1818;
@@ -805,6 +818,14 @@ a:hover {
 .activity-container .question-container .answer-container .correct {
   background-color: #EEAA52;
   padding: 5px;
+}
+.activity-container .question-container .answer-container .mc-answer-block {
+  display: block;
+  padding: 5px;
+}
+.activity-container .question-container .answer-container .mc-answer-block .radio {
+  min-width: 25px;
+  width: 25px;
 }
 
 .bottom-container {

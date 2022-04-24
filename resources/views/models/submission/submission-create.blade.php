@@ -39,32 +39,38 @@
 
         <p class="instructions">{!! $activityDetail->instructions !!}</p>
 
-        @foreach ($activityDetail->questions as $question)
-            <div class="question-container">
-                <div class="question-header">
-                    <h2 class="question-type">QUESTION {{ $loop->iteration }}: {{ $question->type() }}</h2>
-                    <div class="question-filler"></div>
+        <x-form.form :action="route('submission-create', ['activityDetail' => $activityDetail->slug])">
+            @method('patch')
+            <x-form.title>Create Submission</x-form.title>
+
+            @foreach ($activityDetail->questions as $index => $question)
+                <div class="question-container">
+                    <div class="question-header">
+                        <h2 class="question-type">QUESTION {{ $loop->iteration }}: {{ $question->type() }}</h2>
+                        <x-form.input-hidden name="module[{{ $index }}][type]" value="{{ $question->type() }}" />
+                        <div class="question-filler"></div>
+                    </div>
+                    <x-form.input name="module[{{ $index }}][question]" class="question-prompt-submission" value="{{ $question->question }}" hideLabel="true" label="{{ $question->question }}" readonly />
+                    <div class="answer-container">
+                        @foreach ($question->answers as $answer)
+                            @if ($answer->type->type == "fitb")
+                                @foreach ($answer->fitb as $response)
+                                    <x-form.input name="module[{{ $index }}][answer]" class="text-response" placeholder="write your answer here" />
+                                @endforeach
+                            @elseif ($answer->type->type == "mc")
+                                @foreach ($answer->mc as $response)
+                                    <x-form.radio name="module[{{ $index }}]][answer]" value="{{ $response->placement }} {{ $response->response }}" />
+                                @endforeach
+                            @elseif ($answer->type->type == "sa")
+                                @foreach ($answer->sa as $response)
+                                    <x-form.input name="module[{{ $index }}][answer]" class="text-response" placeholder="write your answer here" />
+                                @endforeach
+                            @endif
+                        @endforeach
+                    </div>
+                    <x-form.button>Submit</x-form.button>
                 </div>
-                <div class="question-prompt">{{ $question->question }}</div>
-                <div class="answer-container">
-                    <h2>Expected Response(s):</h2>
-                    @foreach ($question->answers as $answer)
-                        @if ($answer->type->type == "fitb")
-                            @foreach ($answer->fitb as $response)
-                                <p class="text-response">{{ $response->response }}</p>
-                            @endforeach
-                        @elseif ($answer->type->type == "mc")
-                            @foreach ($answer->mc as $response)
-                                <p>{{ $response->placement }} {{ $response->response }}</p>
-                            @endforeach
-                        @elseif ($answer->type->type == "sa")
-                            @foreach ($answer->sa as $response)
-                                <p class="text-response">{{ $response->response }}</p>
-                            @endforeach
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        </x-form.form>
     </div>
 </x-layouts.app>

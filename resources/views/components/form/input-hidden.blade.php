@@ -1,4 +1,4 @@
-@props(['name', 'value' => $name, 'type' => 'text', 'label' => $name])
+@props(['name', 'value' => $name, 'type' => 'text'])
 
 <input {{ $attributes }}
     type="hidden"

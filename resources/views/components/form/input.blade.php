@@ -1,6 +1,19 @@
-@props(['name', 'value' => $name, 'type' => 'text', 'label' => $name])
+@props([
+    'name', 
+    'value' => $name, 
+    'type' => 'text', 
+    'label' => $name, 
+    'hideLabel' => 'false',
+    'removeLabel' => 'false'
+])
 
-<x-form.label for="{{ $name }}" label="{{ $label }}" />
+@if ($removeLabel == 'false')
+    @if ($hideLabel == 'false')
+        <x-form.label for="{{ $name }}" label="{{ $label }}" />
+    @else
+        <x-form.label for="{{ $name }}" label="{{ $label }}" class="hidden" />
+    @endif
+@endif
 
 <input {{ $attributes }}
     type="{{ $type }}"
