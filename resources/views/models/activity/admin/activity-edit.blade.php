@@ -38,7 +38,14 @@
                             @endforeach
                         @elseif ($answer->type->type == "mc")
                             @foreach ($answer->mc as $response)
-                                <input name="module[{{ $index }}][placement][]" type="text" placeholder="placement" value="{{ $response->placement }}">
+                                <label class="correct_button" for="module[0][correct][]" label="answer correctness">
+                                    @if ($response->correct)
+                                        Correct<input name="module[0][correct][]" type="hidden" value="1">
+                                    @else
+                                        Incorrect<input name="module[0][correct][]" type="hidden" value="0">
+                                    @endif
+                                </label>
+                                <input name="module[{{ $index }}][placement][]" type="text" placeholder="placement" value="{{ $response->placement }}" class="placement">
                                 <input name="module[{{ $index }}][answer][]" type="text" placeholder="answer" value="{{ $response->response }}">
                             @endforeach
                         @elseif ($answer->type->type == "sa")

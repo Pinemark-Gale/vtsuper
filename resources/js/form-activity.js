@@ -225,7 +225,28 @@ window.onload = function() {
     
     /* for activity edit view if questions already exist */
     var editDeleteButtons = document.getElementsByClassName('label_button');
-    for (index = 0; index < editDeleteButtons.length; index++) {
+    for (var index = 0; index < editDeleteButtons.length; index++) {
         editDeleteButtons[index].onclick = remove_parent.bind(this, editDeleteButtons[index]);
+    }
+
+    /* for activity edit view if MC answer already exists */
+    var editCorrectButtons = document.getElementsByClassName('correct_button');
+    for (var index = 0; index < editCorrectButtons.length; index++) {
+        editCorrectButtons[index].addEventListener('click', function () {      
+            var child = this.childNodes[1];
+
+            if (child.value == "1") {
+                this.childNodes[1].setAttribute('value', 0);
+                child = this.childNodes[1];
+                this.innerHTML = "Incorrect";
+                this.appendChild(child);
+            } else if (child.value == "0") {
+                this.childNodes[1].setAttribute('value', 1);
+                child = this.childNodes[1];
+                this.innerHTML = "Correct";
+                this.appendChild(child);
+            }
+        
+        });
     }
 }

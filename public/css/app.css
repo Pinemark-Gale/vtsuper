@@ -804,8 +804,7 @@ a:hover {
 }
 .activity-container .question-container .answer-container .correct {
   background-color: #EEAA52;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px;
 }
 
 .bottom-container {
