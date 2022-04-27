@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActivityDetail;
+use App\Models\SubmissionAnswerFITB;
+use App\Models\SubmissionAnswerMC;
+use App\Models\SubmissionAnswerSA;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class SubmissionController extends Controller
 {
@@ -43,7 +47,68 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'activity_detail_id' => ['required', 'int', 'exists:App\Models\ActivityDetail,id'],
+            'module' => ['required', 'array'],
+            'module.*.type' => ['required', 'string', 'exists:App\Models\ActivityAnswerType,type'],
+            'module.*.question' => ['required', 'string'],
+            'module.*.answer' => ['required', 'array'],
+            'module.*.answer.*' => ['required', 'string'],
+            'module.*.placement' => ['array'],
+            'module.*.placement.*' =>  ['string', 'max:3'],
+            'module.*.correct' => ['array'],
+            'module.*.correct.*' => ['boolean'],
+            'module.*.selected' => ['string', 'max:3']
+        ]);
+        
+        foreach ($request->module as $module) {
+            $submission = ActivityDetail::create([
+                'activity_detail_id' => $request->activity_detail_id,
+                'user_id' => Auth::user()->id,
+                'question' => $module->question,
+                'type' => $module->type
+            ]);
+            
+            switch($module['type']) {
+                case "Fill in the Blank":
+                    $submissionFITB = SubmissionAnswerFITB::create([
+                        'submission_id' => $submission->id,
+                        'response' => $module['answer'][0]
+                    ]);
+                    break;
+                case "Multiple Choice":
+                    foreach ($module['answer'] as $index => $answer) {
+                        if ($module->selected == $module['placement'][$index]) {
+                            $selected = 1;
+                        } else {
+                            $selected = 0;
+                        }
+                        $submissionMC = SubmissionAnswerMC::create([
+                            'submission_id' => $submission->id,
+                            'placement' => $module['placement'][$index],
+                            'response' => $module['answer'][$index],
+                            'correct' => $module['correct'][$index],
+                            'selected' => $selected
+                        ]);
+                    };
+                    break;
+                case "Short Answer":
+                    $activityAnswerSA = SubmissionAnswerSA::create([
+                        'submission_id' => $submission->id,
+                        'response' => $module['answer'][0]
+                    ]);
+                    break;
+                default:
+                    return redirect()
+                    ->back()
+                    ->with(
+                        config('session.system_message'), 
+                        'Please contact the system administrator and give the following message: Module type ' . $module['type'] . ' cannot be found and got past system validation.'
+                    );
+            }
+        };
+
+        return redirect(route('submission'));
     }
 
     /**

@@ -1,3 +1,5 @@
-<button type="submit" class="form-submit">
+@props(['class' => 'form-submit'])
+
+<button type="submit" class="{{ $class }}">
     {{ $slot }}
 </button>

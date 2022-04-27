@@ -827,6 +827,19 @@ a:hover {
   min-width: 25px;
   width: 25px;
 }
+.activity-container .submit-button {
+  background-color: #869AC6;
+  border: none;
+  border-radius: 5px;
+  color: #F5E6C4;
+  display: block;
+  font-size: 1.2rem;
+  padding: 5px;
+  margin: 10px;
+  min-width: 200px;
+  text-align: center;
+  width: calc(100% - 20px);
+}
 
 .bottom-container {
   background-color: #1A1818;

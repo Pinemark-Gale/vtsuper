@@ -87,4 +87,18 @@
             }
         }
     }
+
+    .submit-button {
+        background-color: $accent-blue;
+        border: none;
+        border-radius: 5px;
+        color: $super-white;
+        display: block;
+        font-size: 1.2rem;
+        padding: 5px;
+        margin: 10px;
+        min-width: 200px;
+        text-align: center;
+        width: calc(100% - 20px);
+    }
 }

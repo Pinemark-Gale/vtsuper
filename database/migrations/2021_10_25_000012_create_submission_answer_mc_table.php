@@ -19,6 +19,8 @@ class CreateSubmissionAnswerMCTable extends Migration
             $table->foreignId('submission_id')->constrained();
             $table->char('placement', 3);
             $table->string('response');
+            $table->boolean('correct');
+            $table->boolean('selected');
             $table->timestamps();
         });
     }
