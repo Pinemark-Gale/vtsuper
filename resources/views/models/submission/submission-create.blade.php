@@ -39,6 +39,7 @@
 
         <p class="instructions">{!! $activityDetail->instructions !!}</p>
 
+        <x-all-errors />
         <x-form.form :action="route('submission-store', ['activityDetail' => $activityDetail->slug])" class="none">
             <x-form.title>Create Submission</x-form.title>
             <x-form.input-hidden name="activity_detail_id" value="{{ $activityDetail->id }}" />
@@ -47,7 +48,7 @@
                 <div class="question-container">
                     <div class="question-header">
                         <h2 class="question-type">QUESTION {{ $loop->iteration }}: {{ $question->type() }}</h2>
-                        <x-form.input-hidden name="module[{{ $index }}][type]" value="{{ $question->type() }}" />
+                        <x-form.input-hidden name="module[{{ $index }}][type]" value="{{ $question->rawType() }}" />
                         <div class="question-filler"></div>
                     </div>
                     <x-form.input name="module[{{ $index }}][question]" class="question-prompt-submission" value="{{ $question->question }}" hideLabel="true" label="{{ $question->question }}" readonly />
@@ -62,7 +63,7 @@
                                     <x-form.input-hidden name="module[{{ $index }}][placement][]" value="{{ $response->placement }}" />
                                     <x-form.input-hidden name="module[{{ $index }}][answer][]" value="{{ $response->response }}" />
                                     <x-form.input-hidden name="module[{{ $index }}][correct][]" value="{{ $response->correct }}" />
-                                    <x-form.radio name="module[{{ $index }}][selected]" value="{{ $response->placement }}" />
+                                    <x-form.radio name="module[{{ $index }}][selected]" value="{{ $response->placement }}" label="{{ $response->placement . ' ' . $response->response }}" />
                                 @endforeach
                             @elseif ($answer->type->type == "sa")
                                 @foreach ($answer->sa as $response)

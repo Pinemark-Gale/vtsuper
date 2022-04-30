@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/* FITB = fill in the blank answer */
-class CreateSubmissionAnswerFITBTable extends Migration
+/* SA = short answer */
+class CreateSubmissionAnswerSATable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class CreateSubmissionAnswerFITBTable extends Migration
      */
     public function up()
     {
-        Schema::create('submission_answer_fitb', function (Blueprint $table) {
+        Schema::create('submission_answer_sa', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('submission_id')->constrained();
-            $table->string('response');
+            $table->foreignId('submission_question_id')->constrained();
+            $table->text('response');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSubmissionAnswerFITBTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submission_answer_fitb');
+        Schema::dropIfExists('submission_answer_sa');
     }
 }

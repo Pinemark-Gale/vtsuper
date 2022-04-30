@@ -18,14 +18,14 @@ class SubmissionAnswerFITB extends Model
      * @var string[]
      */
     protected $fillable = [
-        'submission_id',
+        'submission_question_id',
         'response',
     ];
 
-    /* Eloquent relationship for $submissionAnswerFITB->page */
-    public function answer()
+    /* Eloquent relationship for $submissionAnswerFITB->question */
+    public function question()
     {
-        return $this->belongsTo(Submission::class, 'submission_id');
+        return $this->belongsTo(SubmissionQuestion::class, 'submission_question_id');
     }
 
 }

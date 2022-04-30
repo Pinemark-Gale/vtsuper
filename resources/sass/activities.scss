@@ -73,7 +73,12 @@
             .correct { 
                 background-color: $accent-dark-yellow;
                 padding: 5px;
-
+            }            
+            
+            .selected { 
+                background-color: $accent-dark-green;
+                color: $super-white;
+                padding: 5px;
             }
 
             .mc-answer-block {

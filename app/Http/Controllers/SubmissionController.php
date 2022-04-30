@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActivityDetail;
+use App\Models\Submission;
+use App\Models\SubmissionQuestion;
 use App\Models\SubmissionAnswerFITB;
 use App\Models\SubmissionAnswerMC;
 use App\Models\SubmissionAnswerSA;
@@ -20,10 +22,9 @@ class SubmissionController extends Controller
     public function index()
     {
         return view('models.submission.submissions', [
-            'activities' => ActivityDetail::whereHas('submissions', function (Builder $query) {
-                    $query->where('user_id', '=', auth()->user()->id);
-                 })->with(['author', 'resource', 'questions'])
-                ->orderby('name')->get()
+            'submissions' => Submission::where('user_id', '=', auth()->user()->id)
+                ->with(['activity', 'questions'])
+                ->orderby('updated_at', 'desc')->get()
         ]);    
     }
 
@@ -60,31 +61,35 @@ class SubmissionController extends Controller
             'module.*.correct.*' => ['boolean'],
             'module.*.selected' => ['string', 'max:3']
         ]);
-        
+
+        $submission = Submission::create([
+            'activity_detail_id' => $request->activity_detail_id,
+            'user_id' => Auth::user()->id
+        ]);
+    
         foreach ($request->module as $module) {
-            $submission = ActivityDetail::create([
-                'activity_detail_id' => $request->activity_detail_id,
-                'user_id' => Auth::user()->id,
-                'question' => $module->question,
-                'type' => $module->type
+            $submissionQuestion = SubmissionQuestion::create([
+                'submission_id' => $submission->id,
+                'question' => $module['question'],
+                'type' => $module['type']
             ]);
             
             switch($module['type']) {
-                case "Fill in the Blank":
+                case "fitb":
                     $submissionFITB = SubmissionAnswerFITB::create([
-                        'submission_id' => $submission->id,
+                        'submission_question_id' => $submissionQuestion->id,
                         'response' => $module['answer'][0]
                     ]);
                     break;
-                case "Multiple Choice":
+                case "mc":
                     foreach ($module['answer'] as $index => $answer) {
-                        if ($module->selected == $module['placement'][$index]) {
+                        if ($module['selected'] == $module['placement'][$index]) {
                             $selected = 1;
                         } else {
                             $selected = 0;
                         }
                         $submissionMC = SubmissionAnswerMC::create([
-                            'submission_id' => $submission->id,
+                            'submission_question_id' => $submissionQuestion->id,
                             'placement' => $module['placement'][$index],
                             'response' => $module['answer'][$index],
                             'correct' => $module['correct'][$index],
@@ -92,9 +97,9 @@ class SubmissionController extends Controller
                         ]);
                     };
                     break;
-                case "Short Answer":
+                case "sa":
                     $activityAnswerSA = SubmissionAnswerSA::create([
-                        'submission_id' => $submission->id,
+                        'submission_question_id' => $submissionQuestion->id,
                         'response' => $module['answer'][0]
                     ]);
                     break;
@@ -108,7 +113,7 @@ class SubmissionController extends Controller
             }
         };
 
-        return redirect(route('submission'));
+        return redirect(route('submission', $submission->id));
     }
 
     /**
@@ -117,10 +122,10 @@ class SubmissionController extends Controller
      * @param  \App\Models\ActivityDetail  $activityDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(ActivityDetail $activityDetail)
+    public function show(Submission $submission)
     {
-        return view('models.activity.activity', [
-            'activityDetail' => $activityDetail
+        return view('models.submission.submission', [
+            'submission' => $submission
         ]);
     }
 

@@ -52,4 +52,9 @@ class ActivityQuestion extends Model
             return $pretty_type;
         };
     }
+    
+    public function rawType()
+    {
+        return $this->answers[0]->type->type;
+    }
 }

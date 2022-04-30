@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/* MC = multiple choice answer */
-class CreateSubmissionAnswerMCTable extends Migration
+/* FITB = fill in the blank answer */
+class CreateSubmissionAnswerFITBTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,10 @@ class CreateSubmissionAnswerMCTable extends Migration
      */
     public function up()
     {
-        Schema::create('submission_answer_mc', function (Blueprint $table) {
+        Schema::create('submission_answer_fitb', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('submission_id')->constrained();
-            $table->char('placement', 3);
+            $table->foreignId('submission_question_id')->constrained();
             $table->string('response');
-            $table->boolean('correct');
-            $table->boolean('selected');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateSubmissionAnswerMCTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submission_answer_mc');
+        Schema::dropIfExists('submission_answer_fitb');
     }
 }

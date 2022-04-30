@@ -17,8 +17,6 @@ class CreateSubmissionsTable extends Migration
             $table->id();
             $table->foreignId('activity_detail_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->text('question');
-            $table->string('type');
             $table->timestamps();
         });
     }

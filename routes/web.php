@@ -45,7 +45,7 @@ Route::get('/activities/search', [ActivityController::class, 'search'])->name('a
 
 /* Submission routes. */
 Route::get('/submissions', [SubmissionController::class, 'index'])->name('submissions');
-Route::get('/submission/{activityDetail:slug}', [SubmissionController::class, 'show'])->name('submission');
+Route::get('/submission/{submission:id}', [SubmissionController::class, 'show'])->name('submission');
 Route::get('/submission/create/{activityDetail:slug}', [SubmissionController::class, 'create'])->name('submission-create');
 Route::post('/submission/store', [SubmissionController::class, 'store'])->name('submission-store');
 Route::get('/submissions/search', [SubmissionController::class, 'search'])->name('submissions-search');

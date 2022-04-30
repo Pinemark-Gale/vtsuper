@@ -8,31 +8,28 @@
     />
 
     <x-table.table
-        caption="List of activities on the website." 
+        caption="List of submissions this user has submitted." 
         header1="Activity Name"
-        header2="Minutes to Complete"
+        header2="Submitted At"
     >
         <x-slot name="sTableBody">
-            @foreach ($activities as $activity)
+            @foreach ($submissions as $submission)
                 <tr class="base-row bottom-border">
-                    <th class="first-col" scope="row">{{ $activity->name }}</th>
-                    <td class="second-col lobster-italic">{{ $activity->minutes_to_complete }}</td>
+                    <th class="first-col" scope="row">{{ $submission->activity->name }}</th>
+                    <td class="second-col lobster-italic">{{ $submission->updated_at->format('M j, Y g:iA') }}</td>
                     <td class="expand-col">
                         <button class="expand-button" data-message="Expand this row.">+</button>
                     </td>
                 </tr>
                 <tr class="hidden bottom-border">
                     <td class="first-col">
-                        <p><span class="bold">Author:</span> {{ $activity->author->name }}</p>
-                        <p><span class="bold">Resource:</span> {{ $activity->resource->name }}</p>
-                        <p><span class="bold">Questions:</span> {{ $activity->questions->count() }}</p>
-                        <p><span class="bold">Slug:</span> {{ $activity->slug }}</p>
+                        <p><span class="bold">Questions:</span> {{ $submission->questions->count() }}</p>
                     </td>
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
-                            <a href="{{ route('activity', ['activityDetail' => $activity->slug]) }}">
-                                <button class="action-button" data-message="See a preview of {{ $activity->name }} activity.">Preview</button>
+                            <a href="{{ route('submission', ['submission' => $submission->id]) }}">
+                                <button class="action-button" data-message="See a preview of {{ $submission->activity->name }} submission created on {{ $submission->updated_at->format('M j, Y') }}.">Review</button>
                             </a>
                         </div>    
                     </td>

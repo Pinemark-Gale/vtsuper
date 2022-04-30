@@ -17,7 +17,6 @@ class Submission extends Model
     protected $fillable = [
         'activity_detail_id',
         'user_id',
-        'question',
     ];
 
     /* Eloquent relationship for $submission->activity */
@@ -32,22 +31,9 @@ class Submission extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    /* Eloquent relationship for $submission->fitb */
-    public function fitb()
+    /* Eloquent relationship for $submission->questions */
+    public function questions()
     {
-        return $this->hasMany(SubmissionAnswerFITB::class);
+        return $this->hasMany(SubmissionQuestion::class);
     }
-
-    /* Eloquent relationship for $submission->mc */
-    public function mc()
-    {
-        return $this->hasMany(SubmissionAnswerMC::class);
-    }
-
-    /* Eloquent relationship for $submission->sa */
-    public function sa()
-    {
-        return $this->hasMany(SubmissionAnswerSA::class);
-    }
-
 }

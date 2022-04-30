@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/* SA = short answer */
-class CreateSubmissionAnswerSATable extends Migration
+class CreateSubmissionQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,11 @@ class CreateSubmissionAnswerSATable extends Migration
      */
     public function up()
     {
-        Schema::create('submission_answer_sa', function (Blueprint $table) {
+        Schema::create('submission_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('submission_id')->constrained();
-            $table->text('response');
+            $table->text('question');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSubmissionAnswerSATable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submission_answer_sa');
+        Schema::dropIfExists('submission_questions');
     }
 }
