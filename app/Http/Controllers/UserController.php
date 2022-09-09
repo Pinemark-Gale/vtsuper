@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'string', 'max:255', 'unique:\App\Models\User'],
+            'email' => ['required', 'email', 'string', 'max:50', 'unique:\App\Models\User'],
             'password' => ['string', 'nullable', 'confirmed', Rules\Password::defaults()],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
             'pronouns' => ['string', 'max:100', 'nullable']
@@ -119,7 +119,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'email' => ['required', 'email', 'string', 'max:50', Rule::unique('users', 'email')->ignore($user->id)],
             'school_id' => ['required', 'numeric', 'integer', 'exists:App\Models\School,id'],
             'pronouns' => ['string', 'max:100', 'nullable']
         ]);

@@ -43,12 +43,12 @@ Route::middleware('permission.check:admin')->group(function () {
     /* User routes. */
     Route::get('admin/users', [AdminUserController::class, 'index'])->name('admin-users');
     Route::get('admin/users/search', [AdminUserController::class, 'search'])->name('admin-users-search');
-    Route::get('admin/users/{user:name}', [AdminUserController::class, 'show'])->name('admin-user');
+    Route::get('admin/users/{user:id}', [AdminUserController::class, 'show'])->name('admin-user');
     Route::get('admin/user/register', [AdminUserController::class, 'create'])->name('admin-user-create');
     Route::post('admin/user/register', [AdminUserController::class, 'store'])->name('admin-user-store');
-    Route::get('admin/users/{user:name}/edit', [AdminUserController::class, 'edit'])->name('admin-user-edit');
-    Route::patch('admin/user/{user:name}/update', [AdminUserController::class, 'update'])->name('admin-user-update');
-    Route::delete('admin/user/{user:name}/destroy', [AdminUserController::class, 'destroy'])->name('admin-user-destroy');
+    Route::get('admin/users/{user:id}/edit', [AdminUserController::class, 'edit'])->name('admin-user-edit');
+    Route::patch('admin/user/{user:id}/update', [AdminUserController::class, 'update'])->name('admin-user-update');
+    Route::delete('admin/user/{user:id}/destroy', [AdminUserController::class, 'destroy'])->name('admin-user-destroy');
     
     /* Resource tag routes. */
     Route::delete('admin/resource-tag/{resourceTag:tag}/destroy', [AdminResourceTagController::class, 'destroy'])->name('admin-resource-tag-destroy');

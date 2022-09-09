@@ -20,7 +20,7 @@
                     </div>
             </form>
             @if (auth()->user()->privilegeCheck('contributor'))
-                <a href="{{ route('admin-users') }}" class="red-link">Admin Panel</a>
+                <a href="{{ route('admin-resources') }}" class="red-link">Admin Panel</a>
             @endif
             @if (auth()->user()->privilegeCheck('student'))
                 <a href="{{ route('submissions') }}" class="red-link">My Submissions</a>

@@ -32,10 +32,10 @@
                     <td class="second-col">
                         <h3 class="action-container-title">Actions</h3>
                         <div class="action-container">
-                        <a href="{{ route('admin-user-edit', ['user' => $user->name]) }}">
-                            <button class="action-button" data-message="Edit detailsj of {{ $user->name }}.">Edit</button>
+                        <a href="{{ route('admin-user-edit', ['user' => $user->id]) }}">
+                            <button class="action-button" data-message="Edit details of {{ $user->name }}.">Edit</button>
                         </a>
-                        <form method="POST" action="{{ route('admin-user-destroy', ['user' => $user->name]) }}">
+                        <form method="POST" action="{{ route('admin-user-destroy', ['user' => $user->id]) }}">
                             @csrf
                             @method('DELETE')
                             <button tag="submit" class="action-button delete-button" data-message="Delete {{ $user->name }}.">Delete</button>
