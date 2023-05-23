@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <x-form.form :action="route('user-update-password', ['user' => $user->name])">
+    <x-form.form :action="route('user-update-password', ['user' => $user->id])">
         @method('patch')
         <x-form.input name="password" type="password" />
         <x-form.input name="password_confirmation" type="password" label="confirm password" />
