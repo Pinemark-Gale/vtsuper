@@ -60,8 +60,8 @@ class AdminActivityController extends Controller
             'module' => ['required', 'array'],
             'module.*.type' => ['required', 'string', 'exists:App\Models\ActivityAnswerType,type'],
             'module.*.question' => ['required', 'string'],
-            'module.*.answer' => ['required', 'array'],
-            'module.*.answer.*' => ['required', 'string'],
+            'module.*.answer' => ['array'],
+            'module.*.answer.*' => ['string', 'nullable'],
             'module.*.placement' => ['array'],
             'module.*.placement.*' =>  ['string'],
             'module.*.correct.*' => ['boolean']
@@ -100,12 +100,21 @@ class AdminActivityController extends Controller
                     break;
                 case "mc":
                     foreach ($module['answer'] as $index => $answer) {
-                        $activityAnswerMC = ActivityAnswerMC::create([
-                            'activity_answer_id' => $activityAnswer->id,
-                            'placement' => $module['placement'][$index],
-                            'response' => $answer,
-                            'correct' => $module['correct'][$index]
-                        ]);
+                        if (isset($answer)) {
+                            $activityAnswerMC = ActivityAnswerMC::create([
+                                'activity_answer_id' => $activityAnswer->id,
+                                'placement' => $module['placement'][$index],
+                                'response' => $answer,
+                                'correct' => $module['correct'][$index]
+                            ]);
+                        } else {
+                            $activityAnswerMC = ActivityAnswerMC::create([
+                                'activity_answer_id' => $activityAnswer->id,
+                                'placement' => $module['placement'][$index],
+                                'response' => "",
+                                'correct' => $module['correct'][$index]
+                            ]);
+                        };
                     };
                     break;
                 case "sa":
