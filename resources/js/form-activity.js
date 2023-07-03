@@ -96,6 +96,30 @@ function add_fitb() {
     label.appendChild(delete_button);
 }
 
+/* Pre:  number
+ * Post:  letter equivalent
+ * Purpose: Translate MC answer number to corresponding MC
+ * placement letter.
+ ********************************************************************/
+function translate_placement(number) {
+    switch(number) {
+        case 0:
+            return "a)";
+            break;
+        case 1:
+            return "b)";
+            break;
+        case 2:
+            return "c)";
+            break;
+        case 3:
+            return "d)";
+            break;
+        default:
+            return "z)";
+    }
+}
+
 /* Pre:  function to be onloaded to MC button
  * Post:  onclick function create question or delete
  * Purpose: Create MC questions for an activity.
@@ -160,7 +184,7 @@ function add_mc() {
         placement.setAttribute('name', 'module[' + order + '][placement][]');
         placement.setAttribute('type', 'text');
         placement.setAttribute('class', 'placement');
-        placement.setAttribute('placeholder', 'placement: for example \"a)\"');
+        placement.setAttribute('value', translate_placement(i));
     
         var answer = document.createElement('input');
         answer.setAttribute('name', 'module[' + order + '][answer][]');
